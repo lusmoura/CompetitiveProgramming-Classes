@@ -28,7 +28,7 @@ Essa coleção de resumos foi feita com o objetivo de introduzir e facilitar o e
 - Crivo de Eratóstenes
 
 Created by:
-	- André Fakhoury
-	- David Cairuz
-	- Luísa Moura
-	- Thiago Preischadt
+- André Fakhoury
+- David Cairuz
+- Luísa Moura
+- Thiago Preischadt
