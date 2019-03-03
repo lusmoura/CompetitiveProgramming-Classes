@@ -162,4 +162,4 @@ Aquele mesmo exemplo:
     }
 ```
 
-Esses comandos são bem básicos, mas são muuuuito úteis.
+Esses comandos são bem básicos, mas são muuuuito úteis. Recomendamos que você faça algumas alterações nos exemplos e teste em casa!
