@@ -18,7 +18,7 @@ Certo, você irá resolver um problema. Para se familiarizar melhor com eles, aq
 5. Explicação dos Casos de Teste\
     Em alguns problemas, também é possível que os casos de teste sejam explicados, para facilitar a compreensão do problema.
 
-## Exemplo básico
+## Exemplo
 
 Aqui vai um exemplo básico de problema:
 
