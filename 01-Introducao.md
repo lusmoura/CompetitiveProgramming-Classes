@@ -18,7 +18,7 @@ Certo, você irá resolver um problema. Para se familiarizar melhor com eles, aq
 5. Explicação dos Casos de Teste\
     Em alguns problemas, também é possível que os casos de teste sejam explicados, para facilitar a compreensão do problema.
 
-## Exemplo
+## Exemplo básico
 
 Aqui vai um exemplo básico de problema:
 
@@ -97,7 +97,7 @@ Após submeter seu código, você pode receber alguma resposta do site em que ma
 [GitHub do LoppA](https://github.com/LoppA)\
 [GitHub da lmoura](https://github.com/lusmoura)\
 [GitHub do Preischadt](https://github.com/thiagop-usp)\
-[GitHub do David](https://github.com/davidcairuz)\
+[GitHub do David](https://github.com/davidcairuz)
 
 #### Em inglês
 [Geeks for Geeks](https://www.geeksforgeeks.org/)\
@@ -127,3 +127,13 @@ Os problemas recomendados estão todos no [UVA](https://uva.onlinejudge.org/), u
 Uma ótima forma de utilizar esse livro é combinando-o a alguns outros recursos citados aqui. Como já foi dito anteriormente, é importante tentar ter diferentes perspectivas sobre um mesmo tópico.
 
 A biblioteca do ICMC conta com apenas uma cópia, mas o livro também pode ser encontrado na internet.
+
+### Acompanhando seu progresso
+Depois de ter resolvido problemas em alguns dos online judges (sites para competir citados acima), talvez você queira ter uma visão geral do que já fez. Para isso, existem alguns sites que reúnem diversas informações, exibem gráficos, mostram números e listam seus problemas resolvidos. Eles são:
+
+[StopStalk](https://www.stopstalk.com/): Esse site reúne dados dos online judges mais famosos, mostra um heatmap de atividade, conta e lista todos os seus problemas resolvidos e ainda permite que você acompanhe seus amigos.
+
+[Codeforces Visualizer](https://cfviz.netlify.com/): Esse site faz o mesmo que o de cima, mas focando apenas no Codeforces.
+
+Os dois sites podem servir como grande fonte de motivação, então vale a pena dar uma olhada.
+
