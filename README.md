@@ -26,3 +26,9 @@ Essa coleção de resumos foi feita com o objetivo de introduzir e facilitar o e
 - Aho Corasick
 - Trie
 - Crivo de Eratóstenes
+
+Created by:
+	- André Fakhoury
+	- David Cairuz
+	- Luísa Moura
+	- Thiago Preischadt
