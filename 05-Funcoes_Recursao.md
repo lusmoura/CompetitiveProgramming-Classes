@@ -49,6 +49,7 @@ int media(int num1, int num2) {
 
 int main() {
 	int a, b;
+	cin >> a >> b;
 	int media = media(a, b);
 	
 	cout << media << endl;
