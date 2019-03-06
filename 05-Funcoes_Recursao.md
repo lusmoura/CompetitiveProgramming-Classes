@@ -2,13 +2,13 @@
 
 Até agora falamos de funções várias vezes e já até vimos exemplos. Finalmente é hora de explicar o que são, como funcionam e a utilidade dessas tais funções.
 
-Em um código, funções são como funções matemáticas: conjuntos de comandos que recebem valores de entrada, fazem algumas operações com esses valores e geram valores de saída (resultados). Mas pera, isso não é a mesma coisa que um programa/código? Na verdade sim. A diferença é que a função é um *trecho* de código que serve para organizá-lo e facilitar a nossa vida. 
+Em um código, funções são como funções matemáticas: conjuntos de comandos que recebem valores de entrada, fazem algumas operações com esses valores e geram valores de saída (resultados). Mas pera, isso não é a mesma coisa que um programa/código? Na verdade sim. A diferença é que a função é um *trecho* de código que serve para organizá-lo e facilitar a nossa vida. Isto é, uma função é uma subrotina, um bloco de instrução que realiza tarefas específicas.
 
 Se temos, por exemplo, um conjunto de comandos que serão executados diversas vezes ao longo do progama, é muito mais fácil escrevê-lo apenas uma vez e chamar essa parte do código quando necessário. Ou se temos um código muuuuito grande e ninguém consegue entender o que está acontecendo, é possível dividí-lo em funções e fragmentá-lo para facilitar a compreensão.
 
 Tudo isso pode parecer um pouco abstrato, mas com alguns exemplos práticos tudo se tornará mais claro:
 
-Vamos ver agora, na prática, como declará-las (criá-las).
+Vamos ver agora como declará-las (criá-las).
 
 ```c++
 tipo_do_retorno nome(parametros) {
@@ -39,7 +39,7 @@ bool mesmoTamanho(string a, string b);
 
 Talvez ainda não tenha ficado claro o que queremos dizer, então vamos mostrar.
 
-O código abaixo tem duas funções: main e max. Primeira coisa importante, a main é uma função (plot twist). Ela não recebe nada, mas retorna um inteiro, por isso geralmente colocamos 'return 0' no final dos nossos códigos. A segunda função é a 'média', que recebe dois inteiros e retorna a média deles. Dentro dela temos o processamento necessário, que é o cálculo e, em seguida, o retorno do valor obtido.
+O código abaixo tem duas funções: main e media. Primeira coisa importante, a main é uma função. Ela não recebe nada, mas retorna um inteiro, por isso geralmente colocamos 'return 0' no final dos nossos códigos. A segunda função é a 'média', que recebe dois inteiros e retorna a média deles. Dentro dela temos o processamento necessário, que é o cálculo e, em seguida, o retorno do valor obtido.
 
 ```c++
 int media(int num1, int num2) {
