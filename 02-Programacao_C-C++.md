@@ -3,7 +3,7 @@
 
 Introduziremos agora à linguagem C++ (e também um pouco da linguagem C), normalmente utilizada em programação competitiva pela sua eficiência e simplicidade.
 
-Antes de começar, é bom dizer que o que fazemos em C (e que estará mais a frente) também pode ser feito em C++, ou seja, se simplesmente pegarmos um código em C, salvarmos com a extensão .cpp e compilarmos, tudo será executado normalmente.
+Antes de começar, é bom dizer que o que fazemos em C (e que estará mais a frente) também pode ser feito em C++. Para as aplicações que utilizaremos, se simplesmente pegarmos um código em C, salvarmos com a extensão .cpp e compilarmos, tudo será executado normalmente.
 
 As partes de código precedidas de *//* são comentários. Eles são ignorados no processo de compilação e execução do código, mas facilitam o entendimento do programador e de outras pessoas que possam vir a ler o código.
 
