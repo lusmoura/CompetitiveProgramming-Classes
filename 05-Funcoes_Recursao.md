@@ -12,8 +12,8 @@ Vamos ver agora, na prática, como declará-las (criá-las).
 
 ```c++
 tipo_do_retorno nome(parametros) {
-// comandos
-retorno
+	// comandos
+	retorno
 }
 
 ```
