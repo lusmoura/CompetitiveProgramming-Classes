@@ -11,10 +11,10 @@ Tudo isso pode parecer um pouco abstrato, mas com alguns exemplos práticos tudo
 Vamos ver agora, na prática, como declará-las (criá-las).
 
 ```c++
-	tipo_do_retorno nome(parametros) {
-		// comandos
-		retorno
-	}
+tipo_do_retorno nome(parametros) {
+// comandos
+retorno
+}
 
 ```
 
