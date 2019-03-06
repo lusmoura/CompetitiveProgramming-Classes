@@ -22,10 +22,10 @@ tipo_do_retorno nome(parametros) {
 ## Os elementos básicos de uma função:
 
 ### Temos quatro elementos principais que devem ser destacados:
-#### 1. Tipo do Retorno: uma função pode retornar (devolver) algo, como um valor, uma string, uma letra... é preciso declarar o tipo do dado que será retornado, sendo que esses tipos são os mesmos das variáveis que já vimos. Temos apenas um novo tipo: void - não retorna nada (a função só serve para executar as instruções).
-#### 2. Nome: é... acho que isso é auto-explicativo. Aqui vai o nome da função.
-#### 3. Parâmetros: pode ser que precisemos enviar para a função algum valor. É aqui ele ele entra. No cálculo da área de um triângulo, por exemplo, é necessário informar as medidas da base e da altura.
-#### 4. Retorno: utiliza-se a palavra **return** para indicar o valor que será retornado pela função.
+- **Tipo do Retorno**: uma função pode retornar (devolver) algo, como um valor, uma string, uma letra... é preciso declarar o tipo do dado que será retornado, sendo que esses tipos são os mesmos das variáveis que já vimos. Temos apenas um novo tipo: void - não retorna nada (a função só serve para executar as instruções).
+- **Nome**: é... acho que isso é auto-explicativo. Aqui vai o nome da função.
+- **Parâmetros**: pode ser que precisemos enviar para a função algum valor. É aqui ele ele entra. No cálculo da área de um triângulo, por exemplo, é necessário informar as medidas da base e da altura.
+- **Retorno**: utiliza-se a palavra **return** para indicar o valor que será retornado pela função.
 
 ## Alguns exemplos:
 
