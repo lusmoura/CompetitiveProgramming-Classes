@@ -27,14 +27,14 @@ Temos quatro elementos principais que devem ser destacados:
 Alguns exemplos:
 
 ```c++
-	//uma função que recebe dois inteiros e retorna um double
-	double media(int num1, int num2);
+//uma função que recebe dois inteiros e retorna um double
+double media(int num1, int num2);
 
-	//uma função que recebe uma letra e retorna outra letra
-	char conversao_para_maiuscula(char letra);
+//uma função que recebe uma letra e retorna outra letra
+char conversao_para_maiuscula(char letra);
 
-	//uma função que recebe duas palavras e retorna um booleano (True ou False).
-	bool mesmoTamanho(string a, string b);
+//uma função que recebe duas palavras e retorna um booleano (True ou False).
+bool mesmoTamanho(string a, string b);
 ```
 
 Talvez ainda não tenha ficado claro o que queremos dizer, então vamos mostrar.
@@ -50,9 +50,9 @@ int media(int num1, int num2) {
 int main() {
 	int a, b;
 	cin >> a >> b;
-	int media = media(a, b);
+	int m = media(a, b);
 	
-	cout << media << endl;
+	cout << m << endl;
 	return 0;
 }
 ```
