@@ -34,18 +34,20 @@ Alguns exemplos:
 ```
 
 Talvez ainda não tenha ficado claro o que queremos dizer, então vamos mostrar.
-O código abaixo tem duas funções: main e max. Primeira coisa importante, a main é uma função (plot twist). Ela não recebe nada, mas retorna um inteiro, por isso geralmente colocamos 'return 0' no final dos nossos códigos. A segunda função é a 'média', que recebe dois inteiros e retorna a média deles. Dentro dela temos o processamento necessário, que é o cálculo e, eme seguida, o retorno do valor obtido.
+O código abaixo tem duas funções: main e media. Primeira coisa importante, a main é uma função (plot twist). Ela não recebe nada, mas retorna um inteiro, por isso geralmente colocamos 'return 0' no final dos nossos códigos. A segunda função é a 'média', que recebe dois inteiros e retorna a média deles. Dentro dela temos o processamento necessário, que é o cálculo e, eme seguida, o retorno do valor obtido.
 ```c++
-int max(int num1, int num2) {
+int media(int num1, int num2) {
 	double media = (num1 + num2) / 2;
 	return media;
 }
 
 int main() {
 	int a, b;
-	int maior = max(a, b);
+	scanf("%d%d", &a, &b);
 	
-	cout << maior << endl;
+	int med = media(a, b);
+	
+	cout << med << endl;
 	return 0;
 }
 ```
