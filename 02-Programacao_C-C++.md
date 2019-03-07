@@ -156,7 +156,7 @@ int main() {
 }
 ```
 
-Deu pra ter uma base, certo? Caso a condiço dentro dos parenteses seja satisfeita (verdadeira), serão executados os comandos que estão dentro das chaves após o *if*. Caso contrário (se a condição for falsa), poderemos adicionar também um comando *else* (senão). Essa condição é estabelecida de acordo com alguns operadores:
+Deu pra ter uma base, certo? Caso a condição dentro dos parenteses seja satisfeita (verdadeira), serão executados os comandos que estão dentro das chaves após o *if*. Caso contrário (se a condição for falsa), poderemos adicionar também um comando *else* (senão). Essa condição é estabelecida de acordo com alguns operadores:
 
 1. a == b -> a expressão é *verdadeira* caso a seja **igual** a b (importante notar que caso queiramos fazer uma comparação, devemos utilizar '=='. Apenas um '=' significa uma atribuição, como já vimos)
 2. a != b -> a expressão é *verdadeira* caso a seja **diferente** de b
