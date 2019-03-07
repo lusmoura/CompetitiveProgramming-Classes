@@ -1,6 +1,5 @@
 # Introdução à Linguagem C/C++
 
-
 Introduziremos agora à linguagem C++ (e também um pouco da linguagem C), normalmente utilizada em programação competitiva pela sua eficiência e simplicidade.
 
 Antes de começar, é bom dizer que o que fazemos em C (e que estará mais a frente) também pode ser feito em C++. Para as aplicações que utilizaremos, se simplesmente pegarmos um código em C, salvarmos com a extensão .cpp e compilarmos, tudo será executado normalmente.
@@ -304,55 +303,7 @@ int main() {
 }
 ```
 
-# Resumo de tudo isso
-
-Conceitos fundamentais da aula de hoje:
-
-## Template padrão de c++:
-```c++
-#include <bits/stdc++.h>
-using namespace std;
-
-int main() {
-    //codigo vai aqui
-    return 0;
-}
-```
-
-## Declaração de variáveis:
-```c++
-tipo_var nome_var;
-//em que tipo pode ser int, char, float, double, long long...
-```
-
-## Leitura de variaveis:
-```c++
-//leitura de inteiro:
-
-scanf("%d", &nome_var);
-//ou
-cin >> nome_var;
-```
-
-## Impressao na tela
-```c++
-//impressao de inteiro:
-
-printf("%d", nome_var);
-//ou
-cout << nome_var;
-```
-
-Lembrando que o '\n' é um caractere que representa a *quebra de linha*.
-
-## If-Else
-```c++
-if (condicao) {
-    //codigo
-}
-```
-
-## Probleminha
+# Probleminha
 
 Aqui vai um problema que aborda alguns dos principais conceitos vistos nessa aula:
 
@@ -364,7 +315,8 @@ Dados a quantidade **N** de litros de óleo e **K** de pessoas no grupo, informe
 
 **Saída**: se for possível para Limora ganhar a promoção, apresente "MENOS CINCO ANOS DE VIDA" (sem aspas). Caso contrário, informe "NÃO VAI TER HIPERTENSAO".
 
-Um código com a solução para o problema é esse:
+<details><summary>Código com a solução para o problema</summary>
+
 ```c++
 #include <bits/stdc++.h>
 using namespace std;
@@ -381,3 +333,4 @@ int main() {
     return 0; //fim do codigo
 }
 ```
+</details>
