@@ -303,3 +303,81 @@ int main() {
         printf("hmm é false hein");
 }
 ```
+
+# Resumo de tudo isso
+
+Conceitos fundamentais da aula de hoje:
+
+## Template padrão de c++:
+```c++
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    //codigo vai aqui
+    return 0;
+}
+```
+
+## Declaração de variáveis:
+```c++
+tipo_var nome_var;
+//em que tipo pode ser int, char, float, double, long long...
+```
+
+## Leitura de variaveis:
+```c++
+//leitura de inteiro:
+
+scanf("%d", &nome_var);
+//ou
+cin >> nome_var;
+```
+
+## Impressao na tela
+```c++
+//impressao de inteiro:
+
+printf("%d", nome_var);
+//ou
+cout << nome_var;
+```
+
+Lembrando que o '\n' é um caractere que representa a *quebra de linha*.
+
+## If-Else
+```c++
+if (condicao) {
+    //codigo
+}
+```
+
+## Probleminha
+
+Aqui vai um problema que aborda alguns dos principais conceitos vistos nessa aula:
+
+Um grande restaurante em São Carlos, conhecido por muitos como *podrão*, está fazendo uma formidável promoção: serão distribuídos **N** litros de óleo para o primeiro grupo de pessoas que chegar lá, com a seguinte condição: o óleo sera dividido pelo grupo, e cada pessoa do grupo deverá receber quantidades **iguais** de óleo. Ou seja, os N litros de óleo deverão ser repartidos igualmente entre todos os integrantes do grupo. Vendo essa inigualável promoção, a famosa esportista *Limora* decide, rapidamente, formar um grupo de **K** pessoas para ir ao podrão. Porém, no meio do caminho até lá, teve uma dúvida: será que eles conseguirão ganhar a promoção?
+
+Dados a quantidade **N** de litros de óleo e **K** de pessoas no grupo, informe se Limora ganhará a promoção.
+
+**Entrada**: N e K, 2 <= N <= 100, 2 <= K <= N.
+
+**Saída**: se for possível para Limora ganhar a promoção, apresente "MENOS CINCO ANOS DE VIDA" (sem aspas). Caso contrário, informe "NÃO VAI TER HIPERTENSAO".
+
+Um código com a solução para o problema é esse:
+```c++
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n, k; //declaracao das variaveis
+    cin >> n >> k; //leitura delas
+
+    if (n%k == 0) // se k divide n, o resto da divisao eh 0
+        cout << "MENOS CINCO ANOS DE VIDA\n"; //ganharam a promocao
+    else
+        cout << "NAO VAI TER HIPERTENSAO\n";  //nao ganharam a promocao
+
+    return 0; //fim do codigo
+}
+```
