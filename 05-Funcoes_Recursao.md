@@ -105,3 +105,67 @@ int main() {
 	return 0;
 }
 ```
+# Recursão
+
+Uma coisa muito louca é que uma função pode chamar ela mesma. Podemos pensar nessas funções chamadas *recursivas* como uma espécie de repetição. Em alguns casos é mais fácil implementar uma função recursiva do que um for ou um while, além disso, ela pode ser chamada com parâmetros diferentes, ou seja, a cada chamada o valor do parâmetro pode ser alterado.
+
+Vamos implementar um código de uma função recursiva que retorna a soma dos primeiros n números naturais.
+```c++
+int soma(int n) {
+	return n + soma(n-1);
+}
+
+int main(){
+	int n;
+	cin >> n;
+	cout << soma(n) << "\n";
+}
+```
+O código acima para n = 3 funciona assim:
+	-Main chama soma(3)
+	-soma(3) retorna (3 + soma(2))
+						  soma(2) retorna (2 + soma(1))
+						  					   soma(1) retorna (1 + soma(0))
+						  					   						soma(0) retorna (0 + soma(-1))
+
+Opa, algo de errado não está certo. Não queremos números negativos nessa soma. Para resolver isso, é preciso adicionar o chamado **caso base**, ou seja, um caso que diga quando a função deve parar de chamar a si mesma. O código com ela seria:
+
+```c++
+int soma(int n) {
+	if(n == 1) return 1; //caso base
+	return n + soma(n-1); //cálculo e chamada recursiva
+}
+
+int main(){
+	int n;
+	cin >> n;
+	cout << soma(n) << "\n";
+}
+```
+
+O código acima para n = 3 funciona assim:
+	-Main chama soma(3)
+	-soma(3) retorna (3 + soma(2))
+						  soma(2) retorna (2 + soma(1))
+						  					   soma(1) retorna 1
+						  					   					
+Após todas as chamadas terem sido feitas, a recursão vai "voltar" fazendo de fato a operação com os valores retornados.
+	-soma(1) retorna 1
+    -soma(2) retorna (2 + soma(1)) -> retorna 2+1 -> retorna 3
+    -soma(3) retorna (3 + soma(2)) -> retorna 3+3 -> retorna 6
+
+Esse tópico geralmente é um pouco confuso mesmo, então vamos mostrar outro exemplo.
+A função de Fibonacci é uma função na qual o valor atual (n) é a soma dos dois valores anteriores (n-1 e n-2), ou seja, f(n) = f(n-1) + f(n-2). Mas como vimos antes, se não definirmos um caso base a função será infinita, então podemos dizer que f(1) = f(2) = 1. Isso quer dizer que nossa sequência vai ser 1, 1, 2, 3, 5, 8, 13....
+
+```c++
+int fib(int n) {
+	if(n == 1 || n == 2) return 1; //caso base
+	return fib(n-1) + fib(n-2); //chamadas recursivas
+}
+
+int main(){
+	int n;
+	cin >> n;
+	cout << fib(n) << "\n";
+}
+```
