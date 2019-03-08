@@ -8,6 +8,35 @@ As partes de código precedidas de *//* são comentários. Eles são ignorados n
 
 Recomendamos que, durante a leitura, você tente fazer os códigos ou pelo menos executar os exemplos mostrados.
 
+# Como rodar seus códigos
+
+Antes de mais nada, vamos aprender como podemos executar nossos códigos.
+
+Se você usa __Windows__, pode utilizar uma IDE para desenvolver os códigos (como CodeBlocks, DevC++...). Após escrevê-lo, basta salvar com a extensão *.cpp*. Para executar, primeiro clique no "build and run". O "build" serve para compilar o código, ou seja, transformá-lo numa linguagem que o computador consegue executar. O "run" roda o código. basicamente é isso. Cada IDE é um pouco diferente, então para informações mais específicas é só pesquisar na internet ou peguntar para um de nós =).
+
+Se usa __Linux__, pode usar uma IDE (ler parágrafo acima) ou previamente instalar o **g++**, que é um compilador de c++. Compilar é transformar o código que nós escrevemos numa linguagem que a máquina entende e sabe como executar. Para instalá-lo, primeiro é preciso abrir o terminal (utilizando as teclas ctrl+alt+t) e digitar o comando:
+```bash
+sudo apt install build-essential
+```
+Falaremos mais a frente sobre como utilizá-lo
+
+Uma vez tendo o g++, podemos escrever o código. Na hora de salvá-lo, deve-se utilizar a extensão *.cpp*.
+O terminal é aberto por padrão na pasta home do usuário. Para chegar na pasta na qual o código está salvo, precisamos navegar por ele utilizando o comando *cd*. Ele serve para entrar e sair das pastas, e é preciso especificar o caminho para chegar no arquivo desejado. Se, por exemplo, meu código tem o caminho Documents -> CompetitiveProgramming -> Aula1, o comando ficaria:
+```bash
+cd Documents/CompetitiveProgramming/Aula1      #(linux)
+```
+
+Se você entrar numa pasta sem querer, para voltar para a pasta anterior é só usar *cd ..*.
+Agora que estamos na pasta certa, podemos **compilar** o código. Para compilar, utilizamos o g++ (que instalamos previamente) e a sintaxe é a seguinte:
+```bash
+g++ nome_do_arquivo.cpp -o nome_do_executavel
+```
+
+E, por fim, para executá-lo, podemos utilizar:
+```bash
+    ./nome_do_executavel
+```
+
 # Estrutura básica em C
 
 ```c
