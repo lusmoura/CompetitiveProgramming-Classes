@@ -321,14 +321,15 @@ using namespace std;
 int main() {
     bool flag = false;
 
-    int x; scanf("%d", &x);
+    int x; 
+    cin >> x;
     if (x == 5)
         flag = true;
 
     if (flag == true)
-        printf("hmm é true hein");
+        cout << "hmm é true hein" << endl;
     else
-        printf("hmm é false hein");
+        cout << "hmm é false hein" << endl;
 }
 ```
 
