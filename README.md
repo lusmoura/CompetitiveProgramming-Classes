@@ -21,11 +21,6 @@ Essa coleção de resumos foi feita com o objetivo de introduzir e facilitar o e
 - Geometria Computacional
 - Hash
 - Number Theory
-- Max Flow, Min Cut (Ford Fulkerson-Edmond Karp, Dinic)
-- Otimização de DP
-- Aho Corasick
-- Trie
-- Crivo de Eratóstenes
 
 Created by:
 - André Fakhoury
