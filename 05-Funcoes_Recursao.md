@@ -106,6 +106,36 @@ int main() {
 }
 ```
 
+É importante ressaltar que quando uma variável é declarada dentro de um escopo (seja ele uma função, um for, um if...), ela só pode ser acessada dentro desse local. Então se voce quer usar uma variável que foi declarada em uma função numa outra, é preciso passá-la como *parâmetro*. 
+
+O caso abaixo, por exemplo, não funcionaria. A função printString não sabe quem é 's', então não pode fazer o acesso.
+```c++
+bool printString() {
+	cout << s;
+}
+
+int main() {
+	string s;
+	cin >> s;
+	printString();
+}
+```
+
+O correto seria fazer:
+```c++
+bool printString(string s) {
+	cout << s;
+}
+
+int main() {
+	string s;
+	cin >> s;
+	printString(s);
+}
+```
+
+É possível burlar isso, com variáveis globais, como veremos daqui a uns 2 tópicos.
+
 # Algumas funções úteis
 
 Como já falamos antes, no início do código nós incluímos a *biblioteca* bits/stdc++. Além de diversas outras coisas, ela contém algumas funções úteis já implementadas e prontas para serem usadas. O próprio C++ também já possui algumas funções que não existem em C. As principais são:
