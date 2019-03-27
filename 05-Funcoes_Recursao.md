@@ -235,10 +235,10 @@ int main(){
 ```
 
 O código acima para n = 3 funciona assim:\
-	-Main chama soma(3)\
-			-soma(3) retorna (3 + soma(2))\
-						soma(2) retorna (2 + soma(1))\
-									soma(1) retorna 1\
+<p>-Main chama soma(3)</p>>\
+<p><p>-soma(3) retorna (3 + soma(2))</p></p>\
+<p><p><p>soma(2) retorna (2 + soma(1))</p></p></p>\
+<p><p><p><p>soma(1) retorna 1</p></p></p></p>
 						  				   					
 Os retornos de uma função recursiva são feitos na ordem contrária à da chamada, ou seja, a última chamada é a última é ter seu valor retornado. Então, no exemplo acima, após todas as chamadas terem sido feitas, a recursão vai "voltar" fazendo de fato a operação com os valores retornados.
 	-soma(1) retorna 1
