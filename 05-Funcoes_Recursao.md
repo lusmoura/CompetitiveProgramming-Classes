@@ -118,7 +118,7 @@ int main(){
 	cout << sqrt(n) << endl;
 }
 ```
-\
+
 - Max: função que retorna o máximo entre os valores passados como parâmetros (essa não existe em C). Esse valores não necessariamente precisam ser números.
 ```c++
 int main(){
@@ -138,7 +138,7 @@ int main(){
 	/*maxChar = "z"*/
 }
 ```
-\
+
 - Min: essa função é similar à max, mas dessa vez retorna o mínimo entre valores.
 ```c++
 int main(){
@@ -158,7 +158,7 @@ int main(){
 	/*maxChar = "e"*/
 }
 ```
-\
+
 - Sort: função de ordenação. Ela ordena os elementos num range em ordem crescente. Seus parâmetros são a posição inicial do range e a posição final +1, ou seja, um intervalo fechado no início e aberto no final (inicio, fim].
 ```c++
 int main(){
@@ -191,7 +191,6 @@ int main(){
 }
 ```
 O operador será um booleano que irá retornar um bool a partir da comparação entre os números. Nesse caso, ele vai retornar true se a for maior b e, com isso, a será inserido numa posição a frente de b no vetor.
-\
 
 # Recursão
 
