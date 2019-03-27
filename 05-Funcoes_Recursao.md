@@ -134,7 +134,7 @@ int main() {
 }
 ```
 
-É possível burlar isso (pelo menos para as funções), com variáveis globais, como veremos no próximo tópicos.
+É possível burlar isso (pelo menos para as funções), com variáveis globais, como veremos no próximo tópico.
 
 # Variáveis Globais
 Agora que já sabemos o que é função, podemos falar um pouco sobre as variáveis globais. Elas são variáveis que são declaradas fora do escopo de todas as funções. Por exemplo:
@@ -335,9 +335,9 @@ O código acima para n = 3 funciona assim:
 ```
 -Main chama soma(3)
 	     soma(3) retorna (3 + soma(2))
-		         soma(2) retorna (2 + soma(1))
-				  	     soma(1) retorna (1 + soma(0))
-						    	soma(0) retorna (0 + soma(-1))
+		             soma(2) retorna (2 + soma(1))
+				  	          soma(1) retorna (1 + soma(0))
+						    	        soma(0) retorna (0 + soma(-1))
 ```
 
 Opa, algo de errado não está certo. Não queremos números negativos nessa soma. Para resolver isso, é preciso adicionar o chamado **caso base**, ou seja, um caso que diga quando a função deve parar de chamar a si mesma. O código com ela seria:
