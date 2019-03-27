@@ -219,6 +219,71 @@ int main(){
 ```
 O operador será um booleano que irá retornar um bool a partir da comparação entre os números. Nesse caso, ele vai retornar true se a for maior b e, com isso, a será inserido numa posição a frente de b no vetor.
 
+# Variáveis Globais
+Agora que já sabemos o que é função, podemos falar um pouco sobre as variáveis globais. Elas são variáveis que são declaradas fora do escopo de todas as funções. Por exemplo:
+```c++
+int a, b; // variáveis globais, fora da função main
+
+int main(){    // só um código aleatório
+	cin >> a >> b;
+	cout << a + b;
+}
+```
+
+Esse tipo de variável é bastante útil em programação competitiva, pois permite que seja feito o acesso do valor daquela variável sem ter que passá-la como parâmetro para outra função. Ou seja, qualquer função do código tem acesso ao valor dessas variáveis.
+
+Sem variável global teríamos:
+```c++
+int soma(int a, int b, int c, int d){  // todas as variáveis são passadas por parâmetro
+	return a+b+c+d;
+}
+
+int main(){    // só um código aleatório
+	int a, b, c, d;
+	cin >> a >> b >> c >> d;
+	cout << soma(a, b, c, d);
+}
+```
+
+Com variável global:
+```c++
+int a, b, c, d;
+
+int soma(){  // a função tem acesso às variáveis mesmo sem tê-las como parâmetro
+	return a+b+c+d;
+}
+
+int main(){    // só um código aleatório
+	cin >> a >> b >> c >> d;
+	cout << soma();
+}
+```
+
+Elas também são úteis pois, ao declará-las fora das funções, essas variáveis já começam zeradas, dessa forma, não é preciso inicializá-las.
+```c++
+int vetGlobal[10];  // criamos um vetor global de inteiros
+
+int main(){
+	int vetLocal[10];  // criamos um vetor local de inteiros
+	
+	for(int i = 0; i < 10; i++)   
+		cout << vetLocal[i] << " ";
+	/*No meu computador foram impressos os valores: */
+	/*27 982938 -2983 281 182 37 40 82387 748 2*/
+
+	cout << endl;
+
+	for(int i = 0; i < 10; i++) 
+		cout << vetGlobal[i] << " ";
+	/*Em todos os computadores serão impressos: */
+	/*0 0 0 0 0 0 0 0 0 0*/
+}
+```
+
+#### Porém...
+Esse tipo de prática não é muito recomendada. É bastante perigoso declarar variáveis fora das funções, pois pode haver conflito de nomes, acessos indevidos e indesejados, dentre outros problemas. 
+Aqui em programação competitiva não fazemos códigos tão grandes que serão utilizados por muitas pessoas, então podem usar e abusar das variáveis globais. MAS não usem elas nos trabalhos da faculdade ou no mercado de trabalho (se usarem sem querer, a culpa não é nossa... a gente avisou).
+
 # Recursão
 
 Uma coisa muito louca é que uma função pode chamar ela mesma. Podemos pensar nessas funções chamadas *recursivas* como uma espécie de repetição. Em alguns casos é mais fácil implementar uma função recursiva do que um for ou um while, além disso, ela pode ser chamada com parâmetros diferentes, ou seja, a cada chamada o valor do parâmetro pode ser alterado.
