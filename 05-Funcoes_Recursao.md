@@ -162,6 +162,26 @@ int main(){
 }
 ```
 
+#### Abs
+A função Abs retorna o valor absoluto do parâmetro. Isto é, se o número for positivo, ele mesmo será retornado. Se for negativo, o valor positivo simétrico a ele será retornado.
+```c++
+int main(){
+	int a = 2, b = -3;
+	int positivoA = abs(a);    // positivoA = 2
+	int positivoB = abs(b);    // positivoB = abs(-3) = 3
+	cout << positivoA << " " << positivoB << endl;
+}
+```
+#### Swap
+O swap troca dois valores passados como parâmetros.
+```c++
+int main(){
+	int a = 2, b = 3;
+	swap(a, b);         //agora a = 3 e b = 2
+	cout << a << " " << b << endl;
+}
+```
+
 #### Sort
 Função de ordenação. Ela ordena os elementos num range em ordem crescente. Seus parâmetros são a posição inicial do range e a posição final +1, ou seja, um intervalo fechado no início e aberto no final (inicio, fim].
 ```c++
