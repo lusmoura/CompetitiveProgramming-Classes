@@ -290,10 +290,10 @@ Na verdade esse exemplo é bem parecido com o anterior, a diferença é que em v
 Ele vai funcionar da seguite maneira:
 ```
 -Main chama fat(4)
-	fat(4) retorna (4 * fat(3))
-				fat(3) retorna (3 * fat(2))
-							 	fat(2) retorna (2 * fat(1))
-												fat(1) retorna 1
+	   fat(4) retorna (4 * fat(3))
+			   fat(3) retorna (3 * fat(2))
+						 	fat(2) retorna (2 * fat(1))
+											fat(1) retorna 1
 ```						  					   					
 Após todas as chamadas terem sido feitas, a recursão vai "voltar" fazendo de fato a operação com os valores retornados.
 ```
