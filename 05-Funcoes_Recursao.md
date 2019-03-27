@@ -197,7 +197,7 @@ int main(){
 }
 ```
 
-#### Porém...
+### Porém...
 Esse tipo de prática não é muito recomendada. É bastante perigoso declarar variáveis fora das funções, pois pode haver conflito de nomes, acessos indevidos e indesejados, dentre outros problemas. 
 Aqui em programação competitiva não fazemos códigos tão grandes que serão utilizados por muitas pessoas, então podem usar e abusar das variáveis globais. MAS não usem elas nos trabalhos da faculdade ou no mercado de trabalho (se usarem sem querer, a culpa não é nossa... a gente avisou).
 
