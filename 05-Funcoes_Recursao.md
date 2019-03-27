@@ -305,11 +305,11 @@ Após todas as chamadas terem sido feitas, a recursão vai "voltar" fazendo de f
 
 ### Overview da recursão
 ```c++
-int recursion(int x) {                   //Função recursiva com x como parâmetro
-	if(baseCase) return value;           //Checagem do caso base, se x estiver satisfazendo esse* 
-											//caso, a função para de ser chamada recursivamente*
-	recursion(novoX);                    //Se o caso base não foi atendido, é feita a chamada* 
-											//recursiva com o novo valor de x*
+int recursion(int x) {          //Função recursiva com x como parâmetro
+	if(baseCase) return value;  //Checagem do caso base, se x estiver satisfazendo esse
+									//caso, a função para de ser chamada recursivamente*
+	recursion(novoX);           //Se o caso base não foi atendido, é feita a chamada* 
+									//recursiva com o novo valor de x*
 }
 ```
 
