@@ -381,7 +381,7 @@ Após todas as chamadas terem sido feitas, a recursão vai "voltar" fazendo de f
 
 			        fib(5) = (fib(4) + fib(3))
                                		     /          \
-			                     3            2
+			                    3           2
 
 
 			        fib(5) = (3 + 2)
