@@ -236,14 +236,14 @@ int main(){
 
 O código acima para n = 3 funciona assim:\
 	-Main chama soma(3)\
-	-soma(3) retorna (3 + soma(2))\
-						  soma(2) retorna (2 + soma(1))\
-						  					   soma(1) retorna 1\
-						  					   					
+			-soma(3) retorna (3 + soma(2))\
+						soma(2) retorna (2 + soma(1))\
+									soma(1) retorna 1\
+						  				   					
 Os retornos de uma função recursiva são feitos na ordem contrária à da chamada, ou seja, a última chamada é a última é ter seu valor retornado. Então, no exemplo acima, após todas as chamadas terem sido feitas, a recursão vai "voltar" fazendo de fato a operação com os valores retornados.
 	-soma(1) retorna 1
-    -soma(2) retorna (2 + soma(1)) -> retorna 2+1 -> retorna 3
-    -soma(3) retorna (3 + soma(2)) -> retorna 3+3 -> retorna 6
+	-soma(2) retorna (2 + soma(1)) -> retorna 2+1 -> retorna 3	
+	-soma(3) retorna (3 + soma(2)) -> retorna 3+3 -> retorna 6
 
 Esse tópico geralmente é um pouco confuso mesmo, então vamos mostrar outro exemplo. Nesse, vamos fazer o cálculo do fatorial de um número:
 ```c++
@@ -260,18 +260,18 @@ int main(){
 ```
 Na verdade esse exemplo é bem parecido com o anterior, a diferença é que em vez de somarmos n pela chamada recursiva, vamos multiplicá-los.
 
-Ele vai funcionar da seguite maneira:
-	-Main chama fat(4)
-	-fat(4) retorna (4 * fat(3))
-						 fat(3) retorna (3 * fat(2))
-						  					 fat(2) retorna (2 * fat(1))
-						  					                     fat(1) retorna 1
+Ele vai funcionar da seguite maneira:\
+	-Main chama fat(4)\
+	-fat(4) retorna (4 * fat(3))\
+				fat(3) retorna (3 * fat(2))\
+							fat(2) retorna (2 * fat(1))\
+										fat(1) retorna 1
 						  					   					
 Após todas as chamadas terem sido feitas, a recursão vai "voltar" fazendo de fato a operação com os valores retornados.
 	-fat(1) retorna 1
-    -fat(2) retorna (2 * fat(1)) -> retorna 2 * 1 -> retorna 2
-    -fat(3) retorna (3 + fat(2)) -> retorna 3 * 2 -> retorna 6
-    -fat(4) retorna (4 * fat(3)) -> retorna 4 * 6 -> retorna 24
+	-fat(2) retorna (2 * fat(1)) -> retorna 2 * 1 -> retorna 2
+	-fat(3) retorna (3 + fat(2)) -> retorna 3 * 2 -> retorna 6
+	-fat(4) retorna (4 * fat(3)) -> retorna 4 * 6 -> retorna 24
 
 
 ### Overview da recursão
@@ -300,13 +300,13 @@ int main(){
 
 Ele vai funcionar da seguite maneira:
 	-Main chama fib(5)
-	                                         fib(5) = (fib(4) + fib(3))
-	                                         		     /          \
-							     fib(4) = (fib(3) + fib(2))         fib(3) = (fib(2) + fib(1))
-							    			/           \                      /         \
-	                fib(3) = (fib(2) + fib(1))       fib(2) = 1        fib(2) = 1      fib(1) = 1
-						  	    /           \
-					     fib(2) = 1      fib(1) = 1
+						fib(5) = (fib(4) + fib(3))
+							   /          \
+				fib(4) = (fib(3) + fib(2))         fib(3) = (fib(2) + fib(1))
+					/           \                          /         \
+		fib(3) = (fib(2) + fib(1))       fib(2) = 1           fib(2) = 1      fib(1) = 1
+			/           \
+		fib(2) = 1      fib(1) = 1
 
 
 Após todas as chamadas terem sido feitas, a recursão vai "voltar" fazendo de fato a operação com os valores retornados.
