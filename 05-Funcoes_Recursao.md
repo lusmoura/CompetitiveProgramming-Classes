@@ -240,18 +240,55 @@ O código acima para n = 3 funciona assim:
 						  soma(2) retorna (2 + soma(1))
 						  					   soma(1) retorna 1
 						  					   					
-Após todas as chamadas terem sido feitas, a recursão vai "voltar" fazendo de fato a operação com os valores retornados.
+Os retornos de uma função recursiva são feitos na ordem contrária à da chamada, ou seja, a última chamada é a última é ter seu valor retornado. Então, no exemplo acima, após todas as chamadas terem sido feitas, a recursão vai "voltar" fazendo de fato a operação com os valores retornados.
 	-soma(1) retorna 1
     -soma(2) retorna (2 + soma(1)) -> retorna 2+1 -> retorna 3
     -soma(3) retorna (3 + soma(2)) -> retorna 3+3 -> retorna 6
 
-Esse tópico geralmente é um pouco confuso mesmo, então vamos mostrar outro exemplo.
-A função de Fibonacci é uma função na qual o valor atual (n) é a soma dos dois valores anteriores (n-1 e n-2), ou seja, f(n) = f(n-1) + f(n-2). Mas como vimos antes, se não definirmos um caso base a função será infinita, então podemos dizer que f(1) = f(2) = 1. Isso quer dizer que nossa sequência vai ser 1, 1, 2, 3, 5, 8, 13....
+Esse tópico geralmente é um pouco confuso mesmo, então vamos mostrar outro exemplo. Nesse, vamos fazer o cálculo do fatorial de um número:
+```c++
+int fat(int n) {
+	if(n == 1) return 1; //caso base
+	return n * fat(n-1); //cálculo e chamada recursiva
+}
+
+int main(){
+	int n;
+	cin >> n;
+	cout << fat(n) << "\n";
+}
+```
+Na verdade esse exemplo é bem parecido com o anterior, a diferença é que em vez de somarmos n pela chamada recursiva, vamos multiplicá-los.
+
+Ele vai funcionar da seguite maneira:
+	-Main chama fat(4)
+	-fat(4) retorna (4 * fat(3))
+						 fat(3) retorna (3 * fat(2))
+						  					 fat(2) retorna (2 * fat(1))
+						  					                     fat(1) retorna 1
+						  					   					
+Após todas as chamadas terem sido feitas, a recursão vai "voltar" fazendo de fato a operação com os valores retornados.
+	-fat(1) retorna 1
+    -fat(2) retorna (2 * fat(1)) -> retorna 2 * 1 -> retorna 2
+    -fat(3) retorna (3 + fat(2)) -> retorna 3 * 2 -> retorna 6
+    -fat(4) retorna (4 * fat(3)) -> retorna 4 * 6 -> retorna 24
+
+
+### Overview da recursão
+
+		int recursion(int x) {                   *Função recursiva com x como parâmetro*
+			if(baseCase) return value;           *Checagem do caso base, se x estiver satisfazendo esse caso, a função para de ser chamada recursivamente*
+			recursion(novoX);                    *Se o caso base não foi atendido, é feita a chamada recursiva com o novo valor de x*
+		}
+
+### Continuando com exemplos
+
+A função de Fibonacci é uma função na qual o valor atual (n) é a soma dos dois valores anteriores (n-1 e n-2), ou seja, f(n) = f(n-1) + f(n-2). Como vimos antes, se não definirmos um caso base a função será infinita, então podemos dizer que f(1) = f(2) = 1. Isso quer dizer que nossa sequência vai ser 1, 1, 2, 3, 5, 8, 13, 21....
 
 ```c++
 int fib(int n) {
-	if(n == 1 || n == 2) return 1; //caso base
-	return fib(n-1) + fib(n-2); //chamadas recursivas
+	if(n == 1 || n == 2) return 1; //caso base (n = 1 ou n = 2)
+	return fib(n-1) + fib(n-2);    //chamadas recursivas
 }
 
 int main(){
@@ -260,3 +297,53 @@ int main(){
 	cout << fib(n) << "\n";
 }
 ```
+
+Ele vai funcionar da seguite maneira:
+	-Main chama fib(5)
+	                                         fib(5) = (fib(4) + fib(3))
+	                                         		     /          \
+							     fib(4) = (fib(3) + fib(2))         fib(3) = (fib(2) + fib(1))
+							    			/           \                      /         \
+	                fib(3) = (fib(2) + fib(1))       fib(2) = 1        fib(2) = 1      fib(1) = 1
+						  	    /           \
+					     fib(2) = 1      fib(1) = 1
+
+
+Após todas as chamadas terem sido feitas, a recursão vai "voltar" fazendo de fato a operação com os valores retornados.
+	
+											fib(5) = (fib(4) + fib(3))
+	                                         		     /          \
+							     fib(4) = (fib(3) + fib(2))         fib(3) = (fib(2) + fib(1))
+							    			/           \                      /         \
+	                fib(3) = (fib(2) + fib(1))           1                     1          1
+						  	    /           \
+					            1           1
+
+
+											fib(5) = (fib(4) + fib(3))
+	                                         		     /          \
+							     fib(4) = (fib(3) + fib(2))         fib(3) = (1 + 1)
+							    			/           \              
+	                           fib(3) = (1 + 1)          1
+
+
+	                           				fib(5) = (fib(4) + fib(3))
+	                                         		     /          \
+							     fib(4) = (fib(3) + fib(2))         fib(3) = 2
+							    			/           \              
+	                                        2            1
+
+
+	                                        fib(5) = (fib(4) + fib(3))
+	                                         		     /          \
+							                fib(4) = (2 + 1)       fib(3) = 2
+
+							                fib(5) = (fib(4) + fib(3))
+	                                         		     /          \
+							                            3            2
+
+							                 fib(5) = (3 + 2)
+							                 
+							                  *fib(5) = (5)*
+
+That's it, folks! Até a próxima \o/
