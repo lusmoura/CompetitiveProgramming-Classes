@@ -110,7 +110,8 @@ int main() {
 
 Como já falamos antes, no início do código nós incluímos a *biblioteca* bits/stdc++. Além de diversas outras coisas, ela contém algumas funções úteis já implementadas e prontas para serem usadas. O próprio C++ também já possui algumas funções que não existem em C. As principais são:
 
-#### Sqrt: essa função simplesmente retorna um double representando a raíz quadrada do número passado como parâmetro.
+#### Sqrt
+Essa função simplesmente retorna um double representando a raíz quadrada do número passado como parâmetro.
 ```c++
 int main(){
 	int n;
@@ -119,7 +120,8 @@ int main(){
 }
 ```
 
-#### Max: função que retorna o máximo entre os valores passados como parâmetros (essa não existe em C). Esse valores não necessariamente precisam ser números.
+#### Max
+Função que retorna o máximo entre os valores passados como parâmetros (essa não existe em C). Esse valores não necessariamente precisam ser números.
 ```c++
 int main(){
 	int a = 2, b = 3;
@@ -139,7 +141,8 @@ int main(){
 }
 ```
 
-#### Min: essa função é similar à max, mas dessa vez retorna o mínimo entre valores.
+#### Min
+Essa função é similar à max, mas dessa vez retorna o mínimo entre valores.
 ```c++
 int main(){
 	int a = 2, b = 3;
@@ -159,7 +162,8 @@ int main(){
 }
 ```
 
-#### Sort: função de ordenação. Ela ordena os elementos num range em ordem crescente. Seus parâmetros são a posição inicial do range e a posição final +1, ou seja, um intervalo fechado no início e aberto no final (inicio, fim].
+#### Sort
+Função de ordenação. Ela ordena os elementos num range em ordem crescente. Seus parâmetros são a posição inicial do range e a posição final +1, ou seja, um intervalo fechado no início e aberto no final (inicio, fim].
 ```c++
 int main(){
 	int n;                // criando um vetor de n números entrados pelo usuário
