@@ -288,7 +288,7 @@ int main(){
 Na verdade esse exemplo é bem parecido com o anterior, a diferença é que em vez de somarmos n pela chamada recursiva, vamos multiplicá-los.
 
 Ele vai funcionar da seguite maneira:
-```
+```txt
 -Main chama fat(4)
 	   fat(4) retorna (4 * fat(3))
 			   fat(3) retorna (3 * fat(2))
