@@ -130,7 +130,8 @@ int main(){
 	/*maxNum = 3*/
 
 	int c = 4, d = 5;
-	int maxNum2 = max({a, b, c, d}) // para comparar mais de dois valores, é preciso utilizar as {chaves}
+	int maxNum2 = max({a, b, c, d}) // para comparar mais de dois valores, é preciso utilizar 
+									// as {chaves}
 	cout << maxNum2 << endl;
 	/*maxNum2 = 5*/
 
@@ -151,7 +152,8 @@ int main(){
 	/*maxNum = 2*/
 
 	int c = 1, d = 0;
-	int minNum2 = min({a, b, c, d}) // para comparar mais de dois valores, é preciso utilizar as {chaves}
+	int minNum2 = min({a, b, c, d}) // para comparar mais de dois valores, é preciso utilizar 
+									// as {chaves}
 	cout << minNum2 << endl;
 	/*maxNum2 = 0*/
 
@@ -192,7 +194,8 @@ int main(){
 	
 	for(int i = 0; i < n; i++) cin >> vet[i];
 	
-	sort(vet, vet + n);  // ordenando o vetor, da posição inicial (que é o próprio vet) até a posição final (que é a posição inicial mais a quantidade de números, ou seja, vet + n)
+	sort(vet, vet + n);  // ordenando o vetor, da posição inicial (que é o próprio vet) até a
+	// posição final (que é a posição inicial mais a quantidade de números, ou seja, vet + n)
 
 	for(int i = 0; i < n; i++) cin >> vet[i] >> " "; // imprimindo o vetor já ordenado
 }
@@ -255,15 +258,19 @@ int main(){
 ```
 
 O código acima para n = 3 funciona assim:\
--Main chama soma(3)\
-			soma(3) retorna (3 + soma(2))\
-								soma(2) retorna (2 + soma(1))\
-													soma(1) retorna 1
-						  				   					
+```
+-Main chama soma(3)
+			soma(3) retorna (3 + soma(2))
+								 soma(2) retorna (2 + soma(1))
+											    	  soma(1) retorna 1
+```						  				   					
+
 Os retornos de uma função recursiva são feitos na ordem contrária à da chamada, ou seja, a última chamada é a última é ter seu valor retornado. Então, no exemplo acima, após todas as chamadas terem sido feitas, a recursão vai "voltar" fazendo de fato a operação com os valores retornados.
+```
 	-soma(1) retorna 1
 	-soma(2) retorna (2 + soma(1)) -> retorna 2+1 -> retorna 3	
 	-soma(3) retorna (3 + soma(2)) -> retorna 3+3 -> retorna 6
+```
 
 Esse tópico geralmente é um pouco confuso mesmo, então vamos mostrar outro exemplo. Nesse, vamos fazer o cálculo do fatorial de um número:
 ```c++
@@ -280,26 +287,29 @@ int main(){
 ```
 Na verdade esse exemplo é bem parecido com o anterior, a diferença é que em vez de somarmos n pela chamada recursiva, vamos multiplicá-los.
 
-Ele vai funcionar da seguite maneira:\
-	-Main chama fat(4)\
-	-fat(4) retorna (4 * fat(3))\
-				fat(3) retorna (3 * fat(2))\
-							fat(2) retorna (2 * fat(1))\
-										fat(1) retorna 1
-						  					   					
+Ele vai funcionar da seguite maneira:
+```
+	-Main chama fat(4)
+				fat(4) retorna (4 * fat(3))
+									fat(3) retorna (3 * fat(2))
+													 	fat(2) retorna (2 * fat(1))
+																			fat(1) retorna 1
+```						  					   					
 Após todas as chamadas terem sido feitas, a recursão vai "voltar" fazendo de fato a operação com os valores retornados.
+```
 	-fat(1) retorna 1
 	-fat(2) retorna (2 * fat(1)) -> retorna 2 * 1 -> retorna 2
 	-fat(3) retorna (3 + fat(2)) -> retorna 3 * 2 -> retorna 6
 	-fat(4) retorna (4 * fat(3)) -> retorna 4 * 6 -> retorna 24
-
+```
 
 ### Overview da recursão
-
+```
 		int recursion(int x) {                   *Função recursiva com x como parâmetro*
 			if(baseCase) return value;           *Checagem do caso base, se x estiver satisfazendo esse caso, a função para de ser chamada recursivamente*
 			recursion(novoX);                    *Se o caso base não foi atendido, é feita a chamada recursiva com o novo valor de x*
 		}
+```
 
 ### Continuando com exemplos
 
@@ -319,6 +329,7 @@ int main(){
 ```
 
 Ele vai funcionar da seguite maneira:
+```
 	-Main chama fib(5)
 						fib(5) = (fib(4) + fib(3))
 							   /          \
@@ -328,9 +339,9 @@ Ele vai funcionar da seguite maneira:
 			/           \
 		fib(2) = 1      fib(1) = 1
 
-
+```
 Após todas as chamadas terem sido feitas, a recursão vai "voltar" fazendo de fato a operação com os valores retornados.
-	
+```	
 											fib(5) = (fib(4) + fib(3))
 	                                         		     /          \
 							     fib(4) = (fib(3) + fib(2))         fib(3) = (fib(2) + fib(1))
@@ -365,5 +376,5 @@ Após todas as chamadas terem sido feitas, a recursão vai "voltar" fazendo de f
 							                 fib(5) = (3 + 2)
 							                 
 							                  *fib(5) = (5)*
-
+```
 That's it, folks! Até a próxima \o/
