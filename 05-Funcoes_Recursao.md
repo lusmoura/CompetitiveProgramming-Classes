@@ -345,7 +345,7 @@ Ele vai funcionar da seguite maneira:
 ```
 Após todas as chamadas terem sido feitas, a recursão vai "voltar" fazendo de fato a operação com os valores retornados.
 ```	
-					fib(5) = (fib(4) + fib(3))
+				fib(5) = (fib(4) + fib(3))
                               		     /          \
 		   fib(4) = (fib(3) + fib(2))         fib(3) = (fib(2) + fib(1))
 			      /           \                      /          \
@@ -356,11 +356,11 @@ Após todas as chamadas terem sido feitas, a recursão vai "voltar" fazendo de f
 
 
 
-					fib(5) = (fib(4) + fib(3))
-	                           		     /          \
+				fib(5) = (fib(4) + fib(3))
+	                          		     /          \
 		   fib(4) = (fib(3) + fib(2))         fib(3) = (1 + 1)
 			       /           \              
-	   fib(3) = (1 + 1)          1
+	   	   fib(3) = (1 + 1)          1
 
 
 
