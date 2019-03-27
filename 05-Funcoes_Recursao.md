@@ -105,6 +105,94 @@ int main() {
 	return 0;
 }
 ```
+
+# Algumas funções úteis
+
+Como já falamos antes, no início do código nós incluímos a *biblioteca* bits/stdc++. Além de diversas outras coisas, ela contém algumas funções úteis já implementadas e prontas para serem usadas. O próprio C++ também já possui algumas funções que não existem em C. As principais são:
+
+- Sqrt: essa função simplesmente retorna um double representando a raíz quadrada do número passado como parâmetro.
+```c++
+int main(){
+	int n;
+	cin >> n;
+	cout << sqrt(n) << endl;
+}
+```
+\
+- Max: função que retorna o máximo entre os valores passados como parâmetros (essa não existe em C). Esse valores não necessariamente precisam ser números.
+```c++
+int main(){
+	int a = 2, b = 3;
+	int maxNum = max(a, b); // maxNum vai receber o maior dos valores entre a e b
+	cout << maxNum << endl;
+	/*maxNum = 3*/
+
+	int c = 4, d = 5;
+	int maxNum2 = max({a, b, c, d}) // para comparar mais de dois valores, é preciso utilizar as {chaves}
+	cout << maxNum2 << endl;
+	/*maxNum2 = 5*/
+
+	char e = "e", z = "z";
+	char maxChar = max(e, z); // maxChar vai receber z, pois ele é maior lexicograficamente
+	cout << maxChar << endl;
+	/*maxChar = "z"*/
+}
+```
+\
+- Min: essa função é similar à max, mas dessa vez retorna o mínimo entre valores.
+```c++
+int main(){
+	int a = 2, b = 3;
+	int minNum = min(a, b); // maxNum vai receber o menor dos valores entre a e b
+	cout << minNum << endl;
+	/*maxNum = 2*/
+
+	int c = 1, d = 0;
+	int minNum2 = min({a, b, c, d}) // para comparar mais de dois valores, é preciso utilizar as {chaves}
+	cout << minNum2 << endl;
+	/*maxNum2 = 0*/
+
+	char e = "e", z = "z";
+	char minChar = min(e, z); // maxChar vai receber e, pois ele é menor lexicograficamente
+	cout << minChar << endl;
+	/*maxChar = "e"*/
+}
+```
+\
+- Sort: função de ordenação. Ela ordena os elementos num range em ordem crescente. Seus parâmetros são a posição inicial do range e a posição final +1, ou seja, um intervalo fechado no início e aberto no final (inicio, fim].
+```c++
+int main(){
+	int n;                // criando um vetor de n números entrados pelo usuário
+	cin >> n;
+	int vet[n];
+	
+	for(int i = 0; i < n; i++) cin >> vet[i];
+	
+	sort(vet, vet + n);  // ordenando o vetor, da posição inicial (que é o próprio vet) até a posição final (que é a posição inicial mais a quantidade de números, ou seja, vet + n)
+
+	for(int i = 0; i < n; i++) cin >> vet[i] >> " "; // imprimindo o vetor já ordenado
+}
+```
+
+Outra coisa legal dessa função é que podemos definir um operador para que o parâmetro de ordenação seja diferente. Por exemplo, podemos ordenar os valores em ordem decrescente. Esse operador é inserido como um terceiro parâmentro na função. Vamos ver esses exemplos abaixo:
+```c++
+bool decrescente(int a, int b) {
+	return(a > b);
+}
+
+int main(){
+	int n;                // criando um vetor de n números entrados pelo usuário
+	cin >> n;
+	int vet[n];
+
+	for(int i = 0; i < n; i++) cin >> vet[i];
+	
+	sort(vet, vet + n, decrescente);  // ordenando o vetor tendo como parâmetro o método de comparação que ta definido ali em cima ^
+}
+```
+O operador será um booleano que irá retornar um bool a partir da comparação entre os números. Nesse caso, ele vai retornar true se a for maior b e, com isso, a será inserido numa posição a frente de b no vetor.
+\
+
 # Recursão
 
 Uma coisa muito louca é que uma função pode chamar ela mesma. Podemos pensar nessas funções chamadas *recursivas* como uma espécie de repetição. Em alguns casos é mais fácil implementar uma função recursiva do que um for ou um while, além disso, ela pode ser chamada com parâmetros diferentes, ou seja, a cada chamada o valor do parâmetro pode ser alterado.
