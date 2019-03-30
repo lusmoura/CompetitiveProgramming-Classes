@@ -126,4 +126,19 @@ Por outro lado, digamos que o exercício diga que **n está entre 1 e 10⁶** e 
 Nesse exemplo, Seu código não iria ser eficiente o suficiente, visto que em um caso de teste **n = 10⁶**, seu código calcularia **(10⁶)²** ou **10¹²** operações, o que é equivalente a **10⁴ segundos** :cry:
 
 ## Mais exemplos!
+
+Qual é a complexidade do código abaixo?
+
+```c++
+for(int i = 0; i < n; i++){
+    for(int j = 0; j < n; j++){
+        for(int k = 0; k < n; k++){
+            // operaçoes constantes
+        }
+    }
+}
+```
  
+<details><summary> Clique para ver a Resposta </summary>
+O código acima é O(n³).
+</details>
