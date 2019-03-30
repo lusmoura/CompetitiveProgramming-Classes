@@ -123,7 +123,7 @@ Suponhamos portanto que **você, programador competitivo**, criou um algoritmo c
 
 Por outro lado, digamos que o exercício diga que **n está entre 1 e 10⁶** e o limite de tempo seja **3 segundos**. 
 
-Nesse exemplo, Seu código não iria ser eficiente o suficiente, visto que em um caso de teste **n = 10⁶**, seu código calcularia **(10⁶)²** ou **10¹²** operações, o que é equivalente a **10⁴ segundos**:cry:
+Nesse exemplo, Seu código não iria ser eficiente o suficiente, visto que em um caso de teste **n = 10⁶**, seu código calcularia **(10⁶)²** ou **10¹²** operações, o que é equivalente a **10⁴ segundos** :cry:
 
 ## Mais exemplos!
  
