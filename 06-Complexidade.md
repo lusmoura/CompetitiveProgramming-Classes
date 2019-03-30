@@ -127,7 +127,7 @@ Nesse exemplo, Seu código não iria ser eficiente o suficiente, visto que em um
 
 ## Mais exemplos!
 
-Qual é a complexidade do código abaixo?
+- Qual é a complexidade do código abaixo?
 
 ```c++
 for(int i = 0; i < n; i++){
@@ -140,5 +140,30 @@ for(int i = 0; i < n; i++){
 ```
  
 <details><summary> Clique para ver a Resposta </summary>
-O código acima é O(n³).
+  
+   <b>  O código acima é O(n³).</b>
+</details>
+
+- Digamos que queremos calcular a **soma dos n primeiros números naturais**. Quais são as diferentes formas de resolver esse problema?
+  Qual é a diferença de eficiência entre elas?
+  
+<details><summary> Clique para ver a Resposta </summary>
+  
+#### Uma primeira maneira de pensar no problema é a versão **ad-hoc** da solução, ou seja, simplesmente somar os n primeiros termos. Da seguinte forma:
+  
+  ```c++
+  int sum = 0;
+  for(int i = 1; i <= n; i++){
+      sum += i;
+  }
+  ```
+  
+#### No entanto, essa solução é O(n)... e podemos fazer melhor! Uma segunda maneira seria usar a fórmula da soma de P.A.!
+  
+  ```c++
+  int sum = ((1+n)*n)/2;
+  ```
+  
+#### Essa solução é O(1) e portanto mais eficiente.
+  
 </details>
