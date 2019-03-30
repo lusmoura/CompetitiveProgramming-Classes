@@ -64,9 +64,66 @@ capaz de satisfazer um limite de tempo.
   
   Isso tudo pode ter ficado um pouco abstrato, mas não se preocupe, tudo ficará mais claro com exemplos.
   
-## Mas como dizer a complexidade de um código? :computer:
+## Mas como dizer a complexidade de um algoritmo? :computer:
+
+De maneira geral, com exceção dos grandes algoritmos e funções (que as vezes possuem demonstrações complexas e elaboradas sobre as suas complexidades), o foco da análise da complexidade em um código são os laços de repetição. Por exemplo:
+
+```c++
+for(int i = 0; i < n; i++){
+    // x operações (nao dependem de n)
+}
+```
+
+No laço acima, **x operações** são executadas **n vezes**. Portanto, podemos dizer que a complexidade geral é O(n). É importante 
+notar que **x não depende de n**, e portanto é desconsiderado na notação.
+
+Além disso, podemos dizer que a complexidade de **um algoritmo O(n)** que é executado **por outro algoritmo O(n)** tem complexidade
+**O(n²)**, isto é:
+
+```c++
+// codigo externo \/
+for(int i = 0; i < n; i++){ 
+
+    // codigo do exemplo anterior \/
+    for(int j = 0; j < n; j++){
+        // x operaçoes (nao dependem de n)
+    }
+    // codigo do exemplo anterior /\
+}
+// codigo externo /\
+
+```
+Aqui, o código do exemplo anterior, que possui **complexidade O(n)**, foi executado **n vezes**. Dessa forma, a complexidade geral do código externo é **O(n²)**.
+
+E quanto ao código abaixo, qual você acha que é a notação Big-O para ele?
+
+```c++
+int a = 3;
+int b = 2;
+int x = a + b;
+int y = a - b;
+```
+
+A complexidade é **O(1)**!
+
+O código não depende de n, e sempre executa um número constante de operações.
 
 ## O que todos estávamos esperando: a estimativa do tempo :clock1: 
 
-## Exemplos
+Chegamos então ao que todos queremos saber:
+
+- Como relacionar o número de operações e o tempo de execução?
+- Como eu vou saber se meu código vai rodar em menos de 1 segundo ????
+
+Na maratona, uma estimativa utilizada em C++ é: **10⁸ operações levam em média 1 segundo para serem executadas**!
+
+Um algoritmo que executa **10⁹ operações**, por exemplo, levaria **em média 10 segundos** para ser executado, visto que **10⁹ = 10⁸ . 10**
+
+Suponhamos portanto que **você, programador competitivo**, criou um algoritmo capaz de resolver um problema em complexidade **O(n²)**. **Para valores até 10⁴**, seu código **pode ser executado em menos de 1 segundo!**
+
+Por outro lado, digamos que o exercício diga que **n está entre 1 e 10⁶** e o limite de tempo seja **3 segundos**. 
+
+Nesse exemplo, Seu código não iria ser eficiente o suficiente, visto que em um caso de teste **n = 10⁶**, seu código calcularia **(10⁶)²** ou **10¹²** operações, o que é equivalente a **10⁴ segundos**:cry:
+
+## Mais exemplos!
  
