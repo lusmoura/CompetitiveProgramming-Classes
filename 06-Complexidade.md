@@ -127,7 +127,7 @@ Nesse exemplo, Seu código não iria ser eficiente o suficiente, visto que em um
 
 ## Mais exemplos!
 
-- Qual é a complexidade do código abaixo?
+### Qual é a complexidade do código abaixo?
 
 ```c++
 for(int i = 0; i < n; i++){
@@ -144,8 +144,11 @@ for(int i = 0; i < n; i++){
    <b>  O código acima é O(n³).</b>
 </details>
 
-- Digamos que queremos calcular a **soma dos n primeiros números naturais**. Quais são as diferentes formas de resolver esse problema?
-  Qual é a diferença de eficiência entre elas?
+
+
+
+
+### Digamos que queremos calcular a **soma dos n primeiros números naturais**. Quais são as diferentes formas de resolver esse problema Qual é a diferença de eficiência entre elas?
   
 <details><summary> Clique para ver a Resposta </summary>
   
