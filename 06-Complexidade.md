@@ -3,17 +3,28 @@
 ## A ideia geral: Analisando a eficiência e o tempo de execução de algoritmos.  :runner:
 
 Em programação competitiva, a eficiência de um programa e o tempo de execução é crucial. 
-Eu imagino que vocês que estão lendo esse blog e que já resolveram exercícios de programação competitiva, já tiveram problemas com tempo 
-de execução (os famosos TLE), mas não souberam como lidar ou analisar a fonte de tais problemas.
+Eu imagino que vocês, que estão lendo esse blog e já resolveram exercícios de programação competitiva, já tiveram problemas com tempo de execução (os famosos TLE - *time limit exceeded*), mas não souberam como lidar ou analisar a fonte de tais problemas.
 
-Aqui estamos então: é hora de explicar porque certos códigos não são capazes de serem executados **abaixo de um certo limite de tempo**
-dada uma **certa entrada**.
+Aqui estamos então: é hora de explicar porque certos códigos não são capazes de serem executados **abaixo de um certo limite de tempo** dada uma **certa entrada**.
 
-De maneira geral, a **complexidade de um algoritmo** é uma estimativa para o número de operações que o programa executaria, dada uma certa
-entrada. Com base no número de operações, podemos por fim estimar o tempo necessário para a execução e determinar se o programa iria ser
-capaz de satisfazer um limite de tempo.
+De maneira geral, a **complexidade de um algoritmo** é uma estimativa para o número de operações que o programa executaria, dada uma certa entrada. Com base no número de operações, podemos por fim estimar o tempo necessário para a execução e determinar se o programa iria ser capaz de satisfazer um limite de tempo.
 
 ## Mas como a entrada se relaciona com o número de operações?
+
+#### Veja esse código como exemplo:
+
+```c++
+for (int i = 1; i <= n; i++) {
+  int a = i * 2;
+  printf("%d ", a);
+}
+```
+
+Esse código executa o *printf* **n** vezes, certo? Portanto, vemos que o número de operações depende do valor de **n**. Mais que isso, podemos escrever uma função que nos diz a quantidade de operações realizadas. Nesse caso, essa função seria mais ou menos assim:
+
+- `f(n) = 2n`
+
+Isso porque o programa executa **n vezes** o *int a = i * 2*, e mais **n vezes** o *printf*.
 
 #### Suponhamos por exemplo, que certo exercício de programação competitiva gere um número aleatório **n** em cada caso de teste.
 
@@ -21,7 +32,7 @@ capaz de satisfazer um limite de tempo.
 
     1 < n < 10000
 
-#### Suponhamos então, que dois programadores, Fakhinho e Cabralzinho construíram duas implementações (códigos) diferentes que resolvessem tal problema.
+#### Suponhamos então, que dois programadores, Fakhinho e Cabralzinho construíram duas implementações (códigos) diferentes que resolvessem tal problema, e que o número de operações de ambos os códigos dependam do valor de n.
 
   Assim: 
 
@@ -41,8 +52,7 @@ capaz de satisfazer um limite de tempo.
   
   Dessa forma, percebemos que **para reduzir o tempo de execução de um programa**, devemos **reduzir o número de operações que o mesmo realiza**.
   
-  Em programação competitiva, é comum se usar como base o valor máximo da entrada para a análise do algoritmo, visto que esse causaria
-  o tempo máximo de execução e nos deixaria claro se o nosso programa iria ser executar abaixo do limiar de tempo de um exercício.
+  Em programação competitiva, é comum se usar como base o valor máximo da entrada para a análise do algoritmo, visto que esse causaria o tempo máximo de execução e nos deixaria claro se o nosso programa iria ser executar abaixo do limiar de tempo de um exercício.
   
 ## A notação Big-O
   
@@ -123,7 +133,7 @@ Suponhamos portanto que **você, programador competitivo**, criou um algoritmo c
 
 Por outro lado, digamos que o exercício diga que **n está entre 1 e 10⁶** e o limite de tempo seja **3 segundos**. 
 
-Nesse exemplo, Seu código não iria ser eficiente o suficiente, visto que em um caso de teste **n = 10⁶**, seu código calcularia **(10⁶)²** ou **10¹²** operações, o que é equivalente a **10⁴ segundos** :cry:
+Nesse exemplo, seu código não iria ser eficiente o suficiente, visto que em um caso de teste **n = 10⁶**, seu código calcularia **(10⁶)²** ou **10¹²** operações, o que é equivalente a **10⁴ segundos** :cry:
 
 ## Mais exemplos!
 
@@ -148,7 +158,7 @@ for(int i = 0; i < n; i++){
 
 
 
-### Digamos que queremos calcular a **soma dos n primeiros números naturais**. Quais são as diferentes formas de resolver esse problema Qual é a diferença de eficiência entre elas?
+### Digamos que queremos calcular a **soma dos n primeiros números naturais**. Quais são as diferentes formas de resolver esse problema? Qual é a diferença de eficiência entre elas?
   
 <details><summary> Clique para ver a Resposta </summary>
   
