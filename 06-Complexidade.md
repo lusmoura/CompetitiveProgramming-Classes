@@ -34,7 +34,7 @@ Isso porque o programa executa **n vezes** o *int a = i * 2*, e mais **n vezes**
 
     1 < n < 10000
 
-#### Suponhamos então, que dois programadores, Fakhinho e Cabralzinho construíram duas implementações (códigos) diferentes que resolvessem tal problema hipotético, e que o número de operações de ambos os códigos dependam do valor de n da seguinte forma:
+#### Suponhamos então, que dois programadores, Fakhinho e Cabralzinho construíram duas implementações (códigos) diferentes que resolvessem tal problema **hipotético**, e que o número de operações de ambos os códigos dependam do valor de n da seguinte forma:
 
   - Seja a **função f**, que para dado **n**, nos diz o número de operações que **o código de Fakhinho realiza**:
 
