@@ -39,7 +39,7 @@ capaz de satisfazer um limite de tempo.
   
     Maior valor de n -> Maior número de operações -> Maior tempo de execução do programa.
   
-  Dessa forma, percebemos que **para reduzir o tempo de execução de um problema**, devemos **reduzir o número de operações que o mesmo realiza**.
+  Dessa forma, percebemos que **para reduzir o tempo de execução de um programa**, devemos **reduzir o número de operações que o mesmo realiza**.
   
   Em programação competitiva, é comum se usar como base o valor máximo da entrada para a análise do algoritmo, visto que esse causaria
   o tempo máximo de execução e nos deixaria claro se o nosso programa iria ser executar abaixo do limiar de tempo de um exercício.
@@ -104,7 +104,7 @@ int x = a + b;
 int y = a - b;
 ```
 
-A complexidade é **O(1)**!
+A complexidade é **O(1)**
 
 O código não depende de n, e sempre executa um número constante de operações.
 
