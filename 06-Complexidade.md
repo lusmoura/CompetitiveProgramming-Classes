@@ -26,6 +26,8 @@ Esse código executa o *printf* **n** vezes, certo? Portanto, vemos que o númer
 
 Isso porque o programa executa **n vezes** o *int a = i * 2*, e mais **n vezes** o *printf*.
 
+## Comparando algoritmos
+
 #### Suponhamos por exemplo, que certo exercício de programação competitiva gere um número aleatório **n** em cada caso de teste.
 
   Seja **n**, tal que:
