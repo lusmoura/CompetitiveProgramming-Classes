@@ -78,14 +78,14 @@ Esse código executa o *printf* e a atribução **n** vezes, certo? Portanto, ve
   
   Isso tudo pode ter ficado um pouco abstrato, mas não se preocupe, tudo ficará mais claro com exemplos.
   
-  Exemplo 1-
-    Um código com função f(n) = n³ + 100n² + 1000n + 100000 é O(n³)
+  Exemplo 1-\
+    Um código com função f(n) = n³ + 100n² + 1000n + 100000 é O(n³)\
 
-  Exemplo 2-
-    Um código com função f(n) = n * log(n) + 300n é O(n * log(n))
+  Exemplo 2-\
+    Um código com função f(n) = n * log(n) + 300n é O(n * log(n))\
 
-  Exemplo 3-
-    Um código com função f(n) = n² * log(n) + 300n * log(n) é O(n² * log(n))
+  Exemplo 3-\
+    Um código com função f(n) = n² * log(n) + 300n * log(n) é O(n² * log(n))\
 
 
 ## Mas como calcular efetivamente a complexidade de um algoritmo? :computer:
