@@ -57,9 +57,9 @@ Esse código executa o *printf* e a atribução **n** vezes, certo? Portanto, ve
   
   A primeira colocação importante quando falamos de cálculo de complexidade é que usamos como base o valor máximo da entrada para a análise do algoritmo. Uma vez que esse é o valor que causa o tempo máximo de execução, se ele for baixo o suficiente, sabemos que qualquer outro será.
   
-  Em seguida, é bom saber que, para avaliar a eficiência de um algoritmo, é possível utilizar diferentes notações. Em programação competitiva usamos uma notação especial para comparar funções que descrevem o número de operações. essa notação se chama **Big O**.
+  Em seguida, é bom saber que, para avaliar a eficiência de um algoritmo, é possível utilizar diferentes notações, chamadas notações assintóticas. Essas notações servem para comparar o crescimento de funções que descrevam a quantidade de operações que algoritmos fazem. Para programação competitiva, a notação mais importante se chama **Big O**. Ela busca descrever o comportamento do número de operações que algoritmos fazem, considerando o pior caso (isto é, o mais pesado, o que exija mais operações) possível.
   
-  Em geral, podemos dizer que o big-O de uma função representa o elemento mais relevante da função que descreve a execução do código. Ou seja, nos exemplos anteriores, o código de Fakhinho é O(n²), já que esse é o maior valor da função, enquanto o código de Cabralzinho é O(n) pelo mesmo motivo.
+  Em geral, podemos dizer que o big-O de uma função representa o elemento mais relevante da função que descreve a execução do código. Ou seja, nos exemplos anteriores, o código de Fakhinho é O(n²) (em português, pronunciamos "Ó de n²"), já que esse é o maior valor da função, enquanto o código de Cabralzinho é O(n) pelo mesmo motivo.
 
   De uma forma mais matemática:
 
