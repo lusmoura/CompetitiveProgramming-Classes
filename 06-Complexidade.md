@@ -2,12 +2,10 @@
 
 ## A ideia geral: Analisando a eficiência e o tempo de execução de algoritmos.  :runner:
 
-Em programação competitiva, a eficiência de um programa e o tempo de execução é crucial. 
-Eu imagino que vocês, que estão lendo esse blog e já resolveram exercícios de programação competitiva, já tiveram problemas com tempo de execução (os famosos TLE - *time limit exceeded*), mas não souberam como lidar ou analisar a fonte de tais problemas.
+Em programação competitiva, a eficiência de um programa e o seu tempo de execução são fatores cruciais e devem ser analisados.
+Eu imagino que vocês, que estão lendo esse blog e já resolveram exercícios de programação competitiva, já tiveram problemas com tempo de execução (os famosos TLE - *time limit exceeded*). Talvez não souberam como lidar ou analisar a fonte de tais problemas, então aqui estamos: é hora de explicar porque certos códigos não são pode executados **abaixo de um certo limite de tempo** dada uma **certa entrada**.
 
-Aqui estamos então: é hora de explicar porque certos códigos não são capazes de serem executados **abaixo de um certo limite de tempo** dada uma **certa entrada**.
-
-De maneira geral, a **complexidade de um algoritmo** é uma estimativa para o número de operações que o programa executaria, dada uma certa entrada. Com base no número de operações, podemos por fim estimar o tempo necessário para a execução e determinar se o programa iria ser capaz de satisfazer um limite de tempo.
+De maneira geral, a **complexidade de um algoritmo** é uma estimativa do número de operações que o programa executa para uma certa entrada. Com base no número de operações, podemos por fim estimar o tempo necessário para a execução e determinar se o programa iria ser capaz de satisfazer um limite de tempo.
 
 ## Mas como a entrada se relaciona com o número de operações?
 
@@ -20,21 +18,20 @@ for (int i = 1; i <= n; i++) {
 }
 ```
 
-Esse código executa o *printf* **n** vezes, certo? Portanto, vemos que o número de operações depende do valor de **n**. Mais que isso, podemos escrever uma função que nos diz a quantidade de operações realizadas. Nesse caso, essa função seria mais ou menos assim:
+Esse código executa o *printf* e a atribução **n** vezes, certo? Portanto, vemos que o número de operações depende do valor de **n**, isto é, quanto maior for **n**, mais vezes esse trecho de código será executado. Mais que isso, podemos escrever uma função que nos diz a quantidade de operações realizadas de acordo a todas as funções realizadas. Nesse caso, por exemplo, são executadas **n vezes** o **int a = i * 2** e mais **n vezes** o printf. Sendo assim, a função desse código seria mais ou menos assim:
 
 - `f(n) = 2n`
 
-Isso porque o programa executa **n vezes** o *int a = i * 2*, e mais **n vezes** o *printf*.
 
 ## Comparando algoritmos
 
-#### Suponhamos por exemplo, que certo exercício de programação competitiva gere um número aleatório **n** em cada caso de teste.
+#### Suponhamos por exemplo, que certo exercício de programação competitiva possui um valor des **n** em cada caso de teste.
 
   Seja **n**, tal que:
 
     1 < n < 10000
 
-#### Suponhamos então, que dois programadores, Fakhinho e Cabralzinho construíram duas implementações (códigos) diferentes que resolvessem tal problema **hipotético**, e que o número de operações de ambos os códigos dependam do valor de n da seguinte forma:
+#### Suponhamos então, que dois programadores, Fakhinho e Cabralzinho construíram duas implementações (códigos) diferentes que resolvessem tal problema **hipotético**, e que o número de operações de ambos os códigos dependam do valor de n , ou seja, são definidos por uma função como a que vimos acima, da seguinte forma:
 
   - Seja a **função f**, que para dado **n**, nos diz o número de operações que **o código de Fakhinho realiza**:
 
@@ -44,7 +41,7 @@ Isso porque o programa executa **n vezes** o *int a = i * 2*, e mais **n vezes**
 
     - `g(n) = 500n + 400` operações.
  
-  É evidente pelas funções **f** e **g** mostradas acima que, quanto maior o valor de **n** dado pelo caso de teste, maior é o número de operações realizadas.
+  Podemos notar pelas funções **f** e **g** mostradas acima que, quanto maior o valor de **n** dado pelo caso de teste, maior é o número de operações realizadas.
   
 #### No entanto, o computador leva certo tempo para realizar uma operação, dessa forma, temos a seguinte implicação:
   
