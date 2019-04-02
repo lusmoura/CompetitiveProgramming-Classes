@@ -23,7 +23,7 @@ Esse código executa o *printf* e a atribução **n** vezes, certo? Portanto, ve
 - `f(n) = 2n`
 
 
-## Comparando algoritmos
+## A relação entre a função e a eficiência
 
 #### Suponhamos por exemplo, que certo exercício de programação competitiva possui um valor des **n** em cada caso de teste.
 
