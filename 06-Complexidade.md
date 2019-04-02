@@ -47,7 +47,7 @@ Esse código executa o *printf* e a atribução **n** vezes, certo? Portanto, ve
 
   Analisando-o, vemos que o código de Fakhinho, que é quadrático (ou seja, tem 2 como maior grau) cresce muito mais rápido que o código linear (que tem 1 como maior grau) de Cabralzinho. Isso quer dizer que quando maior o n, mais tempo demora o código de Cabralzinho, mas mais tempo ainda demora o de Fakhinho.
     
-  Isso tudo nos mostra que:
+  Isso tudo nos mostra que:\
     - Maior valor de n -> Maior número de operações -> Maior tempo de execução do programa.\
     - Maior grau da equação -> n cresce muito mais rápido -> Número de operações cresce muito mais -> Programa demora muito.
   
