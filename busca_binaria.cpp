@@ -26,8 +26,8 @@ int main() {
     int x;
     cin >> x; // x sera o elemento que vamos procurar
     
-    // enquanto ainda temos pelo menos um elemento pra comparar
     // O(log(n))
+    // enquanto ainda temos pelo menos um elemento pra comparar
     while(l <= r){
         int mid = (l+r)/2; // pegando o indice do meio
         if(a[mid] == x){
