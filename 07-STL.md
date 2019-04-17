@@ -96,40 +96,90 @@ x.y = -5;
 v.z = 23;
 ```
 
+A seguir um exemplo de template com mais de um tipo e seu uso:
+
+```c++
+template <typename T, typename U>
+struct par {
+    T chave;
+    U valor;
+};
+
+void test() {
+    par<int, char> tabela_ascii[256];
+    ...
+    tabela_ascii[65].chave = 0x41;
+    tabela_ascii[65].valor = 'A';
+    ...
+}
+```
+
 ## STL
 
-A STL é a biblioteca padrão de C++ que nos dá alguns algoritmos e estruturas de dados prontas para uso.
+A STL é a biblioteca embutida em C++ que nos dá alguns algoritmos e estruturas de dados prontas para uso.
 Seu nome é _Standard **Template** Library_ justamente porque esses algoritmos e estruturas utilizam templates
-para serem genéricos.
+para serem genéricos. Na STL temos por exemplo o algoritmo `sort` que ordena valores e a estrutura de
+dados `set` que guarda valores distintos, como se fosse um conjunto matemático.
 
 ## `vector<T>`
 
+O `vector<T>` é uma melhora para o array vindo de C: ele pode aumentar e diminuir de tamanho. E o melhor de tudo
+é que isso é feito automaticamente (quando se usam os métodos de inserção). Exemplo:
+
 ```c++
+vector<int> v;   // inicialmente v tem tamanho zero
+v.push_back(1);  // agora v = |1|
+v.push_back(2);  // v = |1, 2|
+v.push_back(3);  // v = |1, 2, 3|
+
+// o acesso aos elementos é feito igual a um array: vetor[indice]
+v[1] = 10;       // v = |1, 10, 3|
+
+// mas ainda é um erro tentar acessar uma posição que não existe:
+v[50] = 32;      // segmentation fault!
 ```
+
+O método `push_back` aloca automaticamente mais uma posição de memória para o vetor.
+
+// TODO
 
 ## Iteradores
 
-Mostrar rapidamente um uso de lambdas no sort()?
+// TODO
 
 ## `stack<T>`
 
+// TODO
+
 ## `queue<T>`
+
+// TODO
 
 ## `pair<T,U>`
 
+// TODO
+
 ## `priority_queue<T>`
+
+// TODO
 
 ## `set<T>`
 
+// TODO
+
 ## `map<T,U>`
+
+// TODO
 
 ## Algoritmos da STL
 
-### sort
-### first, last
-### find
-### unique
-### lower_bound, upper_bound
+// TODO mostrar quais?
+
+* sort
+* first, last
+* find
+* unique
+* lower_bound, upper_bound
 
 ## Referências
 
