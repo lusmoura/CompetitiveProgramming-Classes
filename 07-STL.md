@@ -254,7 +254,8 @@ Os principais construtores e métodos de `vector<T>` usados em competição são
 * `size_t size()` retorna a quantidade de elementos atualmente no vetor.
 
 // TODO diferença entre size e capacity  
-// TODO falar do emplace_back?
+// TODO falar do emplace_back?  
+// TODO comparação de dois códigos, um usando array e outro usando vector, para mostra como é bem mais simples
 
 ### Uma nota sobre inclusão de bibliotecas e namespaces
 
@@ -276,12 +277,12 @@ namespace std {
     ...
     struct vector {
         ...
-    }
+    };
 }
 ```
 
-Com isso, se quisermos usar o struct `vector`, precisamos antes indicar qual namespace ele está. O acesso a elementos de
-um namespace é feito usando o separador de escopo `::`.
+Como vector foi declarado dentro de um namespace, se quisermos usá-lo precisamos antes indicar qual namespace
+ele está. O acesso a elementos de um namespace é feito usando o separador de escopo `::`.
 
 ```c++
 std::vector<int> u;    // sem o "std::" o compilador vai dizer que não sabe o que é um vector<T>
@@ -293,16 +294,19 @@ disponível para nós também sem o seu indicador de namespace:
 ```c++
 using std::vector;
 
-vector<int> u;
+vector<int> u;         // tudo ok, vector<T> é na verdade std::vector<T>
 ```
 
 Ou ainda podemos fazer isso para todo o namespace `std` de uma vez só:
 
 ```c++
 using namespace std;
+
+vector<int> u;
+stack<int> s;
 ```
 
-Em ambiente de competição também pode ser usado o:
+Em ambiente de competição também pode ser usado o import geral:
 
 ```c++
 #include <bits/stdc++.h>
@@ -316,19 +320,17 @@ que já importa a maior parte da STL (mas não tira a necessidade do `using name
 Ao ler a documentação da STL ou mensagens de erros, frequentemente a gente se depara com o tal `size_t`. Ele é um tipo
 numérico que é utilizado para indexar elementos de containers (como arrays, vectors, etc.). Por que não usar `int` ou
 `long long` para isso, você pode estar se perguntando. O problema é que `int` e `long long` não têm a garantia de serem
-grandes o suficiente para indexar coisas na memória RAM do computador, enquanto o `size_t` tem a garantia de ser tão grande
+grandes o suficiente para indexar coisas na memória RAM do computador†, enquanto o `size_t` tem a garantia de ser tão grande
 quanto o barramento de endereços do processador. Por exemplo, num processador de 64 bits, o `size_t` tem 64 bits, isto é,
 8 bytes.
 
-Apesar desse detalhe, normalmente podemos usar `int`s para indexação sem problema algum, pois é difícil que tenhamos
-um container com mais de 2^31 elementos e o compilador faz uma conversão automática de `int` para `size_t` antes de
-acessar os elementos.
+† _C/C++ são usados em muitos tipos de processadores e os tamanhos dos tipos primitivos mudam de processador para processador._
+
+Apesar desse detalhe, normalmente podemos usar `int`s para indexação sem problema algum, pois é raro que tenhamos
+um container com mais de 2^31 elementos (o que já dá 512MB de memória, no mínimo) e também porque o compilador faz
+uma conversão automática de `int` para `size_t` antes de acessar os elementos.
 
 ### O caso especial do `vector<bool>`
-
-// TODO
-
-## Iteradores
 
 // TODO
 
@@ -357,6 +359,12 @@ acessar os elementos.
 // TODO
 
 ## Algoritmos da STL
+
+### Iteradores
+
+// TODO
+
+### Algoritmos
 
 // TODO mostrar quais?
 
