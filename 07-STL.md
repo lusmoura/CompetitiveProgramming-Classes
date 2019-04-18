@@ -2,7 +2,7 @@
 
 ## Structs
 
-Uma struct serve para criar um tipo de dads composto. Por exemplo, um struct aluno poderia ser:
+Um struct serve para criar um tipo de dado composto. Por exemplo, um struct aluno poderia ser:
 
 ```c++
 struct aluno {
@@ -40,6 +40,59 @@ turma_de_entrada turma;
 cout << turma.alunos[4].num_usp;
 ```
 
+### Métodos
+
+Structs podem ter funções específicas, normalmente chamadas de métodos (para diferenciar de funções
+que não são ligadas a um struct). Os métodos só funcionam no contexto do struct no qual elas foram
+declaradas.
+
+Por exemplo, um struct `vetor3d` poderia ter uma função para calcular o tamanho desse vetor:
+
+```c++
+struct vetor3d {
+    double x, y, z;    // também é possível declarar vários campos juntos, casos todos sejam do mesmo tipo
+
+    // segue a declaração normal de uma função
+    double tamanho() {
+        return sqrt(x * x + y * y + z * z);  // os campos do struct ficam disponíveis para a função
+    }
+};
+```
+
+O acesso aos métodos, assim como os campos, também se dá através de `.`:
+
+```c++
+vetor3d u, v;
+u.x = u.y = u.z = 1;
+v.x = v.y = v.z = 2;
+
+printf("|u| = %.2lf, |v| = %.2lf", u.tamanho(), v.tamanho()); // imprime 1.73 e 3.46
+```
+
+### Construtores
+
+Construtores são métodos que facilitam a criação de structs. Por exemplo, é bem chato setar manualmente
+cada uma das dimensões de um `vetor3d`. O que podemos fazer é criar um construtor que já recebe esses
+números:
+
+```c++
+struct vetor3d {
+    ...
+
+    vetor3d(double a, double b, double c) { // construtores não têm tipo de retorno e têm o mesmo nome do struct
+        x = a;
+        y = b;
+        z = c;
+    }
+};
+```
+
+Agora podemos criar um `vetor3d` muito mais facilmente:
+
+```c++
+vetor3d u(1, 2, 3);
+```
+
 ## Templates
 
 Templates permitem que um mesmo código sirva para vários tipos de dados. Em resumo, o código é genérico
@@ -47,7 +100,9 @@ e pode ser reutilizado para várias situações.
 
 ### Templates de funções
 
-Suponha que precisamos de várias funções para calcular o máximo entre dois valores, para os tipos `int`, `long long`, `float` e `double`. Ao invés de criar 4 funções, podemos criar a função genérica a seguir:
+Suponha que precisamos de várias funções para calcular o máximo entre dois valores, para os
+tipos `int`, `long long`, `float` e `double`. Ao invés de criar 4 funções, podemos criar a
+função genérica a seguir:
 
 ```c++
 template<typename T>
@@ -72,7 +127,7 @@ maximo('X', 'U');
 maximo(false, true);
 ```
 
-### Templates de structs/classes
+### Templates de structs
 
 Da mesma forma que é possível criar funções genéricas, é possível criar structs genéricos.
 A sintaxe inicial é igual. Segue exemplo:
@@ -86,14 +141,18 @@ struct vetor3d {
 };
 ```
 
-Para declarar uma variável, é necessário identificar entre `< >` qual é(são) o(s) tipo(s) concretos.
-Por exemplo, se queremos um `vetor3d` de `int`s, temos que usar `vetor3d<int>` como o tipo da variável:
+Para declarar uma variável de um tipo genérico é necessário identificar entre `< >` qual
+é(são) o(s) tipo(s) concretos. Por exemplo, se queremos um `vetor3d` de `int`s, temos
+que usar `vetor3d<int>` como o tipo da variável:
 
 ```c++
 vetor3d<int> v;
+
 v.x = 1;
 x.y = -5;
 v.z = 23;
+
+printf("(%d, %d, %d)", v.x, v.y, v.z);
 ```
 
 A seguir um exemplo de template com mais de um tipo e seu uso:
@@ -124,7 +183,7 @@ dados `set` que guarda valores distintos, como se fosse um conjunto matemático.
 ## `vector<T>`
 
 O `vector<T>` é uma melhora para o array vindo de C: ele pode aumentar e diminuir de tamanho. E o melhor de tudo
-é que isso é feito automaticamente (quando se usam os métodos de inserção). Exemplo:
+é que isso é feito automaticamente (quando se usam os métodos de inserção/remoção). Exemplo:
 
 ```c++
 vector<int> v;   // inicialmente v tem tamanho zero
