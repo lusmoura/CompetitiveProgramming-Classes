@@ -79,17 +79,20 @@ números:
 struct vetor3d {
     ...
 
-    vetor3d(double a, double b, double c) { // construtores não têm tipo de retorno e têm o mesmo nome do struct
-        x = a;
+    vetor3d(double a, double b, double c) { // construtores não têm tipo de retorno
+        x = a;                              // ... e têm o mesmo nome do struct
         y = b;
         z = c;
-    }
+    }                                       // não é necessário um return explícito
 };
 ```
 
 Agora podemos criar um `vetor3d` muito mais facilmente:
 
 ```c++
+vetor3d u = vetor3d(1, 2, 3);
+
+// equivalentemente, na forma simplificada:
 vetor3d u(1, 2, 3);
 ```
 
@@ -135,9 +138,7 @@ A sintaxe inicial é igual. Segue exemplo:
 ```c++
 template<typename T>
 struct vetor3d {
-    T x;
-    T y;
-    T z;
+    T x, y, z;
 };
 ```
 
@@ -155,7 +156,28 @@ v.z = 23;
 printf("(%d, %d, %d)", v.x, v.y, v.z);
 ```
 
-A seguir um exemplo de template com mais de um tipo e seu uso:
+Métodos e construtores também podem ser genéricos:
+
+```c++
+template<typename T>
+struct vetor3d {
+    T x, y, z;
+
+    vetor3d(T a, T b, T c) {
+        x = a;
+        y = b;
+        z = c;
+    }
+
+    void multiplica_por_escalar(T r) {
+        x = x * r;
+        y = y * r;
+        z = z * r;
+    }
+};
+```
+
+A seguir um exemplo de template com mais de um tipo:
 
 ```c++
 template <typename T, typename U>
@@ -183,22 +205,126 @@ dados `set` que guarda valores distintos, como se fosse um conjunto matemático.
 ## `vector<T>`
 
 O `vector<T>` é uma melhora para o array vindo de C: ele pode aumentar e diminuir de tamanho. E o melhor de tudo
-é que isso é feito automaticamente (quando se usam os métodos de inserção/remoção). Exemplo:
+é que isso é feito automaticamente quando usamos os métodos de inserção/remoção dele. Exemplo:
 
 ```c++
-vector<int> v;   // inicialmente v tem tamanho zero
-v.push_back(1);  // agora v = |1|
-v.push_back(2);  // v = |1, 2|
-v.push_back(3);  // v = |1, 2, 3|
+#include <vector>
 
-// o acesso aos elementos é feito igual a um array: vetor[indice]
-v[1] = 10;       // v = |1, 10, 3|
+using namespace std;
 
-// mas ainda é um erro tentar acessar uma posição que não existe:
-v[50] = 32;      // segmentation fault!
+void main() {
+    vector<int> v;   // inicialmente v tem zero elementos
+    v.push_back(1);  // agora v = |1|
+    v.push_back(2);  // v = |1, 2|
+    v.push_back(3);  // v = |1, 2, 3|
+
+    // o acesso aos elementos é feito igual a um array: vetor[indice]
+    v[1] = 10;       // v = |1, 10, 3|
+
+    cout << v.size();  // imprime 3
+
+    // mas ainda é um erro tentar acessar uma posição que não existe:
+    v[50] = 32;      // segmentation fault!
+}
 ```
 
-O método `push_back` aloca automaticamente mais uma posição de memória para o vetor.
+Os principais construtores e métodos de `vector<T>` usados em competição são:
+
+* `vector<T>()` constrói um vetor vazio. Por ser o costrutor sem parâmetros (o chamado _construtor padrão_),
+  também é chamado mesmo quando não colocamos os parênteses:
+  ```c++
+  vector<int> x();
+
+  // é o mesmo que:
+  vector<int> x;
+  ```
+* `vector<T>(size_t tamanho_inicial)` cria um vetor já com tamanho `tamanho_inicial`. O conteúdo do vetor normalmente
+  não é inicializado†. Logo, é preciso tomar cuidado para não usar o vetor antes de atribuir valores para seus ítens.  
+
+  † _se o tipo T contido pelo vector for um struct que tem construtor padrão, os campos são inicializados
+  utilizando esse construtor._
+  
+* `vector<T>(size_t tamanho_inicial, T valor_padrao)` funciona da mesma forma que o acima, mas dá um valor padrão para
+  os elementos do vetor. Por exemplo, `vector<int> v(10, 0)` cria um vetor com 10 zeros.
+
+* operador `[]` - utilizado para acessar os elementos, tanto para recuperar seus valores quanto para modificá-los.
+
+* `void push_back(T valor)` insere um valor no final do vetor, aumentando automaticamente seu tamanho.
+
+* `size_t size()` retorna a quantidade de elementos atualmente no vetor.
+
+// TODO diferença entre size e capacity  
+// TODO falar do emplace_back?
+
+### Uma nota sobre inclusão de bibliotecas e namespaces
+
+Para usar a STL, é necessário importar (isto é, indicar ao compilador que se está usando código externo ao seu programa)
+seus elementos via `#include`. Para usar o `vector`, por exemplo, precisamos de:
+
+```c++
+#include <vector>
+```
+
+Além disso, para maior organização, todos elementos da STL estão dentro de um namespace, o `std`. Namespaces servem
+para organizar o código de forma a manter coisas associadas num mesmo contexto e para evitar conflitos de nome (isto é,
+para podermos ter funções, structs, etc. com o mesmo nome).
+
+Por exemplo, a declaração de `vector<T>` é feita assim:
+
+```c++
+namespace std {
+    ...
+    struct vector {
+        ...
+    }
+}
+```
+
+Com isso, se quisermos usar o struct `vector`, precisamos antes indicar qual namespace ele está. O acesso a elementos de
+um namespace é feito usando o separador de escopo `::`.
+
+```c++
+std::vector<int> u;    // sem o "std::" o compilador vai dizer que não sabe o que é um vector<T>
+```
+
+Para evitar ter que escrever o `std` toda vez, podemos usar o `using` para indicar que queremos que o vector fique
+disponível para nós também sem o seu indicador de namespace:
+
+```c++
+using std::vector;
+
+vector<int> u;
+```
+
+Ou ainda podemos fazer isso para todo o namespace `std` de uma vez só:
+
+```c++
+using namespace std;
+```
+
+Em ambiente de competição também pode ser usado o:
+
+```c++
+#include <bits/stdc++.h>
+```
+
+que já importa a maior parte da STL (mas não tira a necessidade do `using namespace std`).
+
+
+### Uma nota sobre o `size_t`
+
+Ao ler a documentação da STL ou mensagens de erros, frequentemente a gente se depara com o tal `size_t`. Ele é um tipo
+numérico que é utilizado para indexar elementos de containers (como arrays, vectors, etc.). Por que não usar `int` ou
+`long long` para isso, você pode estar se perguntando. O problema é que `int` e `long long` não têm a garantia de serem
+grandes o suficiente para indexar coisas na memória RAM do computador, enquanto o `size_t` tem a garantia de ser tão grande
+quanto o barramento de endereços do processador. Por exemplo, num processador de 64 bits, o `size_t` tem 64 bits, isto é,
+8 bytes.
+
+Apesar desse detalhe, normalmente podemos usar `int`s para indexação sem problema algum, pois é difícil que tenhamos
+um container com mais de 2^31 elementos e o compilador faz uma conversão automática de `int` para `size_t` antes de
+acessar os elementos.
+
+### O caso especial do `vector<bool>`
 
 // TODO
 
