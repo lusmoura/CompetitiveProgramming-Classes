@@ -124,10 +124,10 @@ um tipo concreto dentro da função, incluindo nos seus argumentos e tipo de ret
 Podemos chamar essa função para qualquer tipo de dados (contanto que o operador `>=` faça sentido para ele):
 
 ```c++
-maximo(1, 2);
-maximo(1.0, 5.0);
-maximo('X', 'U');
-maximo(false, true);
+maximo(1, 2);          // resultado: 2
+maximo(10.0, 5.0);     // 10.0
+maximo('X', 'U');      // 'X'
+maximo(false, true);   // true
 ```
 
 ### Templates de structs
@@ -197,7 +197,7 @@ void test() {
 
 ## STL
 
-A STL é a biblioteca embutida em C++ que nos dá alguns algoritmos e estruturas de dados prontas para uso.
+A STL é a biblioteca embutida em C++ que nos dá alguns funções e structs prontos para uso.
 Seu nome é _Standard **Template** Library_ justamente porque esses algoritmos e estruturas utilizam templates
 para serem genéricos. Na STL temos por exemplo o algoritmo `sort` que ordena valores e a estrutura de
 dados `set` que guarda valores distintos, como se fosse um conjunto matemático.
@@ -218,7 +218,7 @@ void main() {
     v.push_back(2);  // v = |1, 2|
     v.push_back(3);  // v = |1, 2, 3|
 
-    // o acesso aos elementos é feito igual a um array: vetor[indice]
+    // o acesso aos elementos é feito como num array: vetor[indice]
     v[1] = 10;       // v = |1, 10, 3|
 
     cout << v.size();  // imprime 3
@@ -253,9 +253,11 @@ Os principais construtores e métodos de `vector<T>` usados em competição são
 
 * `size_t size()` retorna a quantidade de elementos atualmente no vetor.
 
+<!--
 // TODO diferença entre size e capacity  
 // TODO falar do emplace_back?  
 // TODO comparação de dois códigos, um usando array e outro usando vector, para mostra como é bem mais simples
+-->
 
 ### Uma nota sobre inclusão de bibliotecas e namespaces
 
@@ -275,7 +277,7 @@ Por exemplo, a declaração de `vector<T>` é feita assim:
 ```c++
 namespace std {
     ...
-    struct vector {
+    struct vector {          // * na verdade seria uma classe, mas isso não importa agora
         ...
     };
 }
@@ -327,12 +329,16 @@ quanto o barramento de endereços do processador. Por exemplo, num processador d
 † _C/C++ são usados em muitos tipos de processadores e os tamanhos dos tipos primitivos mudam de processador para processador._
 
 Apesar desse detalhe, normalmente podemos usar `int`s para indexação sem problema algum, pois é raro que tenhamos
-um container com mais de 2^31 elementos (o que já dá 512MB de memória, no mínimo) e também porque o compilador faz
+um container com mais de 2^31 elementos (o que já dá 2GiB de memória, no mínimo) e também porque o compilador faz
 uma conversão automática de `int` para `size_t` antes de acessar os elementos.
+
+<!--
 
 ### O caso especial do `vector<bool>`
 
 // TODO
+
+-->
 
 ## `stack<T>`
 
@@ -341,6 +347,8 @@ uma conversão automática de `int` para `size_t` antes de acessar os elementos.
 ## `queue<T>`
 
 // TODO
+
+<!--
 
 ## `pair<T,U>`
 
@@ -373,6 +381,8 @@ uma conversão automática de `int` para `size_t` antes de acessar os elementos.
 * find
 * unique
 * lower_bound, upper_bound
+
+-->
 
 ## Referências
 
