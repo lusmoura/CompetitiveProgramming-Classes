@@ -110,7 +110,7 @@ int main() {
 
 O caso abaixo, por exemplo, não funcionaria. A função printString não sabe quem é 's', então não pode fazer o acesso.
 ```c++
-bool printString() {
+void printString() {
 	cout << s;
 }
 
@@ -123,7 +123,7 @@ int main() {
 
 O correto seria fazer:
 ```c++
-bool printString(string s) {
+void printString(string s) {
 	cout << s;
 }
 
