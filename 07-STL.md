@@ -1,5 +1,10 @@
 # STL - Standard Template Library
 
+Nessa aula vamos aprender a usar algumas estruturas e funções muito úteis da STL,
+a biblioteca padrão de C++. Mas antes vamos aprender o que são structs e templates que
+são funcionalidades de C++ muito usadas pela STL. Apesar de ser raro nós mesmos criarmos
+structs e templates numa competição, é importante saber como elas funcionam.
+
 ## Structs
 
 Um struct serve para criar um tipo de dado composto. Por exemplo, um struct aluno poderia ser:
@@ -12,7 +17,7 @@ struct aluno {
     char email_usp[128];
 };
 
-void test() {
+int main() {
     aluno simaraes;                // variável do novo tipo "aluno"
     simaraes.num_usp = 107108109;  // é usado "." para acessar os campos do struct
     simaraes.ano_entrada = 2018;
@@ -32,12 +37,17 @@ struct turma_de_entrada {
     char curso[64];
     int n_alunos;
     aluno alunos[150];
-}
+};
 
-// caso se queira acessar o num_usp do 5º aluno da turma:
-turma_de_entrada turma;
-...
-cout << turma.alunos[4].num_usp;
+int main() {
+    // caso se queira acessar o num_usp do 5º aluno da turma:
+    
+    turma_de_entrada turma;
+
+    // ...
+
+    cout << turma.alunos[4].num_usp;
+}
 ```
 
 ### Métodos
@@ -49,6 +59,8 @@ declaradas.
 Por exemplo, um struct `vetor3d` poderia ter uma função para calcular o tamanho desse vetor:
 
 ```c++
+#include <cmath>
+
 struct vetor3d {
     double x, y, z;    // também é possível declarar vários campos juntos, casos todos sejam do mesmo tipo
 
@@ -62,11 +74,15 @@ struct vetor3d {
 O acesso aos métodos, assim como os campos, também se dá através de `.`:
 
 ```c++
-vetor3d u, v;
-u.x = u.y = u.z = 1;
-v.x = v.y = v.z = 2;
+#include <cstdio>
 
-printf("|u| = %.2lf, |v| = %.2lf", u.tamanho(), v.tamanho()); // imprime 1.73 e 3.46
+int main() {
+    vetor3d u, v;
+    u.x = u.y = u.z = 1;
+    v.x = v.y = v.z = 2;
+
+    printf("|u| = %.2lf, |v| = %.2lf \n", u.tamanho(), v.tamanho()); // imprime 1.73 e 3.46
+}
 ```
 
 ### Construtores
@@ -119,7 +135,7 @@ T maximo(T a, T b) {
 
 Note que há um preâmbulo antes da função que indica que ela é um template e quais são os parâmetros
 de tipo que ela tem. A partir daí podemos usar o tipo genérico (normalmente chamado de `T`) como se fosse
-um tipo concreto dentro da função, incluindo nos seus argumentos e tipo de retorno.
+um tipo concreto dentro da função.
 
 Podemos chamar essa função para qualquer tipo de dados (contanto que o operador `>=` faça sentido para ele):
 
@@ -186,7 +202,7 @@ struct par {
     U valor;
 };
 
-void test() {
+int main() {
     par<int, char> tabela_ascii[256];
     ...
     tabela_ascii[65].chave = 0x41;
@@ -209,10 +225,11 @@ O `vector<T>` é uma melhora para o array vindo de C: ele pode aumentar e diminu
 
 ```c++
 #include <vector>
+#include <iostream>
 
 using namespace std;
 
-void main() {
+int main() {
     vector<int> v;   // inicialmente v tem zero elementos
     v.push_back(1);  // agora v = |1|
     v.push_back(2);  // v = |1, 2|
@@ -233,33 +250,114 @@ Os principais construtores e métodos de `vector<T>` usados em competição são
 * `vector<T>()` constrói um vetor vazio. Por ser o costrutor sem parâmetros (o chamado _construtor padrão_),
   também é chamado mesmo quando não colocamos os parênteses:
   ```c++
-  vector<int> x();
+  // isso
+
+  vector<int> a();
 
   // é o mesmo que:
-  vector<int> x;
+
+  vector<int> a;
   ```
+
 * `vector<T>(size_t tamanho_inicial)` cria um vetor já com tamanho `tamanho_inicial`. O conteúdo do vetor normalmente
   não é inicializado†. Logo, é preciso tomar cuidado para não usar o vetor antes de atribuir valores para seus ítens.  
+
+  ```c++
+  vector<int> a(10); // vetor de 10 ints NÃO INICIALIZADOS
+  ```
 
   † _se o tipo T contido pelo vector for um struct que tem construtor padrão, os campos são inicializados
   utilizando esse construtor._
   
 * `vector<T>(size_t tamanho_inicial, T valor_padrao)` funciona da mesma forma que o acima, mas dá um valor padrão para
-  os elementos do vetor. Por exemplo, `vector<int> v(10, 0)` cria um vetor com 10 zeros.
+  os elementos do vetor. Exemplo:
+
+  ```c++
+  vector<int> a(10, 0)`; // cria um vetor com 10 zeros
+
+  // a partir de C++17 nem precisamos do <int> †
+
+  vector b(10, 0);         // o compilador sabe que o tipo é int por causa
+                           // do tipo do zero, que por padrão é int
+  vector c(10, 0.0);       // nesse caso c é um vector<double>
+  ```
+  † _Para usar o C++17, basta passar `-std=c++17` para o compilador. Mas antes verifique se o online judge tem
+  suporte a C++17._
+
+* `vector<T>(initializer_list<T> valores_iniciais)` serve para iniciar manualmente os valores do vector. O tipo
+  `initializer_list<T>` se refere a uma lista literal (direto no código) entre chaves. Exemplo de uso:
+  
+  ```c++
+  vector<int> a({1, 2, 3, 4, 5});
+  vector<int> b = {1, 2, 3, 4, 5};
+
+  // ou no C++17
+
+  vector c = {1, 2, 3, 4, 5};
+  ```
 
 * operador `[]` - utilizado para acessar os elementos, tanto para recuperar seus valores quanto para modificá-los.
 
 * `void push_back(T valor)` insere um valor no final do vetor, aumentando automaticamente seu tamanho.
+  Como exemplo de seu uso podemos fazer a leitura da entrada de um problema assim:
+  
+  ```c++
 
-* `size_t size()` retorna a quantidade de elementos atualmente no vetor.
+  // a entrada é dada assim:
+  // 5                        <-- número de elementos
+  // 1 2 3 4 5                <-- elementos
+
+  int n;
+  vector<int> v;
+  
+  cin >> n;
+  for (int i = 0; i < n; i++) {
+      int x;
+      cin >> x;
+      v.push_back(x);
+  }
+  ```
+
+  Uma outra possibilidade é já reservar o espaço para o vetor:
+
+  ```c++
+  int n;
+  cin >> n;
+
+  vector<int> v(n);   // vetor de n posições
+
+  for (int i = 0; i < n; i++) {
+      cin >> v[i];
+  }
+  ```
+
+* `size_t size()` retorna a quantidade de elementos atualmente no vetor. Exemplo:
+
+    ```c++
+    vector<int> v({1, 2, 3, 4, 5});
+    
+    void print_vector() {
+        for (int i = 0; i < v.size(); i++) {
+            printf("%d ", v[i]);
+        }
+        printf("\n");
+    }
+    ```
 
 <!--
 // TODO diferença entre size e capacity  
 // TODO falar do emplace_back?  
 // TODO comparação de dois códigos, um usando array e outro usando vector, para mostra como é bem mais simples
+// TODO falar do for (auto a: v)
 -->
 
-### Uma nota sobre inclusão de bibliotecas e namespaces
+<!--
+### Um outro tipo de for: `for (tipo variavel : container)`
+
+TODO
+-->
+
+### Explicando o `using namespace std;`
 
 Para usar a STL, é necessário importar (isto é, indicar ao compilador que se está usando código externo ao seu programa)
 seus elementos via `#include`. Para usar o `vector`, por exemplo, precisamos de:
@@ -272,12 +370,12 @@ Além disso, para maior organização, todos elementos da STL estão dentro de u
 para organizar o código de forma a manter coisas associadas num mesmo contexto e para evitar conflitos de nome (isto é,
 para podermos ter funções, structs, etc. com o mesmo nome).
 
-Por exemplo, a declaração de `vector<T>` é feita assim:
+Por exemplo, a declaração de `vector<T>` é feita mais ou menos assim:
 
 ```c++
 namespace std {
-    ...
-    struct vector {          // * na verdade seria uma classe, mas isso não importa agora
+    template <typename T>
+    struct vector {          // na verdade seria uma classe, mas isso não importa agora
         ...
     };
 }
@@ -308,29 +406,23 @@ vector<int> u;
 stack<int> s;
 ```
 
-Em ambiente de competição também pode ser usado o import geral:
+### O que é o tal `size_t` ou `size_type`?
 
-```c++
-#include <bits/stdc++.h>
-```
+Ao ler a documentação da STL ou mensagens de erros, frequentemente a gente se depara com `size_t`
+ou `size_type`. Ele é um tipo numérico que é utilizado para indexar elementos de containers
+(como arrays, vectors, etc.). "Por que não usar `int` ou `long long` para isso?", você pode
+estar se perguntando. O problema é que `int` e `long long` não têm a garantia de serem grandes
+o suficiente para indexar coisas na memória RAM do computador†, enquanto o `size_t` tem a
+garantia de ser tão grande quanto o barramento de endereços do processador. Por exemplo, num
+processador de 64 bits, o `size_t` tem 64 bits, isto é, 8 bytes.
 
-que já importa a maior parte da STL (mas não tira a necessidade do `using namespace std`).
+† _C/C++ são usados em muuuuitos tipos de hardware e os tamanhos dos tipos primitivos mudam de
+processador para processador. Em alguns casos o `int` pode ter somente 2 bytes, por exemplo._
 
-
-### Uma nota sobre o `size_t`
-
-Ao ler a documentação da STL ou mensagens de erros, frequentemente a gente se depara com o tal `size_t`. Ele é um tipo
-numérico que é utilizado para indexar elementos de containers (como arrays, vectors, etc.). Por que não usar `int` ou
-`long long` para isso, você pode estar se perguntando. O problema é que `int` e `long long` não têm a garantia de serem
-grandes o suficiente para indexar coisas na memória RAM do computador†, enquanto o `size_t` tem a garantia de ser tão grande
-quanto o barramento de endereços do processador. Por exemplo, num processador de 64 bits, o `size_t` tem 64 bits, isto é,
-8 bytes.
-
-† _C/C++ são usados em muitos tipos de processadores e os tamanhos dos tipos primitivos mudam de processador para processador._
-
-Apesar desse detalhe, normalmente podemos usar `int`s para indexação sem problema algum, pois é raro que tenhamos
-um container com mais de 2^31 elementos (o que já dá 2GiB de memória, no mínimo) e também porque o compilador faz
-uma conversão automática de `int` para `size_t` antes de acessar os elementos.
+Apesar desse detalhe, normalmente podemos e usamos `int`s para indexação sem problema algum, pois
+é raro que tenhamos um container com mais de 2^31 elementos (o que já dá 2GiB de memória, no
+mínimo) e também porque o compilador já faz a conversão automática de `int` para `size_t` quando
+necessário, antes de acessar os elementos.
 
 <!--
 
@@ -342,13 +434,36 @@ uma conversão automática de `int` para `size_t` antes de acessar os elementos.
 
 ## `stack<T>`
 
+A stack<T> é uma pilha de elementos. Ela tem duas operações básicas _push_ e _pop_, que empilham
+ou desempilham elementos, respectivamente. Exemplo:
+
+```c++
+stack<int> pilha;      // {}        pilha vazia
+
+pilha.push(1);         // {1}       pilha contém somente o elemento 1
+pilha.push(2);         // {2, 1}    agora 2 está no topo da pilha
+pilha.push(3);         // {3, 2, 1}
+
+pilha.pop();           // {2, 1}    o topo, que era 3, é retirado
+pilha.pop();           // {1}
+pilha.pop();           // {}
+```
+
+* `stack<T>()` constrói uma pilha vazia
+* `void push(T valor)` 
+* `void pop()`
+* `T top()`
+* `size_t size()`
+
+Um exemplo mais completo de uso de pilha:
+
+```c++
 // TODO
+```
 
 ## `queue<T>`
 
 // TODO
-
-<!--
 
 ## `pair<T,U>`
 
@@ -357,6 +472,8 @@ uma conversão automática de `int` para `size_t` antes de acessar os elementos.
 ## `priority_queue<T>`
 
 // TODO
+
+<!--
 
 ## `set<T>`
 
