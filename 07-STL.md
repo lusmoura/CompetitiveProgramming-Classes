@@ -476,15 +476,95 @@ Um exemplo mais completo de uso de pilha:
 
 ## `priority_queue<T>`
 
-// TODO
+A priority_queue<T> nada mais é que uma *fila de prioridades*. Ou seja, ela funciona como uma fila - posso adicionar um elemento, e remover o primeiro - que, porém, organiza os elementos interiores em alguma ordem específica e o seu primeiro elemento é sempre o maior de todos os inseridos, de acordo com algum método escolhido. As principais funções da `priority_queue` são o `push` (insere um elemento), `top` (retorna o primeiro elemento) e `pop` (remove o primeiro elemento).
+    
+```c++
+priority_queue<int> pq; // priority_queue vazia
+pq.push(1);             // {3}
+pq.push(3);             // {3, 1}
+pq.push(2);             // {3, 2, 1}
+int u = pq.top();       // u = 3
+pq.pop();               // {2, 1}
+pq.pop();               // {1}
+pq.pop();               // priority_queue vazia
+```
 
-<!--
+E se quisermos deixar a fila ordenada de outra forma? Por exemplo, se for preciso que o primeiro elemento da fila seja o *menor* elemento, e nao o maior?
+
+Existem dois jeitos mais conhecidos de se fazer isso. Um deles é o seguinte:
+
+```c++
+priority_queue<int, vector<int>, greater<int> > pq;
+```
+
+Nesse caso, o que está sendo feito é o seguinte: se cria uma priority_queue de *int*, com o *container* de um vector<int> (que é o container padrão dela), e que utiliza a função de comparação *greater<int>* (função existente na *STL* que ordena os elementos de forma decrescente).
+    
+Porém, também é possível fazer o seguinte: cria-se uma `priority_queue` normal. Porém, ao adicionar um elemento qualquer, adiciona-se o *oposto* daquele elemento. Por exemplo, digamos que eu queira armazenar os valores *1, 2 e 3* de forma decrescente:
+
+```
+priority_queue<int> pq; // fila vazia
+pq.push(-1);            // {-1}
+pq.push(-2);            // {-1, -2}
+pq.push(-3);            // {-1, -2, -3}
+```
+
+Com isso, eu tenho os elementos ordenados de forma decrescente, e quando eu quiser pegar o elemento do topo, pode-se fazer isso:
+
+```
+int x = -pq.top();
+```
+Que pegará o oposto do topo da fila - que é o elemento original.
+
+OBS: sempre que um elemento é inserido ou removido da priority_queue, a organização dos elementos internos é alterada, para que ela esteja sempre ordenada. Da pra perceber que isso tem um custo computacional - e as operações `pop` e `push` tem a complexidade de *O(log n)*, em que *n* é o número de elementos presentes na fila de prioridades.
+
+* `priority_queue<T>()` constrói uma priority queue vazia
+* `void push(T valor)` insere um elemento em O(log n)
+* `void pop()` remove um elemento em O(log n)
+* `T top()` retorna o primeiro elemento em O(1)
+* `size_t size()` retorna o numero de elementos
 
 ## `set<T>`
 
-// TODO
+O `set<T>` representa basicamente um conjunto matemático - ou seja, os elementos ficam ordenados e não se repetem. Suas principais operações são: `insert`, `erase`, `find` e `count`.
+
+```
+set<int> st;
+st.insert(10);
+st.insert(20);
+st.insert(5);
+
+for (int elem : st) // percorre elemento por elemento do set
+   cout << elem << endl; // 5, 10, 20
+
+if (st.find(3) == st.end())
+   cout << "O elemento 3 não está no set" << endl;
+   
+if (st.count(5) != 0)
+   cout << "O elemento 5 está no set" << endl;
+
+st.erase(4);
+```
+
+* `set<T>()` constrói um set vazio
+* `void insert(T valor)` insere um elemento em O(log n)
+* `void erase(T valor)` remove um elemento em O(log n)
+* `set<T>::iterator find(T valor)` retorna o iterador para o elemento (end() se não estiver nele) em O(log n)
+* `size_t size()` retorna o numero de elementos
+* `size_t count(T valor)` retorna a quantidade de elementos com o valor presente no set em O(log n)
 
 ## `map<T,U>`
+
+// TODO
+
+## `unordered_set<T>`
+
+// TODO
+
+## `unordered_map<T,U>`
+
+// TODO
+
+## `multiset<T>`
 
 // TODO
 
@@ -494,17 +574,60 @@ Um exemplo mais completo de uso de pilha:
 
 // TODO
 
-### Algoritmos
+### Principais algoritmos
 
-// TODO mostrar quais?
+#### sort
 
-* sort
-* first, last
-* find
-* unique
-* lower_bound, upper_bound
+Ordena um intervalo de elementos.
 
--->
+```c++
+vector<int> a = {5, 1, 3, 7, 9};
+sort(a.begin(), a.end());
+// a = {1, 3, 5, 7, 9};
+sort(a.rbegin(), a.rend());
+// a = {9, 7, 5, 3, 1};
+```
+
+Também é possível definir sua própria função de ordenação:
+
+```c++
+bool cmp(int a, int b) { // isso ordena de forma crescente
+   return a < b;
+}
+
+int main() {
+   ...
+   sort(a.begin(), a.end(), cmp);
+}
+```
+
+#### lower_bound
+
+// TODO
+
+#### upper_bound
+
+// TODO
+
+#### min
+
+Retorna o elemento mínimo.
+
+```
+cout << min(100, 30) << endl;     // 30
+cout << min('a', 'z') << endl;    // 'a'
+cout << min({10, 20, 5}) << endl; // 5
+```
+
+#### max
+
+Retorna o elemento máximo.
+
+```
+cout << max(100, 30) << endl;     // 100
+cout << max('a', 'z') << endl;    // 'z'
+cout << max({10, 20, 5}) << endl; // 20
+```
 
 ## Referências
 
