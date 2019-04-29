@@ -1,9 +1,12 @@
 # STL - Standard Template Library
 
 Nessa aula vamos aprender a usar algumas estruturas e funções muito úteis da STL,
-a biblioteca padrão de C++. Mas antes vamos aprender o que são structs e templates que
-são funcionalidades de C++ muito usadas pela STL. Apesar de ser raro nós mesmos criarmos
-structs e templates numa competição, é importante saber como elas funcionam.
+a biblioteca padrão de C++.
+
+Primeiro vamos aprender o que são structs e templates, funcionalidades de C++
+muito usadas pela STL. Apesar de ser raro nós mesmos criarmos structs e templates
+numa competição, é importante saber como elas funcionam. Logo após vamos dar uma
+olhada nas principais estruturas de dados da STL.
 
 ## Structs
 
@@ -27,9 +30,10 @@ int main() {
 
 > Note que, em C++, ao contrário de C, não é necessário usar `struct` antes da declaração de
 > uma variável que tem um struct como tipo. Com isso, também não é necessário usar o
-> truque do `typedef struct _ { ... } aluno;`.
+> truque do `typedef struct { ... } aluno;`.
 
-É possível combinar structs para criar tipos mais complexos:
+É possível combinar structs para criar tipos mais complexos (e também usá-los como elementos
+de um array):
 
 ```c++
 struct turma_de_entrada {
@@ -214,9 +218,10 @@ int main() {
 ## STL
 
 A STL é a biblioteca embutida em C++ que nos dá alguns funções e structs prontos para uso.
-Seu nome é _Standard **Template** Library_ justamente porque esses algoritmos e estruturas utilizam templates
-para serem genéricos. Na STL temos por exemplo o algoritmo `sort` que ordena valores e a estrutura de
-dados `set` que guarda valores distintos, como se fosse um conjunto matemático.
+Seu nome é _Standard **Template** Library_ justamente porque esses algoritmos e estruturas de dados
+utilizam templates para serem genéricos. Na STL temos por exemplo o algoritmo `sort` que
+ordena valores e a estrutura de dados `set` que guarda valores distintos, como se fosse
+um conjunto matemático.
 
 ## `vector<T>`
 
