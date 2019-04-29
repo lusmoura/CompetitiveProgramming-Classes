@@ -8,6 +8,39 @@ muito usadas pela STL. Apesar de ser raro nós mesmos criarmos structs e templat
 numa competição, é importante saber como elas funcionam. Logo após vamos dar uma
 olhada nas principais estruturas de dados da STL.
 
+## Índice
+
+* [Structs](#Structs)
+  * [Métodos](#Métodos)
+  * [Construtores](#Construtores)
+* [Templates](#Templates)
+  * [Templates de Funções](#Templates-de-funções)
+  * [Templates de Structs](#Templates-de-structs)
+* [STL](#STL)
+  * [`vector<T>`](#vectort)
+  * [`stack<T>`](#stackt)
+  * [`queue<T>`](#queuet)
+  * [`deque<T>`](#dequet)
+  * [`pair<T,U>`](#pairtu)
+  * [`priority_queue<T>`](#priority_queuet)
+  * [`set<T>`](#sett)
+  * [`map<T,U>`](#maptu)
+  * [`unordered_set<T>`](#unordered_sett)
+  * [`unordered_map<T,U>`](#maptu)
+  * [`multiset<T>`](#multisett)
+  * [Algoritmos da STL](#Algoritmos-da-STL)
+    * [Iteradores](#iteradores)
+    * [Principais Algoritmos](#Principais-algoritmos)
+      * [`sort`](#sort)
+      * [`upper_bound`](#upper_bound)
+      * [`lower_bound`](#lower_bound)
+      * [`min`](#min)
+      * [`max`](#max)
+* Extras
+  * [Explicando o `using namespace std;`](#Explicando-o-using-namespace-std)
+  * [O que é o tal `size_t` ou `size_type`?](#sizet)
+* [Referências](#Referências)
+
 ## Structs
 
 Um struct serve para criar um tipo de dado composto. Por exemplo, um struct aluno poderia ser:
@@ -411,7 +444,7 @@ vector<int> u;
 stack<int> s;
 ```
 
-### O que é o tal `size_t` ou `size_type`?
+### O que é o tal `size_t` ou `size_type`? <a name="sizet"></a>
 
 Ao ler a documentação da STL ou mensagens de erros, frequentemente a gente se depara com `size_t`
 ou `size_type`. Ele é um tipo numérico que é utilizado para indexar elementos de containers
@@ -467,6 +500,10 @@ Um exemplo mais completo de uso de pilha:
 ```
 
 ## `queue<T>`
+
+// TODO
+
+## `deque<T>`
 
 // TODO
 
@@ -634,3 +671,4 @@ cout << max({10, 20, 5}) << endl; // 20
 * [CPP Reference](https://cppreference.com/)
 * [STL Containers](https://en.cppreference.com/w/cpp/container)
 * [STL Algorithms](https://en.cppreference.com/w/cpp/algorithm)
+* [Compiler Explorer](https://godbolt.org/) - Usado na aula para mostrar o que o computador faz com os templates.
