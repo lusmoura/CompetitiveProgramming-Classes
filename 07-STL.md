@@ -40,8 +40,10 @@ olhada nas principais estruturas de dados da STL.
   * [Explicando o `using namespace std;`](#Explicando-o-using-namespace-std)
   * [O que é o tal `size_t` ou `size_type`?](#sizet)
   * [O caso especial do `vector<bool>`](#O-caso-especial-do-vectorbool)
-  * [Inferência de tipos usando `auto`](#Inferência-de-tipos-usando-auto)
   * [Loop em containers: `for (tipo x : container)`](#Loop-em-containers-for-tipo-x--container)
+  * [Inferência de tipos usando `auto`](#Inferência-de-tipos-usando-auto)
+  * [O problema com o `>>`](#O-problema-com-o)
+  * [Pair de pairs? Structs? Tuples?](#Pair-de-pairs-Structs-Tuples)
 * [Referências](#Referências)
 
 ## Structs
@@ -90,6 +92,11 @@ int main() {
 }
 ```
 
+Classes em C++ são a mesma coisa que structs, porém com seus elementos privados por padrão.
+
+Veja também [Classes (e, consequentemente, structs)](https://en.cppreference.com/w/cpp/language/class)
+no C++ Reference.
+
 ### Métodos
 
 Structs podem ter funções específicas, normalmente chamadas de métodos (para diferenciar de funções
@@ -111,7 +118,7 @@ struct vetor3d {
 };
 ```
 
-O acesso aos métodos, assim como os campos, também se dá através de `.`:
+O acesso aos métodos, assim como os campos, também se dá através de `.` (ponto):
 
 ```c++
 #include <cstdio>
@@ -186,7 +193,7 @@ maximo('X', 'U');      // 'X'
 maximo(false, true);   // true
 ```
 
-> [Templates de funções no C++ Reference](https://en.cppreference.com/w/cpp/language/function_template)
+Veja também [Templates de funções](https://en.cppreference.com/w/cpp/language/function_template) no C++ Reference.
 
 ### Templates de structs
 
@@ -252,6 +259,9 @@ int main() {
     ...
 }
 ```
+
+Veja também [Templates de structs (classes)](https://en.cppreference.com/w/cpp/language/class_template)
+no C++ Reference.
 
 ## STL
 
@@ -386,7 +396,7 @@ Os principais construtores e métodos de `vector<T>` usados em competição são
         printf("\n");
     }
     ```
-> [`vector<T>` no C++ Reference](https://en.cppreference.com/w/cpp/container/vector)
+Veja também [`vector<T>` no C++ Reference](https://en.cppreference.com/w/cpp/container/vector).
 
 <!--
 // TODO diferença entre size e capacity  
@@ -454,7 +464,7 @@ imprime "5 4 3 2 1".
 Note que não é possível acessar um elemento que está no meio da pilha sem antes retirar todos elementos
 que estão acima dela usando `pop()`. Não há como fazer `pilha[i]` ou `for (auto x : pilha)`.
 
-> [`stack<T>` no C++ Reference](https://en.cppreference.com/w/cpp/container/stack)
+Veja também [`stack<T>` no C++ Reference](https://en.cppreference.com/w/cpp/container/stack).
 
 ## `queue<T>`
 
@@ -479,7 +489,7 @@ fila.pop();           // {}        não faz nada, pois já está vazia
 
 Assim como na pilha, não é possível acessar os elementos que estão no meio da fila.
 
-> [`queue<T>` no C++ Reference](https://en.cppreference.com/w/cpp/container/queue)
+Veja também [`queue<T>` no C++ Reference](https://en.cppreference.com/w/cpp/container/queue).
 
 ## `deque<T>`
 
@@ -489,17 +499,60 @@ lados. Por exemplo:
 <!-- TODO exemplo mostrando funcionamento -->
 <!-- TODO construtores e funções -->
 
-> [`deque<T>` no C++ Reference](https://en.cppreference.com/w/cpp/container/deque)
+Veja também [`deque<T>` no C++ Reference](https://en.cppreference.com/w/cpp/container/deque).
 
 ## `pair<T,U>`
 
-<!-- TODO explicação -->
+O `pair<T,U>` serve para criar um par de valores que se mantém ligados um ao outro. Por exemplo o valor
+de algo e seu nome. Ele é basicamente equivalente a um struct que tem dois campos: `first` e `second`.
+Por exemplo:
+
+```c++
+pair<double, string> fruta;
+fruta.first = 0.25;
+fruta.second = "Banana";
+```
+
+Uma propriedade muito útil do pair é que ele implementa automaticamente os operadores de comparação e,
+com isso, ele já faz automaticamente a comparação entre pairs. A regra é que ele compara usando `first` e,
+em caso de empate, o desempate é feito usando o `second`. Por exemplo:
+
+```c++
+vector< pair<double, string> > frutas = {
+    {1.31, "Banana Prata"},
+    {1.90, "Goiaba"},
+    {0.90, "Mamao Formosa"},
+    {0.90, "Manga Rosa"},
+    {3.00, "Abacate"},
+    {1.90, "Abacaxi"},
+    {0.90, "Banana Nanica"}
+};
+
+sort(frutas.begin(), frutas.end());
+
+for (auto v : frutas) {
+    printf("%5.2lf %15s\n", v.first, v.second.c_str());
+}
+```
+
+imprime
+
+```
+ 0.90   Banana Nanica
+ 0.90   Mamao Formosa
+ 0.90      Manga Rosa
+ 1.31    Banana Prata
+ 1.90         Abacaxi
+ 1.90          Goiaba
+ 3.00         Abacate
+```
+
 <!-- TODO construtores e funções -->
 <!-- TODO make_pair -->
 <!-- TODO tuple, get<n>(t) -->
+<!-- TODO uso do tie pra criar comparadores de structs -->
 
-> [`pair<T>` no C++ Reference](https://en.cppreference.com/w/cpp/utility/pair)
-> [`tuple<T>` no C++ Reference](https://en.cppreference.com/w/cpp/utility/tuple)
+Veja também [`pair<T>` no C++ Reference](https://en.cppreference.com/w/cpp/utility/pair).
 
 ## `priority_queue<T>`
 
@@ -578,6 +631,8 @@ st.erase(4);
 * `set<T>::iterator find(T valor)` retorna o iterador para o elemento (end() se não estiver nele) em O(log n)
 * `size_t size()` retorna o numero de elementos
 * `size_t count(T valor)` retorna a quantidade de elementos com o valor presente no set em O(log n)
+
+Veja também [`priority_queue<T>` no C++ Reference](https://en.cppreference.com/w/cpp/container/priority_queue).
 
 ## `map<T,U>`
 
@@ -748,21 +803,147 @@ o `bitset<size>`, onde n é o número de bits a serem guardados (sim, o argument
 um número). Apesar de ter a desvantagem de ter um tamanho fixo, o `bitset<size>` tem a vantagem de dar
 suporte a várias operações booleanas e conversões a partir de tipos numéricos e strings.
 
-> [`vector<bool>` no C++ Reference](https://en.cppreference.com/w/cpp/container/vector_bool)  
-> [`bitset<size>` no C++ Reference](https://en.cppreference.com/w/cpp/utility/bitset)
+Veja também:
+* [`vector<bool>` no C++ Reference](https://en.cppreference.com/w/cpp/container/vector_bool)
+* [`bitset<size>` no C++ Reference](https://en.cppreference.com/w/cpp/utility/bitset)
+* [Especialização de template no C++ Reference](https://en.cppreference.com/w/cpp/language/template_specialization) -
+  usado para dar uma implementação específica para o `vector<bool>`
+
+### Loop em containers: `for (tipo x : container)`
+
+Quando se deseja passar por todos os elementos de um container, é mais fácil usar uma outra forma
+de for-loop:
+
+```c++
+vector<int> v = {1, 2, 3, 4, 5};
+for (int x : v) {
+    cout << x << " ";
+}
+```
+
+Um detalhe importante acima é que `x` vai recebendo sucessivamente **cópias** dos elementos de `v`.
+Ou seja, se eu mudar o valor de `x` dentro do loop, essa mudança não será refletida em `v`.
+Caso seja necessário mudar os valores do container, é necessário marcar `x` como uma referência,
+usando o modificador `&`.
+
+```c++
+for (int & x : v) {
+    x = x * x;
+}
+// Agora v == {1, 4, 9, 16, 25}
+```
 
 ### Inferência de tipos usando `auto`
 
-// TODO
+Quando temos tipos muito complicados, podemos usar o `auto` no lugar do tipo na declaração de variáveis.
+Por exemplo, se queremos passar pelos elementos de um vetor:
 
-### Loop em containers: `for (tipo x : container)`]
+```c++
+vector< pair<int, pair<int, char> > > v;
+...
+for (pair<int, pair<int, char> > x: v) {
+    ...
+}
+```
 
-// TODO
+é bem chato lembrar e escrever o tipo do elemento do vetor. Para evitar esse retrabalho, usamos `auto`:
+
+```c++
+for (auto x: v) {
+    ...
+}
+```
+
+Também é possível usar `auto` para coisas mais simples:
+
+```c++
+auto i = 10; // i é um int
+auto x = 10ULL; // x é um unsigned long long (por causa do sufixo ULL no valor literal)
+auto c = 'X'; // c é um char
+```
+
+### O problema com o `>>`
+
+Em versões antigas de C++ os compiladores não eram espertos o suficiente para diferenciar o operador de shift
+`>>` do fechamento de dois parâmetros de templates (por exemplo, o `>>` no final de `vector<vector<int>>`).
+Com isso, nós éramos obrigados a usar espaços para separar os `>`s e, assim, retirar a ambiguidade: `vector<vector<int> >`.
+
+Ficamos avisados disso, então, pois em algumas competições pode ocorrer disso ser um problema, dada a versão
+antiga do compilador.
+
+### Pair de pairs? Structs? Tuples?
+
+Caso se queira mais de dois campos num `pair`, uma possibilidade é criar um pair de pairs:
+
+```c++
+pair< string, pair<double, string> > x = {"kg", {0.90, "Banana Nanica"}};
+
+// x.first == "kg"
+// x.second.first == 0.90
+// x.second.second == "Banana Nanica"
+```
+
+Mas a partir daí a confusão pode ser tanta que talvez você prefira criar um struct:
+
+```c++
+struct Fruta {
+    double preco;
+    string nome, unidade;
+
+    bool operator<(Fruta const & that) const { // temos que implementar o "<"" na mão
+        // mas podemos fazer isso facilmente usando o std::tie
+        return tie(this->unidade, this->preco, this->nome) < tie(that.unidade, that.preco, that.nome);
+    }
+};
+
+vector<Fruta> frutas = {
+    {1.31, "Banana Prata", "kg"},
+    {1.90, "Goiaba", "kg"},
+    {0.90, "Mamao Formosa", "kg"},
+    {0.90, "Manga Rosa", "kg"},
+    {3.00, "Abacate", "unidade"},
+    {1.90, "Abacaxi", "unidade"},
+    {0.90, "Banana Nanica", "kg"},
+};
+
+sort(frutas.begin(), frutas.end());
+
+for (auto v : frutas) {
+    // melhor que lembrar o que é v.first.second:
+    printf("%10s %5.2lf %15s\n", v.unidade.c_str(), v.preco, v.nome.c_str());
+}
+```
+
+Outra possibilidade é usar tuplas, que são como pairs, mas com um número qualquer de elementos:
+
+```c++
+vector< tuple<string, double, string> > frutas = {
+    {"kg", 1.31, "Banana Prata"},
+    {"kg", 1.90, "Goiaba"},
+    {"kg", 0.90, "Mamao Formosa"},
+    {"kg", 0.90, "Manga Rosa"},
+    {"unidade", 3.00, "Abacate"},
+    {"unidade", 1.90, "Abacaxi"},
+    {"kg", 0.90, "Banana Nanica"},
+};
+
+sort(frutas.begin(), frutas.end()); // tuple já faz a comparação e desempates
+
+for (auto v : frutas) {
+    // Usamos get<posicao do campo>(tupla) para pegar o valor de cada campo:
+    printf("%10s %5.2lf %15s\n", get<0>(v).c_str(), get<1>(v), get<2>(v).c_str());
+}
+```
+
+Veja também:
+* [`tuple<T>` no C++ Reference](https://en.cppreference.com/w/cpp/utility/tuple)
+* [`tie` no C++ Reference](https://en.cppreference.com/w/cpp/utility/tuple/tie)
 
 ## Referências
 
-* [CPP Reference](https://cppreference.com/)
+* [C++ Reference](https://cppreference.com/)
 * [STL Containers](https://en.cppreference.com/w/cpp/container)
 * [STL Algorithms](https://en.cppreference.com/w/cpp/algorithm)
-* [Compiler Explorer](https://godbolt.org/) - Usado na aula para mostrar o que o computador faz com os templates.
-* [Vários links bem úteis para C++](https://en.cppreference.com/w/cpp/links)
+* [Compiler Explorer](https://godbolt.org/) - Usado na aula para mostrar o que o compilador faz
+  para gerar os códigos específicos dos templates.
+* [Vários links bem úteis sobre C++](https://en.cppreference.com/w/cpp/links)
