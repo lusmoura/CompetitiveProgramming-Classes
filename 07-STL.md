@@ -36,9 +36,12 @@ olhada nas principais estruturas de dados da STL.
       * [`lower_bound`](#lower_bound)
       * [`min`](#min)
       * [`max`](#max)
-* Extras
+* [Extras](#Extras)
   * [Explicando o `using namespace std;`](#Explicando-o-using-namespace-std)
   * [O que é o tal `size_t` ou `size_type`?](#sizet)
+  * [O caso especial do `vector<bool>`](#O-caso-especial-do-vectorbool)
+  * [Inferência de tipos usando `auto`](#Inferência-de-tipos-usando-auto)
+  * [Loop em containers: `for (tipo x : container)`](#Loop-em-containers-for-tipo-x--container)
 * [Referências](#Referências)
 
 ## Structs
@@ -182,6 +185,8 @@ maximo(10.0, 5.0);     // 10.0
 maximo('X', 'U');      // 'X'
 maximo(false, true);   // true
 ```
+
+> [Templates de funções no C++ Reference](https://en.cppreference.com/w/cpp/language/function_template)
 
 ### Templates de structs
 
@@ -381,6 +386,7 @@ Os principais construtores e métodos de `vector<T>` usados em competição são
         printf("\n");
     }
     ```
+> [`vector<T>` no C++ Reference](https://en.cppreference.com/w/cpp/container/vector)
 
 <!--
 // TODO diferença entre size e capacity  
@@ -395,85 +401,10 @@ Os principais construtores e métodos de `vector<T>` usados em competição são
 TODO
 -->
 
-### Explicando o `using namespace std;`
-
-Para usar a STL, é necessário importar (isto é, indicar ao compilador que se está usando código externo ao seu programa)
-seus elementos via `#include`. Para usar o `vector`, por exemplo, precisamos de:
-
-```c++
-#include <vector>
-```
-
-Além disso, para maior organização, todos elementos da STL estão dentro de um namespace, o `std`. Namespaces servem
-para organizar o código de forma a manter coisas associadas num mesmo contexto e para evitar conflitos de nome (isto é,
-para podermos ter funções, structs, etc. com o mesmo nome).
-
-Por exemplo, a declaração de `vector<T>` é feita mais ou menos assim:
-
-```c++
-namespace std {
-    template <typename T>
-    struct vector {          // na verdade seria uma classe, mas isso não importa agora
-        ...
-    };
-}
-```
-
-Como vector foi declarado dentro de um namespace, se quisermos usá-lo precisamos antes indicar qual namespace
-ele está. O acesso a elementos de um namespace é feito usando o separador de escopo `::`.
-
-```c++
-std::vector<int> u;    // sem o "std::" o compilador vai dizer que não sabe o que é um vector<T>
-```
-
-Para evitar ter que escrever o `std` toda vez, podemos usar o `using` para indicar que queremos que o vector fique
-disponível para nós também sem o seu indicador de namespace:
-
-```c++
-using std::vector;
-
-vector<int> u;         // tudo ok, vector<T> é na verdade std::vector<T>
-```
-
-Ou ainda podemos fazer isso para todo o namespace `std` de uma vez só:
-
-```c++
-using namespace std;
-
-vector<int> u;
-stack<int> s;
-```
-
-### O que é o tal `size_t` ou `size_type`? <a name="sizet"></a>
-
-Ao ler a documentação da STL ou mensagens de erros, frequentemente a gente se depara com `size_t`
-ou `size_type`. Ele é um tipo numérico que é utilizado para indexar elementos de containers
-(como arrays, vectors, etc.). "Por que não usar `int` ou `long long` para isso?", você pode
-estar se perguntando. O problema é que `int` e `long long` não têm a garantia de serem grandes
-o suficiente para indexar coisas na memória RAM do computador†, enquanto o `size_t` tem a
-garantia de ser tão grande quanto o barramento de endereços do processador. Por exemplo, num
-processador de 64 bits, o `size_t` tem 64 bits, isto é, 8 bytes.
-
-† _C/C++ são usados em muuuuitos tipos de hardware e os tamanhos dos tipos primitivos mudam de
-processador para processador. Em alguns casos o `int` pode ter somente 2 bytes, por exemplo._
-
-Apesar desse detalhe, normalmente podemos e usamos `int`s para indexação sem problema algum, pois
-é raro que tenhamos um container com mais de 2^31 elementos (o que já dá 2GiB de memória, no
-mínimo) e também porque o compilador já faz a conversão automática de `int` para `size_t` quando
-necessário, antes de acessar os elementos.
-
-<!--
-
-### O caso especial do `vector<bool>`
-
-// TODO
-
--->
-
 ## `stack<T>`
 
-A stack<T> é uma pilha de elementos. Ela tem duas operações básicas _push_ e _pop_, que empilham
-ou desempilham elementos, respectivamente. Exemplo:
+A `stack<T>` é uma pilha de elementos, como numa pilha de objetos numa mesa. Ela tem duas operações
+básicas _push_ e _pop_, que empilham ou desempilham elementos, respectivamente. Exemplo:
 
 ```c++
 stack<int> pilha;      // {}        pilha vazia
@@ -485,31 +416,90 @@ pilha.push(3);         // {3, 2, 1}
 pilha.pop();           // {2, 1}    o topo, que era 3, é retirado
 pilha.pop();           // {1}
 pilha.pop();           // {}
+pilha.pop();           // {}        não faz nada, pois já está vazia
 ```
 
-* `stack<T>()` constrói uma pilha vazia
-* `void push(T valor)` 
-* `void pop()`
-* `T top()`
-* `size_t size()`
+A principal característica da pilha é que ele segue a regra FILO - _first in, last out_, isto é
+um elemento que foi empilhado primeiro será o último a ser desempilhado.
 
-Um exemplo mais completo de uso de pilha:
+Você poderia dizer "ah, mas dá implementar uma pilha usando um vector". Dá sim, mas a importãncia
+de usar uma estrutura de dados mais simples, com um propósito mais bem definido, é manter o
+código mais claro, já que a intenção do programador fica mais clara quando ele usa uma pilha
+ao invés de um vector geralzão.
 
+* `stack<T>()` constrói uma pilha vazia.
+
+* `stack<T>(Container const & container)` cria uma pilha com o conteúdo dado. Os últimos elementos
+do container estão mais no topo da fila. Por exemplo:
 ```c++
-// TODO
+stack<int> s({1, 2, 3, 4, 5});
+
+while (not s.empty()) {
+    cout << s.top() << " ";
+    s.pop();
+}
 ```
+imprime "5 4 3 2 1".
+  
+* `void push(T valor)` insere o valor dado no topo da pilha. O próximo `pop()` retirará esse valor
+  da pilha.
+* `void pop()` retira o topo da pilha. Não faz nada se a pilha estiver vazia. Note que `pop()` não
+  retorna o valor que está no topo. Para isso é necessário usar `top()`.
+* `T top()` retorna o valor que está no topo da pilha. Se a pilha estiver vazia, chamar `top()` leva
+  a um erro.
+* `size_t size()` retorna a quantidade de elementos que está atualmente na pilha.
+* `bool empty()` indica se a pilha está vazia ou não. É comum utilizar um `while (not pilha.empty())`
+  como condição em algoritmos que utilizam uma pilha.
+
+Note que não é possível acessar um elemento que está no meio da pilha sem antes retirar todos elementos
+que estão acima dela usando `pop()`. Não há como fazer `pilha[i]` ou `for (auto x : pilha)`.
+
+> [`stack<T>` no C++ Reference](https://en.cppreference.com/w/cpp/container/stack)
 
 ## `queue<T>`
 
-// TODO
+A `queue<T>` é uma fila de elementos, como uma fila de banco ou supermercado. Ela funciona de forma oposta
+à pilha, usando a regra FIFO - _first in, first out_. Ou seja, um elemento que foi enfileirado primeiro
+é o primeiro a ser desenfileirado:
+
+```c++
+queue<int> fila;      // {}        fila vazia
+
+fila.push(1);         // {1}       pilha contém somente o elemento 1
+fila.push(2);         // {2, 1}    agora 2 está no final da fila
+fila.push(3);         // {3, 2, 1} agora 3 está na rabeira
+
+fila.pop();           // {3, 2}    o início, que era 1, é retirado
+fila.pop();           // {3}
+fila.pop();           // {}
+fila.pop();           // {}        não faz nada, pois já está vazia
+```
+
+<!-- TODO construtores e funções -->
+
+Assim como na pilha, não é possível acessar os elementos que estão no meio da fila.
+
+> [`queue<T>` no C++ Reference](https://en.cppreference.com/w/cpp/container/queue)
 
 ## `deque<T>`
 
-// TODO
+A `deque<T>` é uma fila de duas pontas. Os elementos podem entrar e sair dela por qualquer um dos
+lados. Por exemplo:
+
+<!-- TODO exemplo mostrando funcionamento -->
+<!-- TODO construtores e funções -->
+
+> [`deque<T>` no C++ Reference](https://en.cppreference.com/w/cpp/container/deque)
 
 ## `pair<T,U>`
 
-// TODO
+<!-- TODO explicação -->
+<!-- TODO construtores e funções -->
+<!-- TODO make_pair -->
+<!-- TODO tuple, get<n>(t) -->
+
+> [`pair<T>` no C++ Reference](https://en.cppreference.com/w/cpp/utility/pair)
+> [`tuple<T>` no C++ Reference](https://en.cppreference.com/w/cpp/utility/tuple)
 
 ## `priority_queue<T>`
 
@@ -666,9 +656,113 @@ cout << max('a', 'z') << endl;    // 'z'
 cout << max({10, 20, 5}) << endl; // 20
 ```
 
+## Extras
+
+### Explicando o `using namespace std;`
+
+Para usar a STL, é necessário importar (isto é, indicar ao compilador que se está usando
+código externo ao seu programa) seus elementos via `#include`. Para usar o `vector`, por
+exemplo, precisamos de:
+
+```c++
+#include <vector>
+```
+
+Além disso, para maior organização, todos elementos da STL estão dentro de um namespace,
+o `std`. Namespaces servem para organizar o código de forma a manter coisas associadas num
+mesmo contexto e para evitar conflitos de nome (isto é, para podermos ter funções, structs,
+etc. com o mesmo nome).
+
+Por exemplo, a declaração de `vector<T>` é feita mais ou menos assim:
+
+```c++
+namespace std {
+    template <typename T>
+    struct vector {          // na verdade seria uma classe, mas isso não importa agora
+        ...
+    };
+}
+```
+
+Como vector foi declarado dentro de um namespace, se quisermos usá-lo precisamos antes
+indicar qual namespace ele está. O acesso a elementos de um namespace é feito usando o
+separador de escopo `::`.
+
+```c++
+std::vector<int> u;    // sem o "std::" o compilador vai dizer que não sabe o que é um vector<T>
+```
+
+Para evitar ter que escrever o `std` toda vez, podemos usar o `using` para indicar que queremos
+que o vector fique disponível para nós também sem o seu indicador de namespace:
+
+```c++
+using std::vector;
+
+vector<int> u;         // tudo ok, vector<T> é na verdade std::vector<T>
+```
+
+Ou ainda podemos fazer isso para todo o namespace `std` de uma vez só:
+
+```c++
+using namespace std;
+
+vector<int> u;
+stack<int> s;
+```
+
+> [Namespaces no C++ Reference](https://en.cppreference.com/w/cpp/language/namespace)
+
+### O que é o tal `size_t` ou `size_type`? <a name="sizet"></a>
+
+Ao ler a documentação da STL ou mensagens de erros, frequentemente a gente se depara com `size_t`
+ou `size_type`. Ele é um tipo numérico que é utilizado para indexar elementos de containers
+(como arrays, vectors, etc.). "Por que não usar `int` ou `long long` para isso?", você pode
+estar se perguntando. O problema é que `int` e `long long` não têm a garantia de serem grandes
+o suficiente para indexar coisas na memória RAM do computador†, enquanto o `size_t` tem a
+garantia de ser tão grande quanto o barramento de endereços do processador. Por exemplo, num
+processador de 64 bits, o `size_t` tem 64 bits, isto é, 8 bytes.
+
+† _C/C++ são usados em muuuuitos tipos de hardware e os tamanhos dos tipos primitivos mudam de
+processador para processador. Em alguns casos o `int` pode ter somente 2 bytes, por exemplo._
+
+Apesar desse detalhe, normalmente podemos e usamos `int`s para indexação sem problema algum, pois
+é raro que tenhamos um container com mais de 2^31 elementos (o que já dá 2GiB de memória, no
+mínimo) e também porque o compilador já faz a conversão automática de `int` para `size_t` quando
+necessário, antes de acessar os elementos.
+
+> [`size_t` no C++ Reference](https://en.cppreference.com/w/cpp/types/size_t)
+
+### O caso especial do `vector<bool>`
+
+O `vector<bool>` é definido de forma diferente dos outros vectors, pois ele usa uma representação
+compacta de um valor por bit. Com isso ele ocupa potencialmente 8 vezes menos espaço que um
+`vector<char>`, por exemplo. Ele também tem alguns métodos específicos, como o `flip()` que inverte
+todos os bits do vector.
+
+O uso do `vector<bool>` pode ser problemático em alguns casos porque o acesso aos seus elementos
+é levemente mais lento que nos outros vectors, já que ele tem que fazer uns shifts para pegar o
+bit exato dentro do byte no qual ele está localizado.
+
+Além de simplesmente usar `vector<char>` ou `bool[]`, uma alternativa ao `vector<bool>` é
+o `bitset<size>`, onde n é o número de bits a serem guardados (sim, o argumento de um template pode ser
+um número). Apesar de ter a desvantagem de ter um tamanho fixo, o `bitset<size>` tem a vantagem de dar
+suporte a várias operações booleanas e conversões a partir de tipos numéricos e strings.
+
+> [`vector<bool>` no C++ Reference](https://en.cppreference.com/w/cpp/container/vector_bool)  
+> [`bitset<size>` no C++ Reference](https://en.cppreference.com/w/cpp/utility/bitset)
+
+### Inferência de tipos usando `auto`
+
+// TODO
+
+### Loop em containers: `for (tipo x : container)`]
+
+// TODO
+
 ## Referências
 
 * [CPP Reference](https://cppreference.com/)
 * [STL Containers](https://en.cppreference.com/w/cpp/container)
 * [STL Algorithms](https://en.cppreference.com/w/cpp/algorithm)
 * [Compiler Explorer](https://godbolt.org/) - Usado na aula para mostrar o que o computador faz com os templates.
+* [Vários links bem úteis para C++](https://en.cppreference.com/w/cpp/links)
