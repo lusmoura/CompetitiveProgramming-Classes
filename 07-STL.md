@@ -42,7 +42,7 @@ olhada nas principais estruturas de dados da STL.
   * [O caso especial do `vector<bool>`](#O-caso-especial-do-vectorbool)
   * [Loop em containers: `for (tipo x : container)`](#Loop-em-containers-for-tipo-x--container)
   * [Inferência de tipos usando `auto`](#Inferência-de-tipos-usando-auto)
-  * [O problema com o `>>`](#O-problema-com-o)
+  * [O problema do `>>`](#shift-ambiguity-problem)
   * [Pair de pairs? Structs? Tuples?](#Pair-de-pairs-Structs-Tuples)
 * [Referências](#Referências)
 
@@ -398,19 +398,6 @@ Os principais construtores e métodos de `vector<T>` usados em competição são
     ```
 Veja também [`vector<T>` no C++ Reference](https://en.cppreference.com/w/cpp/container/vector).
 
-<!--
-// TODO diferença entre size e capacity  
-// TODO falar do emplace_back?  
-// TODO comparação de dois códigos, um usando array e outro usando vector, para mostra como é bem mais simples
-// TODO falar do for (auto a: v)
--->
-
-<!--
-### Um outro tipo de for: `for (tipo variavel : container)`
-
-TODO
--->
-
 ## `stack<T>`
 
 A `stack<T>` é uma pilha de elementos, como numa pilha de objetos numa mesa. Ela tem duas operações
@@ -438,24 +425,11 @@ código mais claro, já que a intenção do programador fica mais clara quando e
 ao invés de um vector geralzão.
 
 * `stack<T>()` constrói uma pilha vazia.
-
-* `stack<T>(Container const & container)` cria uma pilha com o conteúdo dado. Os últimos elementos
-do container estão mais no topo da fila. Por exemplo:
-```c++
-stack<int> s({1, 2, 3, 4, 5});
-
-while (not s.empty()) {
-    cout << s.top() << " ";
-    s.pop();
-}
-```
-imprime "5 4 3 2 1".
-  
 * `void push(T valor)` insere o valor dado no topo da pilha. O próximo `pop()` retirará esse valor
   da pilha.
 * `void pop()` retira o topo da pilha. Não faz nada se a pilha estiver vazia. Note que `pop()` não
   retorna o valor que está no topo. Para isso é necessário usar `top()`.
-* `T top()` retorna o valor que está no topo da pilha. Se a pilha estiver vazia, chamar `top()` leva
+* `T & top()` retorna o valor que está no topo da pilha. Se a pilha estiver vazia, chamar `top()` leva
   a um erro.
 * `size_t size()` retorna a quantidade de elementos que está atualmente na pilha.
 * `bool empty()` indica se a pilha está vazia ou não. É comum utilizar um `while (not pilha.empty())`
@@ -485,7 +459,13 @@ fila.pop();           // {}
 fila.pop();           // {}        não faz nada, pois já está vazia
 ```
 
-<!-- TODO construtores e funções -->
+* `queue<T>()` cria uma fila vazia.
+* `void push(T valor)` insere o valor no final da fila.
+* `void pop()` retira o elemento que está no início da fila.
+* `T & front()` dá acesso ao valor que está no início da fila.
+* `size_t size()` retorna a quantidade de elementos que está atualmente na fila.
+* `bool empty()` indica se a fila está vazia ou não. É comum utilizar um `while (not fila.empty())`
+  como condição em algoritmos que utilizam uma fila.
 
 Assim como na pilha, não é possível acessar os elementos que estão no meio da fila.
 
@@ -496,8 +476,50 @@ Veja também [`queue<T>` no C++ Reference](https://en.cppreference.com/w/cpp/con
 A `deque<T>` é uma fila de duas pontas. Os elementos podem entrar e sair dela por qualquer um dos
 lados. Por exemplo:
 
-<!-- TODO exemplo mostrando funcionamento -->
-<!-- TODO construtores e funções -->
+```c++
+deque<int> d;       //      {}
+
+d.push_front(10);   //     {10}            10 está no início e no começo
+d.push_back(30);    //     {10, 30}        30 inserido no final
+d.push_front(20);   // {20, 10, 30}
+d.push_back(40);    // {20, 10, 30, 40}
+
+d.pop_back();       // {20, 10, 30}
+d.pop_front();      //     {10, 30}
+d.pop_front();      //         {30}
+d.pop_front();      //          {}
+```
+
+* `deque<T>()` - inicializar uma deque vazia.
+* `deque<T>(size_t count, T value)` - inicializa uma deque com `count` elementos iguais a `value`.
+* `deque<T>(initializer_list<T> valores_iniciais)` - inicializa uma deque com os elementos dados. Exemplo:
+  ```c++
+  deque<int> e = {1, 2, 3, 4, 5};
+  ```
+* `deque<T>(begin, end)` inicializa a deque com os elementos de outro container que estão entre os iteradores
+  passados como argumento. Exemplo:
+  ```c++
+    vector v<int> = {1, 2, 3, 4, 5};
+    deque<int> e(v.begin(), v.end());
+  ```
+* `T & front()` - dá acesso ao elemento no início da fila. Note que é retornada uma referência e,
+  com isso, é possível alterar o valor desse elemento:
+  ```c++
+  deque<int> d = {1, 2, 3, 4, 5};
+  d.front() = 42;           // d agora é igual a {42, 2, 3, 4, 5}
+  ```
+  Isso também vale para `stack<T>::top()` e `queue<T>::front()`.
+
+* `T & back()` dá acesso ao elemento no fim da fila.
+* `void push_front(T value)` insere um valor no começo da fila.
+* `void push_back(T value)` insere um valor no final da fila.
+* `void pop_front()` retira o elemento que está no início da fila.
+* `void pop_back()` retira o elemento que está no final da fila.
+* `size_t size()` retorna a quantidade atual de elementos na fila.
+* `bool empty()` indica se a fila está sem elementos.
+
+Algumas outras funcionalidades existem na deque, mas têm complexidade O(n) e devem ser evitadas:
+* `operator[i]` acessa o i-ésimo elemento da deque
 
 Veja também [`deque<T>` no C++ Reference](https://en.cppreference.com/w/cpp/container/deque).
 
@@ -549,8 +571,6 @@ imprime
 
 <!-- TODO construtores e funções -->
 <!-- TODO make_pair -->
-<!-- TODO tuple, get<n>(t) -->
-<!-- TODO uso do tie pra criar comparadores de structs -->
 
 Veja também [`pair<T>` no C++ Reference](https://en.cppreference.com/w/cpp/utility/pair).
 
@@ -862,13 +882,13 @@ auto x = 10ULL; // x é um unsigned long long (por causa do sufixo ULL no valor 
 auto c = 'X'; // c é um char
 ```
 
-### O problema com o `>>`
+### O problema do `>>` <a name="shift-ambiguity-problem"></a>
 
 Em versões antigas de C++ os compiladores não eram espertos o suficiente para diferenciar o operador de shift
 `>>` do fechamento de dois parâmetros de templates (por exemplo, o `>>` no final de `vector<vector<int>>`).
 Com isso, nós éramos obrigados a usar espaços para separar os `>`s e, assim, retirar a ambiguidade: `vector<vector<int> >`.
 
-Ficamos avisados disso, então, pois em algumas competições pode ocorrer disso ser um problema, dada a versão
+Ficamos avisados disso, então, pois em algumas competições pode ocorrer disso ser um problema, dada uma versão
 antiga do compilador.
 
 ### Pair de pairs? Structs? Tuples?
