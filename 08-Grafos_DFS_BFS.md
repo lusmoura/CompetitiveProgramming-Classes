@@ -42,8 +42,7 @@ Existem várias maneiras de representar um grafo, mas vamos mostrar hoje a repre
 
 Para representar um grafo, precisamos basicamente de um forma de representar seus vértices e suas arestas. Usamos, então, a lista da seguinte forma: para cada nó, armazenamos uma lista com os nós aos quais ele é adjacente. 
 
-Visualmente as listas ficam assim:
-
+Visualmente as listas ficam assim:  
 ![Lista de adjacências](https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Lista_de_adjacencia.png/360px-Lista_de_adjacencia.png)
 
 O nó 1 tem como adjacentes os nós 2 e 5.  
@@ -70,7 +69,7 @@ Uma vez que temos a estrutura podemos adicionar as arestas desse grafo. Se quise
 edges[1].push_back(2);
 ```
 
-Tomemos o grafo abaixo como referência:
+Tomemos o grafo abaixo como referência:  
 ![Grafo](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNTONs5fUXLrd-VBAxdAHqBQ9d8l0EVV8I5oqShmMpuC0J0k_z)
 
 Para inserir todas as arestas entre os vértices podemos fazer:
