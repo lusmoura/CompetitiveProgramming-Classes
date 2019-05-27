@@ -24,9 +24,9 @@ olhada nas principais estruturas de dados da STL.
   * [`pair<T,U>`](#pairtu)
   * [`priority_queue<T>`](#priority_queuet)
   * [`set<T>`](#sett)
-  * [`map<T,U>`](#maptu)
+  * [`map<K,V>`](#mapkv)
   * [`unordered_set<T>`](#unordered_sett)
-  * [`unordered_map<T,U>`](#maptu)
+  * [`unordered_map<K,V>`](#unordered_mapkv)
   * [`multiset<T>`](#multisett)
   * [Algoritmos da STL](#Algoritmos-da-STL)
     * [Iteradores](#iteradores)
@@ -623,6 +623,8 @@ OBS: sempre que um elemento é inserido ou removido da priority_queue, a organiz
 * `T top()` retorna o primeiro elemento em O(1)
 * `size_t size()` retorna o numero de elementos
 
+Veja também [`priority_queue<T>` no C++ Reference](https://en.cppreference.com/w/cpp/container/priority_queue).
+
 ## `set<T>`
 
 O `set<T>` representa basicamente um conjunto matemático - ou seja, os elementos ficam ordenados e não se repetem. Suas principais operações são: `insert`, `erase`, `find` e `count`.
@@ -645,6 +647,20 @@ if (st.count(5) != 0)
 st.erase(4);
 ```
 
+Para imprimir os valores de um set, precisa-se utilizar *iteradores*:
+
+```c++
+for (set<int>::iterator it = st.begin(); it !+ st.end(); it++) {
+  cout << *it << endl;
+}
+
+// pode-se utilizar o 'foreach' do c++ também:
+
+for (int x : st) {
+  cout << x << endl;
+}
+```
+
 * `set<T>()` constrói um set vazio
 * `void insert(T valor)` insere um elemento em O(log n)
 * `void erase(T valor)` remove um elemento em O(log n)
@@ -652,17 +668,60 @@ st.erase(4);
 * `size_t size()` retorna o numero de elementos
 * `size_t count(T valor)` retorna a quantidade de elementos com o valor presente no set em O(log n)
 
-Veja também [`priority_queue<T>` no C++ Reference](https://en.cppreference.com/w/cpp/container/priority_queue).
+Veja também [`set<T>` no C++ Reference](https://en.cppreference.com/w/cpp/container/set).
 
-## `map<T,U>`
 
-// TODO
+## `map<K,V>`
+
+O `map<K,V>` é um *conjunto chave-valor*. Ou seja, é possível indexar elementos, e atribuir valores a eles - um exemplo básico pode ser um *map* que armazena os preços de determinados produtos:
+
+```c++
+map<string, double> precos;
+precos.insert("Banana Prata", 1.31);
+precos.insert("Banana Nanica", 0.90);
+precos.insert("Mamao Formosa", 0.90);
+precos.insert("Manga Rosa", 0.90);
+precos.insert("Abacaxi", 1.90);
+precos.insert("Goiaba", 1.90);
+precos.insert("Abacate", 3.00);
+```
+
+Os elementos de um `map` ficam ordenados pelas chaves, em ordem crescente. Também é possível inserir valores de outros jeitos:
+
+```c++
+map<string, double> precos;
+precos["Banana Prata"] = 1.31; // indexa a string como se fosse um inteiro em um array
+```
+
+Se uma mesma chave for inserida duas vezes, seu valor é sobrescrito:
+
+```c++
+precos["Banana Prata"] = 1.30;
+precos["Banana Prata"] = 9.99; // o valor anterior de 1.30 é perdido, e 9.99 é utilizado.
+```
+
+Para pegar o valor de determinada chave, pode-se indexar também:
+
+```c++
+cout << precos["Banana Prata"] << endl; // se a "Banana Prata" ainda nao tivesse sido inserida no map, o valor nulo (0 no caso de double) é considerado
+```
+
+Assim como num *set*, para deixar tudo ordenado, há um custo computacional, e operações de inserção e busca são realizadas em *O(log n)*.
+
+Também existem mais funções no *map* (algumas que funcionam iguais a um *set*, inclusive):
+
+* `map<K,V>()` constrói um map vazio
+* `void insert(K chave, V valor)` insere um elemento em O(log n)
+* `void erase(K chave)` remove um elemento em O(log n)
+* `map<K, V>::iterator find(K valor)` retorna o iterador para o elemento (end() se não estiver nele) em O(log n)
+* `size_t size()` retorna o numero de elementos
+* `size_t count(T valor)` retorna a quantidade de elementos com o valor presente no map em O(log n)
 
 ## `unordered_set<T>`
 
 // TODO
 
-## `unordered_map<T,U>`
+## `unordered_map<K,V>`
 
 // TODO
 
