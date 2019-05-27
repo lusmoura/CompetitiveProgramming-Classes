@@ -719,15 +719,40 @@ Também existem mais funções no *map* (algumas que funcionam iguais a um *set*
 
 ## `unordered_set<T>`
 
-// TODO
+Um `unordered_set<T>` funciona da mesma maneira que um `set<T>`, mas sua estrutura é outra - utiliza-se um *[hash](https://pt.wikipedia.org/wiki/Fun%C3%A7%C3%A3o_hash)* para cada valor, o que permite que as operações de inserção, remoção e busca - que antes eram executadas em *O(log n)* - sejam executadas em *O(1)*, e, como o próprio nome já diz, os elementos nele não ficam ordenados.
 
 ## `unordered_map<K,V>`
 
-// TODO
+Assim como o `unordered_set<T>` faz com o `set<T>`, o `unordered_map<K,V>` funciona como um `map<K,V>`, mas com operações em O(1). Também é feita a utilização de funções hash.
 
 ## `multiset<T>`
 
-// TODO
+Um `multiset<T>` é, basicamente, um `set<T>` que permite repetições de elementos. Possui basicamente as mesmas operações do `set<T>`, também em *O(log n)*, e seus elementos também permanecem ordenados.
+
+Algo a se notar no *multiset* é a operação *erase*: ela remove **todos** os elementos do *multiset* que tiverem o mesmo valor:
+
+```c++
+multiset<int> multist;
+multist.insert(2);
+multist.insert(1);
+multist.insert(3);
+multist.insert(1);
+
+// {1, 1, 2, 3}
+
+multist.erase(1);
+
+// {2, 3}
+```
+
+Para evitar que se removam todos os elementos com mesmo valor (remover só o primeiro, por exemplo) pode-se realizar a operação *erase* a partir de um *iterador*:
+
+```
+// considere o multiset anterior {1, 1, 2, 3}
+auto it = multist.find(1);
+multist.erase(it);
+// {1, 2, 3} - removeu só o primeiro
+```
 
 ## Algoritmos da STL
 
