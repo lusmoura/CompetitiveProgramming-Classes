@@ -13,17 +13,18 @@ struct edge {
     }
 };
 
-int n;
+int n, m;
 vector<edge> adjlist[10000];
-vector<edge> tree;
+vector<edge> mst;
 
 int prim() {
     auto pq = priority_queue<edge>();
     auto vis = vector<bool>(n, false);
 
     // start on node 0
-    for (auto e : adjlist[0]) {
+    for (auto e : adjlist[1]) {
         pq.push(e);
+        cout << "pushed " << e.u << " -> " << e.u << " (" << e.weight << ") " << endl;
     }
     vis[0] = true;
 
@@ -32,7 +33,8 @@ int prim() {
         auto e = pq.top();
         pq.pop();
         if (not vis[e.v]) {
-            tree.push_back(e);
+            vis[e.v] = true;
+            mst.push_back(e);
             sum += e.weight;
 
             for (auto f : adjlist[e.v]) {
@@ -45,5 +47,24 @@ int prim() {
 }
 
 int main() {
+
+    cin >> n >> m;
+
+    for (int i = 0; i < m; i++) {
+        int u, v, w;
+        cin >> u >> v >> w;
+        cout << u << v << w << endl;
+        adjlist[u].push_back({u,v,w});
+    }
+
+    auto total = prim();
+
+    cout << "Total weight: " << total << endl;
+
+    cout << "MST: " << endl;
+    for (auto e : mst) {
+        cout << e.u << " -> " << e.v << " (" << e.weight << ")" << endl;
+    }
+
     return 0;
 }
