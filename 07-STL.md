@@ -570,7 +570,15 @@ imprime
 ```
 
 <!-- TODO construtores e funções -->
-<!-- TODO make_pair -->
+
+Para se criar um *pair*, pode-se utilizar a função `make_pair`:
+
+```c++
+pair<int, int> p;
+p = make_pair(1, 2);
+
+cout << p.first << ' ' << p.second << endl; // 1 2
+```
 
 Veja também [`pair<T>` no C++ Reference](https://en.cppreference.com/w/cpp/utility/pair).
 
@@ -758,7 +766,37 @@ multist.erase(it);
 
 ### Iteradores
 
-// TODO
+Iteradores agem como *ponteiros* das estruturas da STL. Como são utilizados diferentes containers e coisas do tipo, é necessário que haja alguma padronização, portanto existem iteradores comuns para várias estruturas diferentes.
+
+Existem cinco diferentes tipos de iteradores: InputIterator, OutputIterator, ForwardIterator, BidirectionalIterator, e RandomAccessIterator, e [cada um](https://pt.cppreference.com/w/cpp/iterator) possui um comportamento específico.
+
+Como iteradores agem como ponteiros, eles indicam algum *endereço* específico da memória. Para pegar um valor de um iterador, assim como ponteiros comuns em C, faz-se a utilização de `*it` (tal que it é um iterador).
+
+Exemplo de iterador padrão para várias estruturas:
+
+```C++
+vector<int> a = {1, 3, 5, 7, 9};
+cout << *a.begin() << endl;
+// OUTPUT: 1
+
+set<int> b = {5, 2, 4, 3}; 
+cout << *b.begin() << endl;
+// o set, por padrao, ordena os elementos em ordem crescente
+// OUTPUT: 2
+
+map<int, int> c = {{1, 2}, {3, 5}};
+cout << (*c.begin()).first << ' ' << (*c.begin()).second << endl;
+// o valor de um map é um par de chave e valor. Portanto, deve ser acessado o first e second.
+// OUTPUT: 1 2
+```
+
+O `begin` é o iterador para o primeiro elemento.
+
+O `end` é o iterador para o final da estrutura - ou seja, é a primeira posição *depois* do último elemento.
+
+Também é importante notar que existem *iteradores reversos*, ou seja, que vão do final para o começo. Eles funcionam da seguinte maneira: o `rbegin` é o iterador para o último elemento, e o `rend` é o iterador para antes do primeiro elemento.
+
+Os iteradores reversos são, principalmente, utilizados em ordenação reversa de um intervalo de dados, como será visto no próximo tópico.
 
 ### Principais algoritmos
 
@@ -770,7 +808,8 @@ Ordena um intervalo de elementos.
 vector<int> a = {5, 1, 3, 7, 9};
 sort(a.begin(), a.end());
 // a = {1, 3, 5, 7, 9};
-sort(a.rbegin(), a.rend());
+
+sort(a.rbegin(), a.rend()); // utiliza os iteradores reversos para dar sort decrescente
 // a = {9, 7, 5, 3, 1};
 ```
 
@@ -789,11 +828,35 @@ int main() {
 
 #### lower_bound
 
-// TODO
+Retorna um iterador para o primeiro elemento *maior ou igual* a um elemento *X*. É necessário que a estrutura utilizada (um *vector*, por exemplo) esteja ordenada. Sua utilização é feita da seguinte forma:
+
+```C++
+lower_bound(INICIO, FINAL, X);
+```
+
+Tal que INICIO e FINAL são iteradores do início (inclusivo) e final (exclusivo), e *X* é o elemento procurado. Abaixo, um exemplo.
+
+```C++
+vector<int> a = {1, 3, 5, 7, 9};
+cout << *lower_bound(a.begin(), a.end(), 3) << endl; // 3
+cout << *lower_bound(a.begin(), a.end(), 4) << endl; // 5
+```
 
 #### upper_bound
 
-// TODO
+Retorna um iterador para o primeiro elemento *exclusivamente maior* a um elemento *X*. É necessário que a estrutura utilizada (um *vector*, por exemplo) esteja ordenada. Sua utilização é feita da seguinte forma:
+
+```C++
+upper_bound(INICIO, FINAL, X);
+```
+
+Tal que INICIO e FINAL (assim como no *lower bound*) são iteradores do início (inclusivo) e final (exclusivo), e *X* é o elemento procurado. Abaixo, um exemplo.
+
+```C++
+vector<int> a = {1, 3, 5, 7, 9};
+cout << *upper_bound(a.begin(), a.end(), 3) << endl; // 5
+cout << *upper_bound(a.begin(), a.end(), 4) << endl; // 5
+```
 
 #### min
 
