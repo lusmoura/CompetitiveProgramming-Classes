@@ -111,6 +111,8 @@ Agora a lista será algo como:
 5 -> 1 2 4  
 6 -> 4  
 
+Top, já temos nosos grafo montado e podemos seguir para a parte dos algoritmos! Vamos ver dois dos principais algorítmos de busca em grafos: a busca em profundidade (DFS) e a busca em largura (BFS).
+
 ## DFS
 
 ## BFS

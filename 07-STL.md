@@ -24,9 +24,9 @@ olhada nas principais estruturas de dados da STL.
   * [`pair<T,U>`](#pairtu)
   * [`priority_queue<T>`](#priority_queuet)
   * [`set<T>`](#sett)
-  * [`map<T,U>`](#maptu)
+  * [`map<K,V>`](#mapkv)
   * [`unordered_set<T>`](#unordered_sett)
-  * [`unordered_map<T,U>`](#maptu)
+  * [`unordered_map<K,V>`](#unordered_mapkv)
   * [`multiset<T>`](#multisett)
   * [Algoritmos da STL](#Algoritmos-da-STL)
     * [Iteradores](#iteradores)
@@ -570,7 +570,15 @@ imprime
 ```
 
 <!-- TODO construtores e funções -->
-<!-- TODO make_pair -->
+
+Para se criar um *pair*, pode-se utilizar a função `make_pair`:
+
+```c++
+pair<int, int> p;
+p = make_pair(1, 2);
+
+cout << p.first << ' ' << p.second << endl; // 1 2
+```
 
 Veja também [`pair<T>` no C++ Reference](https://en.cppreference.com/w/cpp/utility/pair).
 
@@ -623,6 +631,8 @@ OBS: sempre que um elemento é inserido ou removido da priority_queue, a organiz
 * `T top()` retorna o primeiro elemento em O(1)
 * `size_t size()` retorna o numero de elementos
 
+Veja também [`priority_queue<T>` no C++ Reference](https://en.cppreference.com/w/cpp/container/priority_queue).
+
 ## `set<T>`
 
 O `set<T>` representa basicamente um conjunto matemático - ou seja, os elementos ficam ordenados e não se repetem. Suas principais operações são: `insert`, `erase`, `find` e `count`.
@@ -645,6 +655,20 @@ if (st.count(5) != 0)
 st.erase(4);
 ```
 
+Para imprimir os valores de um set, precisa-se utilizar *iteradores*:
+
+```c++
+for (set<int>::iterator it = st.begin(); it !+ st.end(); it++) {
+  cout << *it << endl;
+}
+
+// pode-se utilizar o 'foreach' do c++ também:
+
+for (int x : st) {
+  cout << x << endl;
+}
+```
+
 * `set<T>()` constrói um set vazio
 * `void insert(T valor)` insere um elemento em O(log n)
 * `void erase(T valor)` remove um elemento em O(log n)
@@ -652,29 +676,127 @@ st.erase(4);
 * `size_t size()` retorna o numero de elementos
 * `size_t count(T valor)` retorna a quantidade de elementos com o valor presente no set em O(log n)
 
-Veja também [`priority_queue<T>` no C++ Reference](https://en.cppreference.com/w/cpp/container/priority_queue).
+Veja também [`set<T>` no C++ Reference](https://en.cppreference.com/w/cpp/container/set).
 
-## `map<T,U>`
 
-// TODO
+## `map<K,V>`
+
+O `map<K,V>` é um *conjunto chave-valor*. Ou seja, é possível indexar elementos, e atribuir valores a eles - um exemplo básico pode ser um *map* que armazena os preços de determinados produtos:
+
+```c++
+map<string, double> precos;
+precos.insert("Banana Prata", 1.31);
+precos.insert("Banana Nanica", 0.90);
+precos.insert("Mamao Formosa", 0.90);
+precos.insert("Manga Rosa", 0.90);
+precos.insert("Abacaxi", 1.90);
+precos.insert("Goiaba", 1.90);
+precos.insert("Abacate", 3.00);
+```
+
+Os elementos de um `map` ficam ordenados pelas chaves, em ordem crescente. Também é possível inserir valores de outros jeitos:
+
+```c++
+map<string, double> precos;
+precos["Banana Prata"] = 1.31; // indexa a string como se fosse um inteiro em um array
+```
+
+Se uma mesma chave for inserida duas vezes, seu valor é sobrescrito:
+
+```c++
+precos["Banana Prata"] = 1.30;
+precos["Banana Prata"] = 9.99; // o valor anterior de 1.30 é perdido, e 9.99 é utilizado.
+```
+
+Para pegar o valor de determinada chave, pode-se indexar também:
+
+```c++
+cout << precos["Banana Prata"] << endl; // se a "Banana Prata" ainda nao tivesse sido inserida no map, o valor nulo (0 no caso de double) é considerado
+```
+
+Assim como num *set*, para deixar tudo ordenado, há um custo computacional, e operações de inserção e busca são realizadas em *O(log n)*.
+
+Também existem mais funções no *map* (algumas que funcionam iguais a um *set*, inclusive):
+
+* `map<K,V>()` constrói um map vazio
+* `void insert(K chave, V valor)` insere um elemento em O(log n)
+* `void erase(K chave)` remove um elemento em O(log n)
+* `map<K, V>::iterator find(K valor)` retorna o iterador para o elemento (end() se não estiver nele) em O(log n)
+* `size_t size()` retorna o numero de elementos
+* `size_t count(T valor)` retorna a quantidade de elementos com o valor presente no map em O(log n)
 
 ## `unordered_set<T>`
 
-// TODO
+Um `unordered_set<T>` funciona da mesma maneira que um `set<T>`, mas sua estrutura é outra - utiliza-se um *[hash](https://pt.wikipedia.org/wiki/Fun%C3%A7%C3%A3o_hash)* para cada valor, o que permite que as operações de inserção, remoção e busca - que antes eram executadas em *O(log n)* - sejam executadas em *O(1)*, e, como o próprio nome já diz, os elementos nele não ficam ordenados.
 
-## `unordered_map<T,U>`
+## `unordered_map<K,V>`
 
-// TODO
+Assim como o `unordered_set<T>` faz com o `set<T>`, o `unordered_map<K,V>` funciona como um `map<K,V>`, mas com operações em O(1). Também é feita a utilização de funções hash.
 
 ## `multiset<T>`
 
-// TODO
+Um `multiset<T>` é, basicamente, um `set<T>` que permite repetições de elementos. Possui basicamente as mesmas operações do `set<T>`, também em *O(log n)*, e seus elementos também permanecem ordenados.
+
+Algo a se notar no *multiset* é a operação *erase*: ela remove **todos** os elementos do *multiset* que tiverem o mesmo valor:
+
+```c++
+multiset<int> multist;
+multist.insert(2);
+multist.insert(1);
+multist.insert(3);
+multist.insert(1);
+
+// {1, 1, 2, 3}
+
+multist.erase(1);
+
+// {2, 3}
+```
+
+Para evitar que se removam todos os elementos com mesmo valor (remover só o primeiro, por exemplo) pode-se realizar a operação *erase* a partir de um *iterador*:
+
+```
+// considere o multiset anterior {1, 1, 2, 3}
+auto it = multist.find(1);
+multist.erase(it);
+// {1, 2, 3} - removeu só o primeiro
+```
 
 ## Algoritmos da STL
 
 ### Iteradores
 
-// TODO
+Iteradores agem como *ponteiros* das estruturas da STL. Como são utilizados diferentes containers e coisas do tipo, é necessário que haja alguma padronização, portanto existem iteradores comuns para várias estruturas diferentes.
+
+Existem cinco diferentes tipos de iteradores: InputIterator, OutputIterator, ForwardIterator, BidirectionalIterator, e RandomAccessIterator, e [cada um](https://pt.cppreference.com/w/cpp/iterator) possui um comportamento específico.
+
+Como iteradores agem como ponteiros, eles indicam algum *endereço* específico da memória. Para pegar um valor de um iterador, assim como ponteiros comuns em C, faz-se a utilização de `*it` (tal que it é um iterador).
+
+Exemplo de iterador padrão para várias estruturas:
+
+```C++
+vector<int> a = {1, 3, 5, 7, 9};
+cout << *a.begin() << endl;
+// OUTPUT: 1
+
+set<int> b = {5, 2, 4, 3}; 
+cout << *b.begin() << endl;
+// o set, por padrao, ordena os elementos em ordem crescente
+// OUTPUT: 2
+
+map<int, int> c = {{1, 2}, {3, 5}};
+cout << (*c.begin()).first << ' ' << (*c.begin()).second << endl;
+// o valor de um map é um par de chave e valor. Portanto, deve ser acessado o first e second.
+// OUTPUT: 1 2
+```
+
+O `begin` é o iterador para o primeiro elemento.
+
+O `end` é o iterador para o final da estrutura - ou seja, é a primeira posição *depois* do último elemento.
+
+Também é importante notar que existem *iteradores reversos*, ou seja, que vão do final para o começo. Eles funcionam da seguinte maneira: o `rbegin` é o iterador para o último elemento, e o `rend` é o iterador para antes do primeiro elemento.
+
+Os iteradores reversos são, principalmente, utilizados em ordenação reversa de um intervalo de dados, como será visto no próximo tópico.
 
 ### Principais algoritmos
 
@@ -686,7 +808,8 @@ Ordena um intervalo de elementos.
 vector<int> a = {5, 1, 3, 7, 9};
 sort(a.begin(), a.end());
 // a = {1, 3, 5, 7, 9};
-sort(a.rbegin(), a.rend());
+
+sort(a.rbegin(), a.rend()); // utiliza os iteradores reversos para dar sort decrescente
 // a = {9, 7, 5, 3, 1};
 ```
 
@@ -705,11 +828,35 @@ int main() {
 
 #### lower_bound
 
-// TODO
+Retorna um iterador para o primeiro elemento *maior ou igual* a um elemento *X*. É necessário que a estrutura utilizada (um *vector*, por exemplo) esteja ordenada. Sua utilização é feita da seguinte forma:
+
+```C++
+lower_bound(INICIO, FINAL, X);
+```
+
+Tal que INICIO e FINAL são iteradores do início (inclusivo) e final (exclusivo), e *X* é o elemento procurado. Abaixo, um exemplo.
+
+```C++
+vector<int> a = {1, 3, 5, 7, 9};
+cout << *lower_bound(a.begin(), a.end(), 3) << endl; // 3
+cout << *lower_bound(a.begin(), a.end(), 4) << endl; // 5
+```
 
 #### upper_bound
 
-// TODO
+Retorna um iterador para o primeiro elemento *exclusivamente maior* a um elemento *X*. É necessário que a estrutura utilizada (um *vector*, por exemplo) esteja ordenada. Sua utilização é feita da seguinte forma:
+
+```C++
+upper_bound(INICIO, FINAL, X);
+```
+
+Tal que INICIO e FINAL (assim como no *lower bound*) são iteradores do início (inclusivo) e final (exclusivo), e *X* é o elemento procurado. Abaixo, um exemplo.
+
+```C++
+vector<int> a = {1, 3, 5, 7, 9};
+cout << *upper_bound(a.begin(), a.end(), 3) << endl; // 5
+cout << *upper_bound(a.begin(), a.end(), 4) << endl; // 5
+```
 
 #### min
 
