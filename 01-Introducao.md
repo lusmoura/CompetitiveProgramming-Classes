@@ -91,7 +91,7 @@ Após submeter seu código, você pode receber alguma resposta do site em que ma
 É sempre bom ler sobre algoritmos em diferentes sites, para ter diferentes perspectivas sobre um tópico. Entre estes sites, recomendamos:
 
 #### Em português
-[CodCad](http://www.codcad.com/)\
+[Neps Academy](https://neps.academy/login?next=%2F)\
 [GitHub do Fakhoury](https://github.com/andrefakhoury)\
 [GitHub do Forbes](https://github.com/VictorXjoeY)\
 [GitHub do LoppA](https://github.com/LoppA)\
