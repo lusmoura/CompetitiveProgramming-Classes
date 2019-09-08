@@ -24,7 +24,7 @@ Essa coleção de textos foi feita com o objetivo de introduzir e facilitar o es
 
 O material foi desenvolvido por:
 - André Fakhoury - Aluno de Ciências da Computação na USP, admirador das artes de programação competitiva e processamento de imagens :P
-- Bráulio Bezerra
+- Bráulio Bezerra - Aluno do BSI na USP Sanca, por birra não usa variável global o/
 - Danilo Tedeschi
 - David Cairuz
 - Luísa Moura - Aluna de Ciências da Computação na USP, embaixadora She++ e a louca das atividades de extensão XD
