@@ -1,3 +1,4 @@
+
 # Grafos
 
 Nessa aula vamos falar um pouco sobre grafos, o que são essas estruturas, para quê servem, como utilizá-las e alguns algoritmos bem legais.
@@ -114,5 +115,52 @@ Agora a lista será algo como:
 Top, já temos nosos grafo montado e podemos seguir para a parte dos algoritmos! Vamos ver dois dos principais algorítmos de busca em grafos: a busca em profundidade (DFS) e a busca em largura (BFS).
 
 ## DFS
+
+DFS ou Depth First Search (Busca em profundidade) é um algoritmo de busca em um grafo. Ele pode ser usado de diversas maneiras, como por exemplo, para encontrar componentes conexas (componentes do grafo nas quais é possível ir de um nó para qualquer outro) e para detectar ciclos.
+
+A ideia do seu funcionamente é a seguinte: começando num nó raíz, ele faz o percurso mais profundo que puder primeiro. Depois de ter feito isso, ele faz o chamado backtracking, ou seja, retorna para o estado anterior e procura um novo caminho.
+
+Calma, parece confuso, mas não é. Observe o exemplo abaixo:
+
+	      1
+	     / \
+	    2   3
+	   / 
+	  4   
+	 / \
+	5   6
+
+
+O percurso começa no nó 1. Em seguida, o seu primeiro filho é processado. Nesse momento temos o caminho (1, 2). Agora vamos para o primeiro filho do 2 e temos (1, 2, 4) e por fim para o primeiro filho do 4, tendo (1, 2, 4, 5). Agora não é mais possível "descer", então vamos voltar um passo para (1, 2, 4) e processar o próximo filho do 4: (1, 2, 4, 6). Novamente, precisamos voltar e temos, (1, 2, 4), porém todos os filhos do 4 já foram processados, então voltamos de novo, tendo (1, 2). Como todos os filhos do 2 foram processados, voltamos para (1) e processamos o segundo filho de 1, (1, 2). Nenhum dos dois possui filhos sem processar, então o algoritmo apenas retorna e acaba o processamento.
+
+Ou seja, aconteceria o seguinte:
+(1)
+(1, 2)
+(1, 2, 4)
+(1, 2, 4, 5)
+(1, 2, 4, 6)
+(1, 2, 4)
+(1, 2)
+(1)
+(1, 3)
+(1)
+()
+
+É possível implementar a DFS com uma pilha (observe o esquema acima e note que apenas o último nó é alterado) ou recursivamente. Vamos mostrar a versão recursiva, pois é mais bonita.
+
+```c++
+void dfs(int currNode) {
+	// se um nó foi processado, não é preciso processá-lo de novo
+	if (vis[currNode]) return;
+
+	// o nó é marcado como já visitado
+	vis[currNode] = 1;
+
+	// é feita a chamada recursiva para seus filhos
+	for (int i = 0; i < edges[currNode].size(); i++) {
+		dfs(edges[currNode][i]);
+	}
+}
+```
 
 ## BFS
