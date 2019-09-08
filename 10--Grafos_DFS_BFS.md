@@ -134,6 +134,7 @@ Calma, parece confuso, mas não é. Observe o exemplo abaixo:
 O percurso começa no nó 1. Em seguida, o seu primeiro filho é processado. Nesse momento temos o caminho (1, 2). Agora vamos para o primeiro filho do 2 e temos (1, 2, 4) e por fim para o primeiro filho do 4, tendo (1, 2, 4, 5). Agora não é mais possível "descer", então vamos voltar um passo para (1, 2, 4) e processar o próximo filho do 4: (1, 2, 4, 6). Novamente, precisamos voltar e temos, (1, 2, 4), porém todos os filhos do 4 já foram processados, então voltamos de novo, tendo (1, 2). Como todos os filhos do 2 foram processados, voltamos para (1) e processamos o segundo filho de 1, (1, 2). Nenhum dos dois possui filhos sem processar, então o algoritmo apenas retorna e acaba o processamento.
 
 Ou seja, aconteceria o seguinte:
+```
 (1)
 (1, 2)
 (1, 2, 4)
@@ -145,6 +146,7 @@ Ou seja, aconteceria o seguinte:
 (1, 3)
 (1)
 ()
+```
 
 É possível implementar a DFS com uma pilha (observe o esquema acima e note que apenas o último nó é alterado) ou recursivamente. Vamos mostrar a versão recursiva, pois é mais bonita.
 
