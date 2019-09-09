@@ -28,4 +28,4 @@ O material foi desenvolvido por:
 - Danilo Tedeschi
 - David Cairuz - Aluno de Ciências da Computação na USP, viciado em competições de data science e fã da arte de resolver problemas :B
 - Luísa Moura - Aluna de Ciências da Computação na USP, embaixadora She++, amante da arte de codar e a louca das atividades de extensão XD
-- Thiago Preischadt
+- Thiago Preischadt - Aluno de Ciências de Computação na USP, louco por viver fazendo projetos idiotas e aprendendo coisas diferentes, dentre elas técnicas e algoritmos de Programação Competitiva!
