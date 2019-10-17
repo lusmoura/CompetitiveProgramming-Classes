@@ -1,6 +1,6 @@
 # Resumos
 
-Essa coleção de resumos foi feita com o objetivo de introduzir e facilitar o estudo à programação competitiva. Os seguintes tópicos serão abordados:
+Essa coleção de textos foi feita com o objetivo de introduzir e facilitar o estudo à programação competitiva. Os seguintes tópicos serão abordados:
 
 - Introdução à Programação Competitiva
 - Introdução C++
@@ -14,16 +14,18 @@ Essa coleção de resumos foi feita com o objetivo de introduzir e facilitar o e
 - Grafos - BFS
 - Grafos - Dijkstra
 - Floyd Warshall
+- Árvores
 - DSU - Union Find e Kruskal
 - DP - Programação Dinâmica
-- Problemas envolvendo Árvores
 - LIS - Longest Increasing Subsequence
 - Geometria Computacional
 - Hash
-- Number Theory
+- Teoria dos números
 
-Created by:
-- André Fakhoury
+O material foi desenvolvido por:
+- André Fakhoury - Aluno de Ciências da Computação na USP, admirador das artes de programação competitiva e processamento de imagens :P
+- Bráulio Bezerra - "Quem se define se limita" 
+- Danilo Tedeschi
 - David Cairuz
-- Luísa Moura
+- Luísa Moura - Aluna de Ciências da Computação na USP, embaixadora She++, amante da arte de codar e a louca das atividades de extensão XD
 - Thiago Preischadt
