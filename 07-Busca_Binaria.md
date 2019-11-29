@@ -11,7 +11,7 @@ Vamos começar com um pequeno problema, vamos supor que temos uma <u>lista de no
 - Fakhoury (3)
 - João (4)
 - Luísa (5)
-- <font color='red'> Medeiros </font> (6)
+- **Medeiros** (6)
 - Preischadt (7)
 - Samuquinha (8)
 - Tubone (9)
@@ -28,7 +28,7 @@ Note que a lista está ordenada, ou seja, organizada por ordem alfabética de no
 - David (2)
 - Fakhoury (3)
 - João (4)
-- <font color='blue'> Luísa </font> (5)
+- **Luísa** (5)
 - Medeiros (6)
 - Preischadt (7)
 - Samuquinha (8)
@@ -39,13 +39,13 @@ Como a lista está em ordem alfabética, sabemos que todos os nomes que estão a
 Esse fato é muito bom, porque podemos fazer um "corte": Podemos eliminar a metade superior da lista com apenas uma comparação! Nos restando apenas 4 nomes. Vamos de novo adotar a mesma estratégia de tentar olhar para o nome que está no meio da lista, como a lista possui 4 nomes, vamos olhar para o segundo:
 
 - Medeiros (6)
-- <font color='blue'> Preischadt </font> (7)
+- **Preischadt** (7)
 - Samuquinha (8)
 - Tubone (9)
 
 De novo não encontramos o nome <font color='blue'> Medeiros </font> ao olhar para o nome que está exatamente na metade, mas adquirimos uma nova informação: **O nome que está bem no meio é Preischadt, que começa com P, logo, como Medeiros começa com M, deve estar acima!** Portanto, podemos eliminar todos os nomes que começam com P em diante! Nos restando:
 
-- <font color='red'> Medeiros </font> (6)
+- **Medeiros** (6)
 
 E então terminamos nossa **busca binária**! Conseguimos achar o nome <font color='red'> Medeiros </font> em apenas **três** comparações. Para listas de tamanho **`N`**, como sempre dividimos a lista na metade em cada iteração, a complexidade desse algoritmo será **`O(logn)`**, que é exatamente o numéro de divisões necessárias para se chegar no tamanho 1.
 
