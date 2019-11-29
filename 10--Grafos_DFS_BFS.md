@@ -121,6 +121,9 @@ DFS ou Depth First Search (Busca em profundidade) é um algoritmo de busca em um
 A ideia do seu funcionamente é a seguinte: começando num nó raíz, ele faz o percurso mais profundo que puder primeiro. Depois de ter feito isso, ele faz o chamado backtracking, ou seja, retorna para o estado anterior e procura um novo caminho.
 
 Calma, parece confuso, mas não é. Observe o exemplo abaixo:
+![DFS](https://upload.wikimedia.org/wikipedia/commons/7/7f/Depth-First-Search.gif)
+
+Vamos ver o passo a passo para o grafo a seguir:
 
 	      1
 	     / \
@@ -131,9 +134,15 @@ Calma, parece confuso, mas não é. Observe o exemplo abaixo:
 	5   6
 
 
-O percurso começa no nó 1. Em seguida, o seu primeiro filho é processado. Nesse momento temos o caminho (1, 2). Agora vamos para o primeiro filho do 2 e temos (1, 2, 4) e por fim para o primeiro filho do 4, tendo (1, 2, 4, 5). Agora não é mais possível "descer", então vamos voltar um passo para (1, 2, 4) e processar o próximo filho do 4: (1, 2, 4, 6). Novamente, precisamos voltar e temos, (1, 2, 4), porém todos os filhos do 4 já foram processados, então voltamos de novo, tendo (1, 2). Como todos os filhos do 2 foram processados, voltamos para (1) e processamos o segundo filho de 1, (1, 2). Nenhum dos dois possui filhos sem processar, então o algoritmo apenas retorna e acaba o processamento.
+- O percurso começa no nó 1. 
+- Em seguida, o seu primeiro filho é processado. Nesse momento temos o caminho (1, 2). 
+- Agora vamos para o primeiro filho do 2 e temos (1, 2, 4) e por fim para o primeiro filho do 4, tendo (1, 2, 4, 5). 
+- Agora não é mais possível "descer", então vamos voltar um passo para (1, 2, 4) e processar o próximo filho do 4: (1, 2, 4, 6). 
+- Novamente, precisamos voltar e temos, (1, 2, 4), porém todos os filhos do 4 já foram processados, então voltamos de novo, tendo (1, 2). 
+- Como todos os filhos do 2 foram processados, voltamos para (1) e processamos o segundo filho de 1, (1, 2). 
+- Nenhum dos dois possui filhos sem processar, então o algoritmo apenas retorna e acaba o processamento.
 
-É importante notar que devemos ter alguma maneira de marcar os nós como **visitados** para que não entremos num loop e sigamos na busca. Por isso, teremos um vetor auxiliar no qual iremos, para cá nó, identificar se ele já foi ou não processado.
+É importante notar que devemos ter alguma maneira de marcar os nós como **visitados** (ou processados), para que não entremos num loop e sigamos na busca. Por isso, teremos um vetor auxiliar no qual iremos, para cá nó, identificar se ele já foi ou não processado.
 
 Ou seja, aconteceria o seguinte:
 ```
@@ -168,3 +177,74 @@ void dfs(int currNode) {
 ```
 
 ## BFS
+Falemos agora um pouco sobre a Breadth-First Search ou BFS. Essa é outra maneira de percorrer um grafo, na qual cada "nível" do grafo é analisado por vez. Ou seja, primeiramente são processados todos os filhos de um nó. Em seguida seguimos para processar os filhos dos seus filhos e assim por diante. Essa busca permite, dentre outras coisas, achar componentes conexas e achar o menor caminho entre um nó raiz e os outros nós do grafo.
+
+Vejamos abaixo como funciona a BFS numa árvore:
+![BFS](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Breadth-First-Search-Algorithm.gif/375px-Breadth-First-Search-Algorithm.gif)
+
+E para um grafo que contém ciclo:
+![BFS](https://upload.wikimedia.org/wikipedia/commons/9/99/Breadth-first_search_Algorithm.gif)
+
+Vamos ver o passo a passo para o mesmo grafo utilizado na DFS:
+
+	      1
+	     / \
+	    2   3
+	   / 
+	  4   
+	 / \
+	5   6
+
+
+- O percurso começa no nó 1. 
+- Em seguida, o seu primeiro filho é processado. Nesse momento temos o caminho (1, 2). 
+- Depois processamos seu segundo filho, temos, assim (1, 2, 3). O primeiro nó acabou de ser processado, então temos (2, 3). 
+- O próximo nó a ser processado será o 2, para isso, vamos adicionar seus filhos no caminho (2, 3, 4). Done, próximo! 
+- Processemos o 3. Como ele não possui filhos, só seguimos em frente, tendo (4).
+- Começemos a processar o nó 4. Seus filhos são percorridos e temos (4, 5, 6). Ao terminar de processá-lo, resta (5, 6)
+- Processamos o nó 5, que não possui filhos e por último o nó 6, que também não possui.
+
+Ou seja, aconteceria o seguinte:
+```
+(1)
+(1, 2)
+(1, 2, 3)
+(2, 3)
+(2, 3, 4)
+(3, 4)
+(4)
+(4, 5)
+(4, 5, 6)
+(5, 6)
+(6)
+```
+
+Nesse caso, estamos inserindo novos nós no final do caminho e tirando os nós que estão no início (é possível notar isso justamente nas listas de processamento mostradas logo aqui em cima). Portanto, precisaremos de uma lista para processar os nós. Cada nó será inserido no final da lista quando for alcançado. Quando chegar sua vez, ou seja, quando estiver na frente da fila, será processado e em seguida removido.
+
+Vamos ver como fica o código:
+
+```c++
+void bfs(int root) {
+	// criando pilha e colocando o nó raiz
+	queue <int> q;
+	q.push(root);
+
+	// enquanto ainda houver algum elemento na fila
+	while (!q.empty()) {
+		// pega o elemento e o tira da pilha
+		int u = q.front();
+		q.pop();
+
+		// o marca como visitado
+		vis[u] = 1;
+
+		// cada filho que não foi visitado ainda é inserido na fila
+		for(int i = 0; i < edges[u].size(); i++){
+			int v = edges[u][i];
+			
+			if (!vis[v])
+				q.push(v);
+		}
+	}
+}
+```
