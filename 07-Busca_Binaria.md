@@ -129,5 +129,5 @@ Vamos avaliar uma lista de inteiros de tamanho **`N = 100 000 000 (cem milhões)
 
 Vamos busca pelo número **`K = 90 000 001`**:
 
-- A busca linear acha o número K em **`t = 50,863 milisegudos `**, com **`c = 90 000 002 comparações`**.
-- A busca binária acha o número K em **`t = 0,002315 milisegudos `**, com **`c = 43 comparações`**.
+- A busca linear acha o número K em **`t = 50,863 milisegundos `**, com **`c = 90 000 002 comparações`**.
+- A busca binária acha o número K em **`t = 0,002315 milisegundos `**, com **`c = 43 comparações`**.
