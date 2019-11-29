@@ -64,7 +64,7 @@ vector<int> edges[MAX];
 ``` 
 
 ### Adicionando arestas
-Uma vez que temos a estrutura podemos adicionar as arestas desse grafo. Se quisermos inserir uma aresta entre 1 e 2, por exemplo, precisamos inserir o número 2 no vector associado à posição 1 do vetor. O comando para isso é:
+Uma vez que temos a estrutura podemos adicionar as arestas desse grafo. Se quisermos inserir uma aresta entre 1 e 2, por exemplo, precisamos inserir o número 2 no vector associado à posição 1 do vetor. Sempre bom lembrar que ao adicionar a aresta do 1 para o 2 sem adicionar a aresta contrária, estmos dizenodo que esse grafo é obrigatoriamente **direcionado** O comando para isso é:
 
 ```c++
 edges[1].push_back(2);
@@ -133,6 +133,8 @@ Calma, parece confuso, mas não é. Observe o exemplo abaixo:
 
 O percurso começa no nó 1. Em seguida, o seu primeiro filho é processado. Nesse momento temos o caminho (1, 2). Agora vamos para o primeiro filho do 2 e temos (1, 2, 4) e por fim para o primeiro filho do 4, tendo (1, 2, 4, 5). Agora não é mais possível "descer", então vamos voltar um passo para (1, 2, 4) e processar o próximo filho do 4: (1, 2, 4, 6). Novamente, precisamos voltar e temos, (1, 2, 4), porém todos os filhos do 4 já foram processados, então voltamos de novo, tendo (1, 2). Como todos os filhos do 2 foram processados, voltamos para (1) e processamos o segundo filho de 1, (1, 2). Nenhum dos dois possui filhos sem processar, então o algoritmo apenas retorna e acaba o processamento.
 
+É importante notar que devemos ter alguma maneira de marcar os nós como **visitados** para que não entremos num loop e sigamos na busca. Por isso, teremos um vetor auxiliar no qual iremos, para cá nó, identificar se ele já foi ou não processado.
+
 Ou seja, aconteceria o seguinte:
 ```
 (1)
@@ -148,7 +150,7 @@ Ou seja, aconteceria o seguinte:
 ()
 ```
 
-É possível implementar a DFS com uma pilha (observe o esquema acima e note que apenas o último nó é alterado) ou recursivamente. Vamos mostrar a versão recursiva, pois é mais bonita.
+É possível implementar a DFS com uma pilha (se não estiver familiarizado com isso, é só voltar um pouco e olhar a aula de STL ou recursivamente (observe o esquema acima e note que apenas o último nó é alterado). Vamos mostrar a versão recursiva, pois é mais bonita.
 
 ```c++
 void dfs(int currNode) {
