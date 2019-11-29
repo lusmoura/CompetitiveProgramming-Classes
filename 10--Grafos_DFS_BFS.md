@@ -248,3 +248,5 @@ void bfs(int root) {
 	}
 }
 ```
+
+Essa foi uma introdução à Teoria dos Grafos. Em seguida teremos mais algumas aulas ainda sobre eles, falando um pouco sobre caminhos mínimos, árvores geradoras e várias outras coisas feras que podem ser feitas com os grafos! \o/
