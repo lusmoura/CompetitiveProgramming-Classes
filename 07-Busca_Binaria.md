@@ -73,6 +73,7 @@ Agora vamos fazer o mesmo código, porém no formato de uma **lendária busca bi
 
 void busca_binaria(int inicio, int fim, string amigo){
 
+    // se so sobrou um nome na lista e é o nome do nosso amigo!
     if(inicio == fim and lista[inicio] == amigo)
         cout << "achei!";
     
@@ -103,6 +104,8 @@ void busca_binaria(string amigo){
     int fim = lista.size();
 
     while(inicio <= fim){
+    
+        // se so sobrou um nome na lista e é o nome do nosso amigo
         if(inicio == fim and lista[inicio] == amigo)
             cout << "achei!";
 
