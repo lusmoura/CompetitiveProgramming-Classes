@@ -53,7 +53,7 @@ E então terminamos nossa **busca binária**! Conseguimos achar o nome <font col
 
 Primeiro vamos codar uma busca linear:
 ```py
-// pegamos o tamanho da lista de nomes
+#pegamos o tamanho da lista de nomes
 n = len(lista)
 
 amigo = "Medeiros"
@@ -67,27 +67,27 @@ Agora vamos fazer o mesmo código, porém no formato de uma **lendária busca bi
 
 ### Recursiva:
 ```py
-// inicio e fim nos dizem qual é o intervalo atual do nosso "corte" atual da lista.
+#inicio e fim nos dizem qual é o intervalo atual do nosso "corte" atual da lista.
 
 def busca_binaria(inicio, fim, amigo):
-    // se so sobrou um nome na lista e é o nome do nosso amigo!
+    # se so sobrou um nome na lista e é o nome do nosso amigo!
     if inicio == fim and lista[inicio] == amigo:
 	print("achei")
     
-    // vamos pegar o indice do amigo que está bem no meio!
+    # vamos pegar o indice do amigo que está bem no meio!
     meio = (inicio + fim)//2
 
     nome_do_meio = lista[meio]
 
-    // compara alfabeticamente
+    # compara alfabeticamente
     if nome_do_meio > amigo:
 
-        // parte superior da lista (do inicio ao meio (excluindo o nome do meio))
+        # parte superior da lista (do inicio ao meio (excluindo o nome do meio))
         busca_binaria(inicio, meio - 1, amigo)
 
     elif nome_do_meio <= amigo: 
 
-        // parte inferior da lista (do meio ao fim (incluindo o nome do meio))
+        # parte inferior da lista (do meio ao fim (incluindo o nome do meio))
         busca_binaria(meio, fim, amigo)
 
 ```
@@ -101,19 +101,19 @@ def busca_binaria(string amigo):
 
     while inicio <= fim:
 
-        // se so sobrou um nome na lista e é o nome do nosso amigo
+        # se so sobrou um nome na lista e é o nome do nosso amigo
         if inicio == fim and lista[inicio] == amigo:
 	        print("achei")
 
         meio = (inicio + fim)//2
         nome_do_meio = lista[meio]
 
-        // comparação alfabetica
+        # comparação alfabetica
         if nome_do_meio <= amigo:
-            // vamos olhar pra parte inferior da lista (abaixo do nome que esta no meio)
+            # vamos olhar pra parte inferior da lista (abaixo do nome que esta no meio)
             inicio = meio + 1
         elif nome_do_meio > amigo:
-            // vamos olhar pra parte superior da lista (do meio para cima)
+            # vamos olhar pra parte superior da lista (do meio para cima)
             fim = meio
 ```
 
@@ -127,3 +127,4 @@ Vamos busca pelo número **`K = 90 000 001`**:
 
 - A busca linear acha o número K em **`t = 50,863 milisegundos `**, com **`c = 90 000 002 comparações`**.
 - A busca binária acha o número K em **`t = 0,002315 milisegundos `**, com **`c = 43 comparações`**.
+USUARIOS+10723801@6-303-25:~$ 
