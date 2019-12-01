@@ -59,7 +59,7 @@ n = len(lista)
 amigo = "Medeiros"
 
 for i in range(0, n):
-	if lista[i] == amigo:
+    if lista[i] == amigo:
 		print("achei!")
 ```
 
@@ -70,7 +70,6 @@ Agora vamos fazer o mesmo código, porém no formato de uma **lendária busca bi
 // inicio e fim nos dizem qual é o intervalo atual do nosso "corte" atual da lista.
 
 def busca_binaria(inicio, fim, amigo):
-
     // se so sobrou um nome na lista e é o nome do nosso amigo!
 	if inicio == fim and lista[inicio] == amigo:
 		print("achei")
