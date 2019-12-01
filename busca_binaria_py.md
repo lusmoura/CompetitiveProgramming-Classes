@@ -52,76 +52,70 @@ E então terminamos nossa **busca binária**! Conseguimos achar o nome <font col
 ## Bora pro código!
 
 Primeiro vamos codar uma busca linear:
-```c++
+```py
 // pegamos o tamanho da lista de nomes
-int n = lista.size();
+n = len(lista)
 
-string amigo = "Medeiros";
+amigo = "Medeiros"
 
-for(int i = 0; i < n; i++){
-    if(lista[i] == amigo){
-        cout << "achei!";
-    }
-}
+for i in range(0, n):
+	if lista[i] == amigo:
+		print("achei!")
 ```
 
 Agora vamos fazer o mesmo código, porém no formato de uma **lendária busca binária**:
 
 ### Recursiva:
-```c++
+```py
 // inicio e fim nos dizem qual é o intervalo atual do nosso "corte" atual da lista.
 
-void busca_binaria(int inicio, int fim, string amigo){
+def busca_binaria(inicio, fim, amigo):
 
     // se so sobrou um nome na lista e é o nome do nosso amigo!
-    if(inicio == fim and lista[inicio] == amigo)
-        cout << "achei!";
+	if inicio == fim and lista[inicio] == amigo:
+		print("achei")
     
     // vamos pegar o indice do amigo que está bem no meio!
-    int meio = (inicio + fim)/2;
+    meio = (inicio + fim)//2
 
-    string nome_do_meio = lista[meio];
+    nome_do_meio = lista[meio]
 
     // compara alfabeticamente
-    if(nome_do_meio > amigo){
+    if nome_do_meio > amigo:
 
         // parte superior da lista (do inicio ao meio (excluindo o nome do meio))
-        busca_binaria(inicio, meio - 1, amigo);
+        busca_binaria(inicio, meio - 1, amigo)
 
-    } else if(nome_do_meio <= amigo){
+    elif nome_do_meio <= amigo: 
 
         // parte inferior da lista (do meio ao fim (incluindo o nome do meio))
-        busca_binaria(meio, fim, amigo);
+        busca_binaria(meio, fim, amigo)
 
-    }
-}
 ```
 
 ### Iterativa:
-```c++
-void busca_binaria(string amigo){
-    int inicio = 0;
-    int fim = lista.size();
+```py
 
-    while(inicio <= fim){
+def busca_binaria(string amigo):
+    inicio = 0
+    fim = len(lista)
+
+    while inicio <= fim:
     
         // se so sobrou um nome na lista e é o nome do nosso amigo
-        if(inicio == fim and lista[inicio] == amigo)
-            cout << "achei!";
+        if inicio == fim and lista[inicio] == amigo:
+			print("achei")
 
-        int meio = (inicio + fim)/2;
-        string nome_do_meio = lista[meio];
+        meio = (inicio + fim)//2
+        nome_do_meio = lista[meio]
 
         // comparação alfabetica
-        if(nome_do_meio <= amigo){
+        if nome_do_meio <= amigo:
             // vamos olhar pra parte inferior da lista (abaixo do nome que esta no meio)
-            inicio = meio + 1;
-        } else if(nome_do_meio > amigo){
+            inicio = meio + 1
+        elif nome_do_meio > amigo:
             // vamos olhar pra parte superior da lista (do meio para cima)
-            fim = meio;
-        }
-    }
-}
+            fim = meio
 ```
 
 ## Comparando resultados
