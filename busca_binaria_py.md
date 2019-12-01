@@ -1,4 +1,5 @@
 # Busca binária
+
 Nessa aula falaremos um pouco sobre a grandiosa busca binária, uma das ideias mais clássicas da Computação, que aparece em muitos algoritmos e otimiza muitas ideias, diga adeus à linearidade :').
 
 ## A motivação por trás
