@@ -127,4 +127,3 @@ Vamos busca pelo número **`K = 90 000 001`**:
 
 - A busca linear acha o número K em **`t = 50,863 milisegundos `**, com **`c = 90 000 002 comparações`**.
 - A busca binária acha o número K em **`t = 0,002315 milisegundos `**, com **`c = 43 comparações`**.
-USUARIOS+10723801@6-303-25:~$ 
