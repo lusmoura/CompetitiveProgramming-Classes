@@ -60,7 +60,7 @@ amigo = "Medeiros"
 
 for i in range(0, n):
     if lista[i] == amigo:
-		print("achei!")
+    	print("achei!")
 ```
 
 Agora vamos fazer o mesmo código, porém no formato de uma **lendária busca binária**:
@@ -71,8 +71,8 @@ Agora vamos fazer o mesmo código, porém no formato de uma **lendária busca bi
 
 def busca_binaria(inicio, fim, amigo):
     // se so sobrou um nome na lista e é o nome do nosso amigo!
-	if inicio == fim and lista[inicio] == amigo:
-		print("achei")
+    if inicio == fim and lista[inicio] == amigo:
+	print("achei")
     
     // vamos pegar o indice do amigo que está bem no meio!
     meio = (inicio + fim)//2
@@ -100,10 +100,10 @@ def busca_binaria(string amigo):
     fim = len(lista)
 
     while inicio <= fim:
-    
+
         // se so sobrou um nome na lista e é o nome do nosso amigo
         if inicio == fim and lista[inicio] == amigo:
-			print("achei")
+	        print("achei")
 
         meio = (inicio + fim)//2
         nome_do_meio = lista[meio]
